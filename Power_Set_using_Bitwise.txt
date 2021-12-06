@@ -1,0 +1,28 @@
+# Generating a power set of given set using bitwise operator
+
+I/P : S = "abc" ;
+O/P : "", "a", "c", "ab", "ac", "bc", "abc" ;
+
+
+I/P : S = "ab" ;
+O/P : "", "a", "b", "ab" ;
+
+1 . program for the problem
+
+    Time complexity  : Theta(2^n * n )
+
+    void Func(string Str)
+    {
+        int Num = Str.length();
+
+        int Pow = pow(2, Num) ; // include <cmath>
+        for(int i = 0; i < Pow; i++)
+        {
+            for(int j = 0; j < Num; j++)
+            {
+                if((i & (1 << j)) != 0)
+                    cout<<Str[j];
+            }
+            cout<<endl;
+        }
+    }
