@@ -1,0 +1,47 @@
+# Given a number N check if it is power of two or not.
+
+I/P  :  N = 4;
+O/P  :  Yes ;
+
+
+I/P  :  N = 6;
+O/P  :  No ;
+
+* Assume Number is not negative integer.
+
+
+Two methods are discussed here 
+
+1 . Naive method 
+
+    bool Func(int Num)
+    {
+        if(Num == 0)
+            return False;
+        while(Num != 1)
+        {
+            if( Num % 2 != 0)
+                return False;
+            Num = Num / 2;
+        }
+        return True;
+    }
+
+
+2 . We exlpoit property that only one bit is set for numbers which are power of two.
+    using Brian and Kerningham algorithm.we can use it but we are using more efficient.
+
+
+    bool Func(int Num)
+    {
+        if(Num == 0)
+            return False;
+        return ((Num & (Num - 1)) == 0);
+    }
+
+    or oneliner for the same program,
+
+    bool Func(int Num)
+    {
+        return (Num != 0 ) && ((Num & (Num - 1)) == 0);
+    }
