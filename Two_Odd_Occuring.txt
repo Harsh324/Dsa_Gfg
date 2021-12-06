@@ -1,0 +1,57 @@
+#  Given an array of integers , every number of the array appears even, 
+   no of times. except two integers that appear oddnumber of times.
+
+
+I/P : Arr[] = {3, 4, 3, 4, 5, 4, 4, 6, 7, 7} ;
+O/P : 5,6 ;
+
+
+I/P : Arr[] = {20, 15, 20, 16} ;
+O/P : 15,16 ;
+
+
+
+1 . Naive solution 
+
+    Time complexity  :  Theta(n^2)
+
+
+    void Func(int Arr[] , int Num)
+    {
+        for(int i = 0; i < Num; i++)
+        {
+            int Count = 0;
+            for(int j = 0; j < Num; j++)
+            {
+                if(Arr[i] == Arr[j])
+                    Count++;
+            }
+            if(Count % 2 != 0)
+                cout<<Arr[i]<<" ";
+        }
+    }
+
+
+2 . efficient approach
+
+    Time complexity : Theta(1)
+    space complexity : O(1)
+
+    void Func(int Arr[] , int Num)
+    {
+        int XOR = 0, Res1 = 0, Res2 = 0;
+        for(int i = 0; i < Num; i++)
+        {
+            XOR = XOR^Arr[i];
+        }
+        int Val = XOR & (~(XOR - 1));
+
+        for(int i = 0; i < Num; i++)
+        {
+            if((Arr[i] & Val) != 0)
+                Res1 = Res1 ^ Arr[i];
+            else
+                Res2 = Res2 ^ Arr[i];
+        }
+        cout << Res1 <<" "<<Res2; 
+    }
