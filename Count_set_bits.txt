@@ -1,0 +1,79 @@
+## Count set bits in an integer 
+
+Given a non negative integer we need to count,
+    how many set bits are in that number.
+
+
+I/P  : N = 5 ;
+O/P  : 2;
+
+
+I/P  : N = 7 ;
+O/P  : 3;
+
+
+I/P  : N = 13 ;
+O/P  : 3;
+
+
+We will solve with three methods 
+
+1 . Naive approach (check last bit if = 1 , 
+        increment result and remove the last bit, otherwise only remove last bit)
+
+    Time complexity : Theta(total bits of N)
+
+
+    int Func(int Num)
+    {
+        int Res = 0;
+        while(Num > 0)
+        {
+            if(Num % 2 != 0)    // if(Num & 1 == 1) 
+                Res++;        //     Res++         // Res = Res + (Num&1)
+            Num = Num / 2     // Num = Num >> 1;
+        }
+    }
+
+
+
+2 . Brian and Kerningham Algorithm
+
+    Time complexity  : Theta(Set bit count)
+
+    int Func(int Num)
+    {
+        int Res = 0;
+        while(Num > 0)
+        {
+            Num = (Num & (Num - 1));
+            Res++;
+        }
+        return Res;
+    }
+
+
+
+3 . Lookup Table method (Idea is to divide our 32 bit input in 8 bit chunks )
+
+    Time complexity : Theta(1)
+
+    int Table[256];
+    void Initialize()
+    {
+        Table[0] = 0;
+        for(int i = 1; i < 256; i++)
+            Table[i] = (i & 1) + Table[i/2];
+    }
+
+    int Func(int Num)
+    {
+        int Res = Table[Num & 0xff];
+        Num = Num >> 8;
+        Res = Res + Table[Num & 0xff];
+        Num = Num >> 8;
+        Res = Res + Table[Num & 0xff];
+        Num = Num >> 8;
+        Res = Res + Table[Num & 0xff];
+        return Res;
+    }
