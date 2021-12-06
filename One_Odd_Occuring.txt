@@ -1,0 +1,62 @@
+# Given an array of integer  where all integer appears even number,
+  of timesexcept one which is odd number of time .
+  we need to find that odd appearing integer.
+
+I/P :  Arr[] = {4, 3, 4, 4, 4, 5, 5} ;
+O/P :  3 ;
+
+
+I/P :  Arr[] = {8, 7, 7, 8, 8, 8} ;
+O/P :  8 ;
+
+
+*   XOR properties : 
+    1 . x^0 = x;
+    2 . x^y = y^x 
+    3 . x^(y^z) = (x^y)^z
+    4 . x^x = 0 :  ( XOR of number with self comes to be zero )
+
+
+We will look at two solution the Naive one and the efficient one.
+
+1 . Naive method 
+
+    Time complexity : O(n^2)
+
+    for(int i = 0; i < Num ; i++)
+    {
+        int Count = 0;
+        for(int i = 0; i < Num ; i++)
+        {
+            if(Arr[i] == Arr[j])
+                Count++;
+        }
+        if(Count % 2 != 0)
+            return Arr[i];
+    }
+
+
+2 . efficient method using XOR property
+
+    Time complexity : O(n) , Space complexity : O(1)
+
+    int Func(int Arr[] , int Num)
+    {
+        int Res = 0;
+        for(int i = 0; i < Num; i++)
+            Res = Res ^ Arr[i];
+        return Res;
+    }
+
+
+
+## Variation Question  : Given an array of n numbers that has values,
+   in range[1.....n+1]. Every no. appears exactly once. Hence one no,
+   is missing . Find the missing no.
+
+I/P  :  Arr[] = {1, 4, 3};
+O/P  :  2 ;
+
+
+I/P  :  Arr[] = {1, 5, 3, 2};
+O/P  :  4 ;
