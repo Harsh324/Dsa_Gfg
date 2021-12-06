@@ -1,0 +1,48 @@
+## Check if kth bit from right is set or not
+
+
+Given two numbers N and K.
+
+I/P  :  N = 5 , K = 1 ;
+O/P  :  Yes ;
+
+I/P  :  N = 5 , K = 3;
+O/P  :  Yes ;
+
+I/P  :  N = 13 , K = 3;
+O/P  :  Yes ;
+
+I/P :   N = 8 , K = 2;
+O/P :   No ;
+
+I/P :   N = 0 , K = 3;
+O/P :   No ;
+
+* Assuming that k <= number of bits for binary representation.
+
+
+There are two methods to solve it
+
+1 . Using Left shift (<<) : 
+
+    void Func(int Num , int K)
+    {
+        if(Num & (1<<(K - 1)) != 0)
+            cout<<"Yes";
+        else
+            cout<<"No";
+    }
+
+
+
+2 . Using Right shift (>>) : 
+
+    void Func(int Num , int K)
+    {
+        if((( Num >> (K - 1)) & 1) == 1)
+            cout<<"Yes";
+        else
+            cout<<"No";
+    }
+
+
