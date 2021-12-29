@@ -1,0 +1,12 @@
+# Recursion applications
+
+    ## Many algorithms are based on recursion
+        Dynamic Programming
+        Backtracking
+        Divide and Conqeur(Binary search , Quick sort , Merge sort)
+
+    ## Many problems inheritly use Recursion
+        Tower of Hanoi problems
+        DFS based traversals
+
+

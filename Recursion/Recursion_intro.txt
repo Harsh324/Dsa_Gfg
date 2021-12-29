@@ -1,0 +1,5 @@
+# Recursion
+
+if no terminating in recusrion then 
+c++ will give segmentation fault, 
+java will give stackoverflow.
