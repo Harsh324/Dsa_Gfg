@@ -1,0 +1,122 @@
+## Tail Recursion
+
+    # Function to print N to 1
+
+    void Print(int Num)
+    {
+        if(Num == 0)
+            return;
+        else
+        {
+            cout<<Num<<endl;
+            Print(Num - 1);
+        }
+    }
+
+    ** The Above function take less time than the below,
+       due to conecpt of tail recursion, as discussed later.
+
+    # Function to print 1 to n
+
+    void Print(int Num)
+    {
+        if(Num == 0)
+            return;
+        else
+        {
+            Print(Num - 1);
+            cout<<Num<<endl;
+        }
+    }
+
+    ** A Recursion is called Tail Recursion When the last, 
+       thing that function does is recursive call.
+
+    ** Whenever moder compilers see tail recursive function,
+       they do some changes, as disccused below
+
+       # Recursion is removed completely.
+       # called as tail call elimination.
+
+       void Print(int Num)
+        {
+            start:
+                if(Num == 0)
+                    return;
+                else
+                {
+                    cout<<Num<<endl;
+                    //Print(Num - 1);
+                    Num = Num - 1;
+                    goto start;
+                }
+        }
+
+    
+        ##  Can we change non tail recursive,
+            function to tail recursive.
+
+            # Lets take a non tail recursive function
+
+            void Print(int Num)
+            {
+                if(Num == 0)
+                    return;
+                else
+                {
+                    Print(Num - 1);
+                    cout<<Num<<endl;
+                }
+            }
+
+
+            # Trying to convert above function to tail recursive
+
+
+            void Print(int Num, int K)
+            {
+                it(Num == 0)
+                    return;
+                cout<<K<<endl;
+                Print(Num - 1, K + 1);
+            }
+
+            ** Now Above function is tail recursive,
+               since last job of function is recursive call.
+
+
+    ** Every Non Tail recursive function can't be converted to tail recursive.
+
+    ** Take example of Quick and Merge sort.
+       Quick sort is Tail Recursive, Merge sort is not Tail recursive.
+       Hence Quick sort is faster than merge sort.
+
+    ** Take example of Tree Traversals, Inorder, preorder, postorder.
+       preorder and inorder are tail recursive, 
+       while postorder is non tail recursive.
+       
+
+
+
+    ## Tell whether the give function is tail recursive or not ?
+
+
+    int fact(int Num)
+    {
+        if(Num == 0 || Num == 1)
+            return 1;
+        return Num * fact(Num - 1);
+    }
+
+    ** The above function is non tail recursive.
+
+    ** Try to write tail recursive of above function.
+
+    int fact(int Num, int K)
+    {
+        if(Num == 0 || Num == 1)
+            return K;
+        return fact(Num - 1, K * Num);
+    }
+
+    ** This above function is tail recursive.
