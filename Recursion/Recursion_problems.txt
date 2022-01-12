@@ -1,0 +1,36 @@
+# Some problems involving use of recursion
+
+    # Print N to 1 using Recursion
+
+    void Print(int Num)
+    {
+        if(Num == 0)
+            return;
+        else
+        {
+            cout<<Num<<endl;
+            Print(Num - 1);
+        }
+    }
+
+    Recurrence Relation :  T(n) = T(n - 1) + Theta(1)
+    Time complexity : Theta(n)
+    Auxillary space : Theta(n)
+
+
+    # Print 1 to N using Recursion
+
+    void Print(int Num)
+    {
+        if(Num == 0)
+            return;
+        else
+        {
+            Print(Num - 1);
+            cout<<Num<<endl;
+        }
+    }
+
+    Recurrence Relation : T(n) = T(n - 1) + Theta(1)
+    Time complexity : Theta(n)
+    Auxillary space : O(n)
