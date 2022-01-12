@@ -1,0 +1,54 @@
+# Practice Recursion
+
+    ## Lets look at Code and try to deduce
+       What will be the output.
+
+       int Fun(int Num)
+       {
+           if(Num == 1)
+               return 0;
+           else
+               return 1 + Fun(Num / 2);
+           
+       }
+
+       **  Here is Num == 1 function will return 0
+       **  If Num > 1 then Recusion occurs.
+
+       Let's take Num = 10
+
+       Fun(10); Called , Since 10 > 1, Hence
+       Fun(10 / 2) = Fun(5) will be called by Fun(10)
+       Fun(5 / 2) = Fun(2) called by Fun(5)
+       Fun(1) called by Fun(2)
+       Fun(1) will return 0 as Num == 1
+
+       Fun(10) ->  2 + 1 = 3
+       Fun(5)  ->  1 + 1 = 2
+       Fun(2)  ->  0 + 1 = 1
+       Fun(1)  ->  0
+
+
+       So Final output is 3 
+       So Time complexity ->  O(log N) log base 2
+
+
+# Practice Recursion
+
+    void Fun(int Num)
+    {
+        if(Num == 0)
+            return;
+        Fun(Num / 2);
+        cout<<Num % 2;
+    }
+
+    Let's Analyze Funtion at Num = 7
+
+    Fun(7)  -> 7 % 2 = 1
+    Fun(3)  -> 3 % 2 = 1
+    Fun(1)  -> 1 % 2 = 1
+    Fun(0)  -> Returns control to Fun(1)
+
+    ** This is function doing Decimal to binary conversion of Num > 0
+
