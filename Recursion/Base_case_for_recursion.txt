@@ -1,0 +1,75 @@
+## Writing base case for the Recursion
+
+    proper base case writing in the recursive function is very important.
+
+    ## Let's try by two problems
+    
+    ** Factorial of N for N >= 0.
+
+    int fact(int Num)
+    {
+        if(Num == 0 || Num == 1)
+            return 1;
+        return Num * fact(Num - 1);
+    }
+
+
+    ** N'th Fibonacci number for N >= 0.
+
+    int fib(int Num)
+    {
+        if(Num <= 1)
+            return Num;
+        return fib(Num - 1) + fib(Num - 2);
+    }
+
+
+
+## Sum of Natural number using Recursion
+
+    int Sum(int Num)
+    {
+        if(Num == 0)
+            return 0;
+        return Num + Sum(Num - 1);
+    }
+
+    
+    Recurrence relation : T(n) = T(n - 1) + Theta(1)
+    Time complexity : Theta(n)
+    Auxillary space : Theta(n)
+
+## Check whether string is palindrome or not using recursion.
+
+    start = ; end = len(string) - 1;
+    bool Palin(string Str, int start, int end)
+    {
+        if(start >= end)
+            return true;
+        return (Str[start] == Str[end] && Palin(Str, start + 1, end - 1));
+    }
+
+    Recurrence relation : T(n) = T(n - 2) + Theta(1)
+    Time complexity : O(n)
+    Auxillary space : Theta(n)
+
+
+
+## Sum of Digits using recursion 
+
+    int Sum(int Num)
+    {
+        if(Num <= 9)
+            return 0;
+        return Sum(Num / 10) + Num % 10;
+    }
+
+    Recurrence relation : 
+    Time complexity : Theta(d) -> d : number of digits
+    Auxillary space : Theta(d)
+
+    ** If iterative solution fo any problem is there then, 
+       prefer it over the recursive. 
+
+
+
