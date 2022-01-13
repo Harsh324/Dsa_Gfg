@@ -1,0 +1,39 @@
+## Rope cutting problem
+
+    # Given a rope of length N, task is to cut the rope in maximum
+      no of pieces, such that every peice has length A or B or C. 
+
+    I/P : N = 5, A = 2, B = 5, C = 1;
+    O/P : 5;
+
+    I/P : N = 23, A = 12, B = 9, C = 11;
+    O/P : 2;
+
+    I/P : N = 5, A = 4, B = 2, C = 6;
+    O/P : -1;
+
+    I/P : N = 23, A = 11, B = 9, C = 12;
+    O/P : 2;
+
+
+    ** code for the problem
+
+    int Pieces(int Num, int A, int B, int C)
+    {
+        if(0 == Num)
+            return 0;
+        if(Num <= -1)
+            return -1;
+
+        int Val = max(Pieces(Num - A, A, B, C), max(Pieces(Num - B, A, B, C), Pieces(Num - C, A, B, C)));
+
+        if(Val == -1)
+            return -1;
+
+        return Val + 1; 
+    }
+
+
+    Time complexity('depends upon A,B and C') : O(3^N)(Worst case)
+
+    ** This problem can be best solved using Dynamic Programming.
