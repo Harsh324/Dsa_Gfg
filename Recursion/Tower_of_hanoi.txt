@@ -1,0 +1,57 @@
+## Tower of hanoi
+
+    # Problem consists of three towers A,B and C. there are N,
+      number of discs which are placed in tower A. Taregt is,
+      to move discs from Tower A to Tower C. 
+      using Tower B as Auxillary Tower.
+
+
+    I/P : N = 1 ;
+    O/P : Move Disc 1 from A to C;
+
+    I/P : N = 2 ;
+    O/P : Move Disc 1 from A to B;
+          Move Disc 2 from A to C;
+          Move Disc 1 from B to C;
+
+
+    I/P : N = 3 ;
+    O/P : Move Disc 1 from A to C;
+          Move Disc 2 from A to B;
+          Move Disc 1 from C to B;
+          Move Disc 3 from A to C;
+          Move Disc 1 from B to A;
+          Move Disc 2 from B to C;
+          Move Disc 1 from A to C;
+
+
+
+    ** Rules 
+        1 . Only one disc moves at a time;
+        2 . No larger disc above smaller.
+        3 . Only the top disc of tower can be moved.
+
+
+    ## Recursive solution of the Problem
+
+    void ToH(int n, char A, char B, char C) 
+    { 
+        if (n == 1) 
+        { 
+            cout<<"Move 1 from " <<  A << " to " << C << endl; 
+            return; 
+        } 
+        ToH(n-1, A, C, B); 
+        cout<<"Move " << n << " from " <<  A << " to " << C << endl; 
+        ToH(n-1, B, A, C); 
+    }
+
+    
+    ## Number of movements for transfer
+    
+        T(1)  =  1;
+        T(N)  =  2T(N - 1) + 1;
+
+        Sum = 1 + 2 + 4 + ....... 2^(N - 1)  =  1 x (2^N - 1) / 2 - 1 ;
+
+
