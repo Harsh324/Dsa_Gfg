@@ -1,0 +1,34 @@
+## Generate subsets 
+
+    # Given a string of length N, task is to generate,
+      all subsets of the given string.
+      Assume that all the characters in the string are distinct.
+
+
+    I/P : Str = "AB" ;
+    O/P : "" "A" "B" "C" ;
+
+    I/P : Str = "ABC" ;
+    O/P : "" "A" "B" "C" "AB" "AC" "BC" "ABC" ;
+    
+
+    ** For a string of length N there is going to be 2^N subsets,
+       or subsequnces.
+    ** This problem can be seen as generating all subsequnce of,
+       the string, a subsequnce is obtained by removing 0 or,
+       more characters from the given string.
+
+
+    ## Recursive program for the problem
+
+    void Subs(string Str, string Char = "", int Ind = 0)
+    {
+        if(Ind == Str.length())
+        {
+            cout<<Char<<" ";
+            return;
+        }
+        Subs(Str, Char, Ind + 1);
+        Subs(Str, Char + Str[Ind] , Ind + 1);
+    }
+
