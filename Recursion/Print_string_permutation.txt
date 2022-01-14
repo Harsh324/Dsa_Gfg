@@ -1,0 +1,36 @@
+## Print all string permuation
+
+    # Given a string we need to print all permutations,
+      of the given string. 
+
+    
+    ** Total permutations will be N! where N is string length.
+
+    I/P : Str = "ABC";
+    O/P : ABC, ACB, BAC, BCA, CAB, CBA;
+
+    I/P : Str = "AB";
+    O/P : AB, BA;
+
+    I/P : Str = "";
+    O/P :    // Nothing;
+
+
+    ## recursive solution for the problem.
+
+    void Permute(string Str, int Ind = 0)
+    {
+        if(Ind == Str.length() - 1)
+        {
+            cout<<Str<<" ";
+            return;
+        }
+        for(int j = Ind; j < Str.length(); j++)
+        {
+            swap(Str[Ind], Str[j]);
+            Permute(Str, Ind + 1);
+            swap(Str[Ind] ,Str[j]);
+        }
+    }
+
+    
