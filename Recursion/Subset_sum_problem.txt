@@ -1,0 +1,30 @@
+## Subset sun Problem
+
+    # Given a set as an array and a sum. we need to find out,
+      subsets whose sum is equal to give sum.
+
+    ** For N sized array number of substes : 2^N
+
+    I/P : Set = {10, 5, 2, 3, 6}, Sum = 8;
+    O/P : 2;
+
+    I/P : Set = {1, 2, 3}, Sum = 4;
+    O/P : 1
+
+    I/P : Set = {10, 20, 15}, Sum = 37;
+    O/P : 0
+
+    I/P : set = {10, 20, 15}, Sum = 0;
+    O/P : 1
+
+
+    # Recursive code for the Problem
+
+    int Count(int Arr[], int Num, int Sum)
+    {
+        if(Num == 0)
+            retrurn Sum == 0 ? 1 : 0;
+        return Count(Arr, Num - 1, Sum) + Count(Arr, Num - 1, Sum - Arr[Num - 1]);
+    }
+
+    Time Complexity : Theta(2^N)
