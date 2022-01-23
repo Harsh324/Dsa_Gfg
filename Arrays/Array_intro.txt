@@ -1,0 +1,60 @@
+## Arrays
+
+    ## Advantages
+
+    1. Random Access
+    2. Cache Friendliness
+
+
+    ## Types
+
+    1. Fixed Sized Arrays
+
+        int Arrr[100];   // Stack allocated
+        int Arr[N];   // Stack allocated
+        int *Arr = new int[N];     // Heap allocated
+        int Arr[] = {10, 12 13};   // Stack allocated
+        These are few examples of Fixed size Arrays
+
+        ** In java arrays are always allocated on Heap
+
+
+    2. Dynamic sized Arrays
+
+        1. Vector in c++
+
+            ## Problems with Fixed arrays
+                Many times memory is wasted.
+
+            ## Advantages of Vector
+                1. Dynamic size.
+                2. Rich library functions : find, erase, insert etc.
+                3. Easy to know size.
+                4. No need to pass size.
+                5. Can be returned from a function.
+                6. By default initialized with default vlaues.
+                7. We can copy a vector to other.
+
+        2. Arraylist in java
+
+            ## Advantages
+
+                1. Rich library
+
+            ## Using
+
+            import java.util.Arraylist
+            class Test
+            {
+                public static void main(String args[])
+                {
+                    // Integer in non primitive data type
+                    Arraylist<Integer> Al = new Arraylist<Integer>();
+                    Al.add(10);
+                    Al.add(20);
+                    Al.add(30);
+                    System.out.println(Al)
+                }
+            }
+
+        3. list in python
