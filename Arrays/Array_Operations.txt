@@ -1,0 +1,96 @@
+## Array operations 
+
+    ## Searching
+
+        I/P : Arr = {20, 5, 7, 25}, X = 5;
+        O/P : 1;
+
+        I/P : Arr = {20, 5, 7, 25}, X = 15;
+        O/P : -1;
+
+
+
+        int Search(int Arr[], int N, int X)
+        {
+            for(int i = 0; i < N; i++)
+            {
+                if(Arr[i] == X)
+                    return i;
+            }
+            return -1;
+        }
+
+        Time Complexity : Linear O(n)
+
+
+    ## Inserting in Fixed size Array
+
+        I/P : Arr = {5,10, 20, .....};
+        O/P = Arr = {5, 7, 10, 20, ....};
+
+
+        int Insert(int Arr[], int N, int X, int cap, int pos)
+        {
+            if(N == cap)
+                return N;
+            
+            int Idx = pos - 1;
+            for(int i = N - 1; i >= Idx; i--)
+                Arr[i + 1] = Arr[i];
+
+            Arr[Idx] = X;
+            return N + 1;
+        }
+
+        Time complexity : O(n)
+
+
+    ## Inserting in Dynamic sized Array
+
+        Time complexity : O(1) // On average
+
+        ** So they preallocate some extra,
+           memory to make sure time complexity O(1).
+
+
+
+    ## Deletion in Array
+
+        I/P : Arr[] = {3, 8, 12, 5 ,6}, X = 12;
+        O/P : Arr[] = {3, 8, 5, 6, -};
+
+        int Delete(int Arr[], int N, int X)
+        {
+            int i
+            for(i = 0; i  < N; i++
+
+            {
+                if(Arr[i] == X)
+                    break;
+            }
+            if(i == N)
+                return N;
+            
+            for(int j = i; j < N - 1; j++)
+                Arr[j] = Arr[j + 1];
+            
+            return N - 1;
+        }
+
+        Time Complexity : Theta(n)
+
+
+    ## Some important notes
+
+    1. Insert : O(n)
+    2. Search : O(n) for unsorted
+                O(log n) for sorted
+
+    3. Delete : O(n)
+    4. Get i-th element : O(1)
+    5. update ith element : O(1)
+
+    ** Insertion and deletion at the end can be done in O(1) time
+
+    
+
