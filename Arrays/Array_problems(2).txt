@@ -1,3 +1,30 @@
 ## Problems based on Array
 
-    
+    ## Remove Duplicates from the sorted Array
+
+        I/P : Arr[] = {10, 20, 20, 30, 30, 30, 30};
+        O/P : Arr[] = {10 20, 30}
+
+        I/P : Arr[] = {10, 10, 10};
+        O/P : Arr[] = {10}
+
+        ## Code for the problem:
+
+            int Remove(int Arr[], int Len)
+            {
+                int Ind = 1;
+                for(int i = 1; i < Len; i++)
+                {
+                    if(Arr[i] != Arr[Ind - 1])
+                    {
+                        Arr[Ind] = Arr[i];
+                        Ind++;
+                    }
+                }
+                return Ind;
+            }
+
+            Time Complexity : O(n)
+            Auxillary space : O(1)
+
+            
