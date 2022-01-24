@@ -1,5 +1,6 @@
 ## Problems based on Array
 
+
     ## Largest element in an Array
 
         I/P : Arr[] = {10, 5, 20, 8};
@@ -104,7 +105,40 @@
             }
 
             Time Complexity : O(n)
-            Auxillary spale : Theta(1)
+            Auxillary space : Theta(1)
+
+
+    
+    ## Reverse an Array
+
+        I/P : Arr[] = {10, 5, 7, 30};
+        O/P : Arr[] = {30, 7, 5 ,10}
+
+        I/P : Arr[] = {30, 20, 5};
+        O/P : Arr[] = {5, 20, 30}
+
+
+        ## Code for the Problem
+
+            // Swap function to swap array values
+            void swap(int* A, int* B)
+            {
+                int Temp = *A;
+                *A = *B;
+                *B = Temp;
+            }
+            
+            void Reverse(int Arr[], int Len)
+            {
+                for(int i = 0 ; i < Len / 2; i++)
+                {
+                    swap(&Arr[i], &Arr[Len - i - 1]);
+                }
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary Space : Theta(1)
+        
 
 
 
