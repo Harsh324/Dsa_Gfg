@@ -1,0 +1,110 @@
+## Problems based on Array
+
+    ## Largest element in an Array
+
+        I/P : Arr[] = {10, 5, 20, 8};
+        O/P : 2;  // Index of element 20
+
+        I/P : Arr[] = {40, 8, 50, 100};
+        O/P : 3;  // Index of 100
+
+
+        ## Code for The Problem
+
+            int func(int Arr[], int Len)
+            {
+                int Maxx = Arr[0];
+                int Ind = 0;
+                for(int i = 1; i < Len; i++)
+                {
+                    if(Arr[i] > Maxx)
+                    {
+                        Maxx = Arr[i];
+                        Ind = i;
+                    }
+                }
+                return Ind;
+            }
+
+            Time complexity : Theta(n)
+
+
+    ## Second Largest element in the Array
+            
+        I/P : Arr[] = {10, 5, 8, 20};
+        O/P : 0  // index of 10
+
+        I/P : Arr[] = {20, 10, 20, 8, 12};
+        O/P : 4  // index of 12
+
+        I/P : Arr[] = {10, 10, 10};
+        O/P : -1  // no second Largest
+
+        I/P : Arr[] = {10, 10, 10, 7};
+        O/P : 4  // index of 7
+
+
+        ## Code for the Problem
+            
+            int func(int Arr[], int Len)
+            {
+                int Maxx = Arr[0], Maxx1 = 0, Ind = 0, Ind1 = -1;
+                for(int i = 1; i < Len; i++)
+                {
+                    if(Arr[i] > Maxx)
+                    {
+                        Maxx1 = Maxx;
+                        Ind1 = Ind;
+                        Maxx = Arr[i];
+                        Ind = i;
+                    }
+                    else
+                    {
+                        if(Arr[i] != Maxx && Arr[i] > Maxx1)
+                        {
+                            Maxx1 = Arr[i];
+                            Ind1 = i;
+                        }
+                    }
+                }
+                return Ind1;
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary space : Theta(1)
+
+
+
+
+    ## Check if Array is sorted
+
+        I/P : Arr[] = {8, 12, 15};
+        O/P : Yes
+
+        I/P : Arr[] = {8, 10, 10, 12};
+        O/P : Yes
+
+        I/P : Arr[] = {100};
+        O/P : Yes
+
+        I/P : Arr[] = {100, 20, 200};
+        O/P : No
+
+
+        ## Code for the Problem
+
+            bool func(int Arr[], int Len)
+            {
+                for(int i = 0; i < Len - 1; i++)
+                {
+                    if(Arr[i] > Arr[i + 1])
+                        return false;
+                }
+                return true;
+            }
+
+            Time Complexity : O(n)
+            Auxillary spale : Theta(1)
+
+
+
