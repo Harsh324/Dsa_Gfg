@@ -1,0 +1,163 @@
+## Array Problems 
+
+
+    ## Leaders in an Array
+
+        I/P : Arr[] = {7, 10, 4, 10, 6, 5, 2}
+        O/P : 10 6 5 2
+
+        I/P : Arr[] = {10, 20, 30}
+        O/P : 30
+
+        I/P : Arr[] = {30, 20, 10}
+        O/P : 30 20 10
+
+        ## Approach 1 : 
+
+            void Leaders(int Arr[], int Len)
+            {
+                for(int i = 0; i < Len; i++)
+                {
+                    bool Flag = false;
+                    for(int j = i + 1; j < Len; j++)
+                    {
+                        if(Arr[i] <= Arr[j])
+                        {
+                            Flag = true;
+                            break;
+                        } 
+                    }
+                    if(FLag == false)
+                    {
+                        cout<<Arr[i]
+                    }
+                }
+            }
+
+            Time Complexity : O(n^2)
+            Auxillary space : Theta(1)
+
+
+        ## Approach 2 : 
+
+            void Leaders(int Arr[], int Len)
+            {
+                int Curr_leader = Arr[Len - 1];
+                cout<<Curr_leader<<" ";
+                for(int i = Len - 2; i >= 0; i--)
+                {
+                    if(Curr_leader < Arr[i])
+                    {
+                        Curr_leader = Arr[i];
+                        cout<<Curr_leader<<" ";
+                    }
+                }
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary space : Theta(1)
+
+            ** To print leaders in order we nedd to use array of size n
+            ** Then Auxillary space will be Theta(n)
+
+
+    
+
+    ## Maximum Difference
+
+
+        ## Maximum value of Arr[j] - Arr[i] such that j > i
+
+            I/P : Arr[] = {2, 3, 10, 6, 4, 8, 1}
+            O/P : 8
+
+            I/P : Arr[] = {7, 9, 5, 6, 3, 2}
+            O/P : 2
+
+            I/P : Arr[] = {10, 20, 30}
+            O/P : 20
+
+            I/P : {30, 10, 8, 2}
+            O/P : -2
+
+
+            ## Approach 1 :
+
+                int Max_Diff(int Arr[], int Len)
+                {
+                    int Min = Arr[1] - Arr[0];
+                    for(int i = 0; i < Len; i++)
+                    {
+                        for(int j = i + 1; j < Len; j++)
+                        {
+                            if(Arr[j] - Arr[i] >= Min)
+                            {
+                                Min = Arr[j] - Arr[i];
+                            }
+                        }
+                    }
+                    return Min;
+                }
+
+                Time Complexity : Theta(n^2)
+
+
+            ## Approach 2 :
+
+                
+                int Max_Diff(int Arr[], int Len)
+                {
+                    int Res = Arr[1] - Arr[0];
+                    int MinVal = Arr[0];
+                    for(int j = 1; j < Len; j++)
+                    {
+                        Res = max(Res, Arr[j] - MinVal);
+                        MinVal = min(MinVal, Arr[j]);
+                    }
+                    return Res;
+                }
+
+                Time Complexity : Theta(n)
+                Auxillary space : Theta(1)
+
+
+        
+
+        ## Frequency of sorted Array
+
+                I/P : Arr[] = {10, 10, 10, 25, 30, 30}
+                O/P : 10 : 3, 25 : 1, 30 : 2
+
+                I/P : Arr[] = {10, 10, 10, 10}
+                O/P : 10 : 4
+
+                I/P : Arr[] = {10, 20, 30}
+                O/P : 10 : 1, 20 : 1, 30 : 1
+
+                ## Approach :
+
+                    void Frequency(int Arr[], int Len)
+                    {
+                        int Val = Arr[0];
+                        int Count = 0;
+                        for(int i = 0; i < Len; i++)
+                        {
+                            if(Arr[i] == Val)
+                            {
+                                Count ++;
+                            }
+                            else
+                            {
+                                cout<<Val<<" : "<<Count<<", ";
+                                Val = Arr[i];
+                                Count = 1;
+                            }
+                        }
+                        cout<<Val<<" : "<<Count<<", "<<endl;
+                    }
+
+                    
+                    Time Complexity : Theta(n)
+                    Auxillary space : Theta(1)
+                
+
