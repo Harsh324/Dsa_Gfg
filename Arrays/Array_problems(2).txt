@@ -95,6 +95,51 @@
         O/P : Arr[] = {15, 10, 5, 30}
 
 
-        ## Code for the problem
+        ** Naive approach is use left rotate by 1 d times
+        ** With Time Complexity : Theta(nd), Auxillary space : Theta(1)
+
+        ## Approach 1 : 
+
+            void leftRotate(int Arr[], int Len, int d)
+            {
+                int temp[d];
+                for(int i = 0; i < d; i++)
+                    temp[i] = Arr[i];
+                for(int i = d; i < Len; i++)
+                    Arr[i - d] = Arr[i];
+                for(int i = 0; i < d; i++)
+                    Arr[Len - d + i] = temp[i];
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary Space : Theta(d)
+
+
+        ## Appraoch 2 :
+            
+            ** Reverse the first d elements, then reverse remaining elements. then reverse whole array.
+
+            void leftRotate(int Arr[], int Len, int d)
+            {
+                Reverse(Arr, 0, d- 1);
+                Reverse(Arr, d, Len - 1);
+                Reverse(Arr, 0, Len - 1);
+            }
+
+            void Reverse(int Arr[], int Low, int High)
+            {
+                while(Low < High)
+                {
+                    swap(Arr[Low], Arr[High]);
+                    Low++;
+                    High++;
+                }
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary Space : Theta(1)
+         
 
             
+
+        
