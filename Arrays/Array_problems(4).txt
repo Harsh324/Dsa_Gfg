@@ -1,0 +1,102 @@
+## Array Problems
+
+    ## Stock Buy and Sell Problem (Part 1)
+
+        I/P : Arr[] = {1, 5, 3, 8, 12}
+        O/P : 13
+
+        I/P : Arr[] = {30, 20, 10}
+        O/P : 0
+
+        I/P : Arr[] = {10, 20, 30}
+        O/P : 20
+
+        I/P : Arr[] = {1, 5, 3, 1, 2, 8}
+        O/P : 11
+
+
+        ## Approach 1 :
+
+            int maxProfit(int Price[], int Start, int End)
+            {
+                if(End <= Start)
+                    return 0;
+                int Profit = 0;
+
+                for(int i = Start; i < End; i++)
+                {
+                    for(int j = i + 1; j <= End; j++)
+                    {
+                        if(Price[j] > Price[i])
+                        {
+                            int Curr_Profit = Price[j] - Price[i] + maxProfit(Price, Start, i - 1) + maxProfit(Price, j + 1, End);
+                            Profit = max(Profit, Curr_Profit);
+                        }
+                    }
+                }
+                return Profit;
+            }
+
+
+        ## Approach 2 : 
+            
+            int maxProfit(int Price[], int Len)
+            {
+                int Profit = 0;
+                for(int i = 1;i < Len; i++)
+                {
+                    if(Price[i] > Price[i - 1])
+                        Profit += Price[i] - Price[i - 1];
+                }
+                return Profit;
+            }
+
+
+
+    ## Trapping Rain water problem
+
+        ** Given an array of non negative integers, values
+        ** represent heights of bars 
+
+        I/P : Arr[] = {2, 0, 2}
+        O/P : 2
+
+        I/P : Arr[] = {3, 0, 1, 2, 5}
+        O/P : 6
+
+        I/P : Arr[] = {1, 2, 3}
+        O/P : 0
+
+        I/P : Arr[] = {3, 2, 1}
+        O/P : 0
+
+        ## Approach 1 : 
+
+            int getWater(int Arr[], int Len)
+            {
+                int Res = 0;
+                for(int i = 1; i < Len - 1; i++)
+                {
+                    int lMax = Arr[i];
+                    for(int j = 0; j < i; j++)
+                    {
+                        lMax = max(lMax, Arr[i]);
+                    }
+                    int RMax = Arr[i];
+
+                    for(int j = i + 1; j < Len; j++)
+                    {
+                        RMax = max(RMax, Arr[j]);
+                    }
+                    Res += min(lMax, RMax) - Arr[i];
+                }
+                return Res;
+            }
+
+            Time Complexity : Theta(n^2)
+
+
+        ## Approach 2 : 
+
+
+             
