@@ -99,4 +99,29 @@
         ## Approach 2 : 
 
 
+            int getWater(int Arr[], int Len)
+            {
+                int Res = 0;
+                int lMax[Len], RMax[Len];
+
+                lMax[0] = Arr[0];
+                for(int i = 1; i < Len; i++)
+                {
+                    lMax[i] = max(Arr[i], lMax[i - 1]);
+                }
+                RMax[Len - 1] = Arr[Len - 1];
+                for(int i = Len - 2; i >= 0; i--)
+                {
+                    RMax[i] = max(Arr[i], RMax[i + 1]);
+                }
+                for(int i = 1; i < Len - 1; i++)
+                {
+                    Res += min(lMax[i], RMax[i] - Arr[i]);
+                }
+                return Res;
+            }
+
+            Time Complexity : Theta(n)
+            Auxillary space : Theat(n)
+
              
