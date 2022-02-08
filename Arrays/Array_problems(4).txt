@@ -122,6 +122,6 @@
             }
 
             Time Complexity : Theta(n)
-            Auxillary space : Theat(n)
+            Auxillary space : Theta(n)
 
              

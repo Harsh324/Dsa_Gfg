@@ -1,0 +1,116 @@
+## Array Problems 
+
+    ## Maximum consecutive 1's in a Binary Array
+
+        I/P : Arr[] = {0, 1, 1, 0, 1, 0}
+        O/P : 2
+
+        I/P : Arr[] = {1, 1, 1, 1}
+        O/P : 4
+
+        I/P : Arr[] = {0, 0, 0}
+        O/P : 0
+
+
+        ## Approach 1 : 
+
+            int maxConsec(bool Arr[], int Len)
+            {
+                int Res = 0;
+                for(int i = 0; i < Len; i++)
+                {
+                    int Curr = 0;
+                    for(int j = i; j < n; j++)
+                    {
+                        if(Arr[j] == 1)
+                            Curr++;
+                        else
+                            break;
+                    }
+                    Res = max(Res, Curr);
+                }
+                return Res;
+            }
+
+            Time Complexity : O(n^2)
+            Space Complexity : O(1)
+
+
+
+
+        ## Approach 2 : 
+
+            int Consec(int Arr[], int Len)
+            {
+                int Count = 0;
+                int Maxx = 0;
+                for(int i = 0; i < Len; i++)
+                {
+                    if(Arr[i] == 0)
+                    {
+                        Maxx = max(Maxx, Count);
+                        Count = 0;
+                    }
+                    else
+                        Count++;
+                }
+                Maxx = max(Count, Maxx);
+                return Maxx;
+            }
+
+            Time Complexity : O(n)
+            Auxillary space : O(1)
+
+
+
+
+    ## Maximum Sum Subarray
+
+        ** This is Kadane's Algorithm
+
+        I/P : Arr[] = {2, 3, -8, 7, -1, 2, 3}
+        O/P : 11
+
+        I/P : Arr[] = {5, 8, 3}
+        O/P : 16
+
+        I/P : Arr[] = {-6, -1, -8}
+        O/P : -1
+
+        ## Approach 1 : 
+
+            int Max_Sum(int Arr[], int Len)
+            {
+                int Res = Arr[0];
+                for(int i = 0; i < Len; i++)
+                {
+                    int Curr = 0;
+                    for(int j = i; j < Len; j++)
+                    {
+                        Curr += Arr[i];
+                        Res = max(Res, Curr);
+                    }
+                }
+                return Res;
+            }
+
+            Time Complexity : O(n^2)
+
+
+        ## Approach 2 : 
+
+            int Max_Sum(int Arr[], int Len)
+            {
+                int Res = Arr[0];
+                int MaxEnding = Arr[0];
+                for(int i = 1; i < Len; i++)
+                {
+                    MaxEnding = max(MaxEnding + Arr[i], Arr[i]);
+                    Res = max(Res, MaxEnding);
+                }
+                return Res;
+            }
+
+            Time Complexity : O(n)
+            Auxillary space : O(1)
+
