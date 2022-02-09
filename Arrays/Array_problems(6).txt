@@ -1,0 +1,229 @@
+## Array Problems 
+
+    ## Maximum length Even-Odd Subarray
+
+        ** Given an array find length of longest Subarray
+        ** That has alternative  even and odd numbers
+
+        ** Based on kadane's Algorithm
+
+        I/P : [10, 13, 14, 7, 8]
+        O/P : 3
+
+        I/P : [7, 10, 13, 14]
+        O/P : 4
+
+        I/P : [10, 12, 8, 4]
+        O/P : 1
+
+
+        ## Approach 1 : 
+
+            int maxEvenOdd(int Arr[], int Len)
+            {
+                int Res = 1;
+                for(int i = 0; i < Len; i++)
+                {
+                    int Curr = 1;
+                    for(int j = i + 1; j < Len; j++)
+                    {
+                        if( (Arr[j] % 2 == 0 && Arr[j - 1] % 2 != 0) || (Arr[j] % 2 != 0 && Arr[j - 1% % 2 == 0%) )
+                            Curr++;
+                        else
+                            break;
+                    }
+                    Res = max(Res, Curr);
+                }
+                return Res;
+            }
+
+            Time Complexity : O(n^2)
+            Auxillary space : O(1)
+
+
+            ## Approach 2 :
+
+                int maxEvenOdd(int Arr[], int Len)
+                {
+                    int Res = 1, Curr = 1;
+                    for(int i = 1, i < Len; i++)
+                    {
+                        if( (Arr[j] % 2 == 0 && Arr[j - 1] % 2 != 0) || (Arr[j] % 2 != 0 && Arr[j - 1% % 2 == 0%) )
+                        {
+                            Curr++;
+                            Res = max(Res, Curr);
+                        }
+                        else
+                            Curr = 1;
+
+                    }
+                    return Res;
+                }
+
+                Time Complexity : O(n)
+
+
+
+
+    ## Maximum Curcular Subarray Sum
+
+        ** Given an integer array need to find maximum
+        ** Sum of circular subarray.
+        ** Let Arr = {10, 5, -5}, fot this array all,
+        ** Subarray's will be {10}, {5}, {-5}, {10, 5}, {5, -5}
+        ** {10, 5, -5}, {5, -5, 10}, {-5, 10}, {-5, 10, 5}
+
+        I/P : Arr[] = {5, -2, 3, 4}
+        O/P : 12
+
+        I/P : Arr[] = {2, 3, -4}
+        O/P : 5
+
+        I/P : Arr[] = {8, -4, 3, -5, 4}
+        O/P : 12
+
+        I/P : Arr[] = {-3, 4, 6, -2}
+        O/P : 10
+
+        I/P : Arr[] = {-8, 7, 6}
+        O/P : 13
+
+        I/P : Arr[] = {3, -4, 5, 6, -8, 7}
+        O/P : 17
+
+        ## Approach 1 : 
+
+                int MaxCircualrSum(int Arr[], int Len)
+                {
+                    int Res = Arr[0];
+                    for(int i = 0; i < Len; i++)
+                    {
+                        int Curr_max = Arr[i];
+                        int Curr_Sum = Arr[i];
+                        for(int j = 1; j < Len; j++)
+                        {
+                            int Ind = (i + j) % Len;
+                            Curr_Sum += Arr[Ind];
+                            Curr_max = max(Curr_max, Curr_Sum);
+                        }
+                        Res = max(Res, Curr_max);
+                    }
+                    return Res;
+                }
+
+                Time Complexity : O(n^2)
+                Auxillary space : O(1)
+
+
+        ## Approach 2 :
+
+            ** Idea : Take the maximum of the following two
+            ** 1. Maximum sum of a Normal Subarray(Easy Kadane)
+            ** 2. Maximum sum of Circular Subarray.
+
+            ** Standard kadane
+
+                int NormalMaxSum(int Arr[], int Len)
+                {
+                    int Res = Arr[0];
+                    int MaxEnding = Arr[0];
+                    for(int i = 1; i < Len; i++)
+                    {
+                        MaxEnding = max(Arr[i], MaxEnding + Arr[i]);
+                        Res = max(Res, MaxEnding);
+                    }
+                    return Res;
+                }
+
+                int OverallMaxSum(int Arr[], int Len)
+                {
+                    int Max_Normal = NormalMaxSum(Arr ,Len);
+                    if(Max_Normal < 0)
+                        return Max_Normal;
+                    
+                    inr Arr_Sum = 0;
+                    for(int i = 0; i < Len; i++)
+                    {
+                        Arr_Sum += Arr[i];
+                        Arr[i] = -Arr[i];
+                    }
+                    int Max_Circular = Arr_Sum + NormalMaxSum(Arr, Len);
+                    return max(Max_Normal, Max_Circular);
+                }
+
+            Time Complexity : Theta(n)
+            Auxillary space : O(1)
+
+
+
+
+
+    ## Majority Element
+
+        ** Given an array find majority element in it if exists
+        ** any elemnt is called majority if it appears more than,
+        ** N/2 if length of array is N.
+
+        ## Approach 1 : 
+            
+            int FindMajority(int Arr[], int Len)
+            {
+                for(int i = 0; i < Len; i++)
+                {
+                    int Count = 1;
+                    for(int j = i + 1; j < Len; j++)
+                    {
+                        if(Arr[i] == Arr[j])
+                            Count++;
+                    }
+                    if(Count > Len / 2)
+                        return i;
+                }
+                return -1;
+            }
+
+            Time Complexity : O(n^2)
+            Auxillary space : O(1)
+
+
+        ## Approach 2 : 
+
+            ** Moores mooting algorithm 
+            ** It works in two phases, First phase gaurantees that
+            ** if majority element in array then this candidate,
+            ** is going to be majority element.
+            ** Second phase confirms it.
+
+            int FindMajority(int Arr[], int Len)
+            {
+                int Res = 0;
+                int Count  1;
+                for(int i = 0; i < Len; i++)
+                {
+                    if(Arr[Res] == Arr[i])
+                        Coutn++;
+                    else
+                        Count--;
+                    if(Count == 0)
+                    {
+                        Res = i;
+                        Count = 1;
+                    }
+                }
+
+
+                Count = 0; 
+                for(int i = 0; i < Len; i++)
+                {
+                    if(Arr[Res] == Arr[i])
+                        Count++;
+                }
+                if(Count <= Len / 2)
+                    Res = -1;
+
+                return Res;
+            }    
+            
+            Time Complexity : O(n)
+            
+
