@@ -1,0 +1,180 @@
+## Array problems
+
+    ## Minimum Group Flips to make same
+
+        ** Given a binary array out targte is to make all 
+        ** elements same requird to find minimum number of,
+        ** flips are required. 
+
+        I/P : Arr[] = {1, 1, 0, 0, 0, 1}
+        O/P : From 2 to 4
+
+        I/P : Arr[] = {1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1}
+        O/P : From 1 to 3 and From 5 to 6
+
+        I/P : Arr[] = {1, 1, 1}
+        O/P : 
+
+        I/P : Arr[] = {0, 1}
+        O/P : From 0 to 0 orr From 1 to 1
+
+
+
+        ## Approach 2 : 
+
+            void PrintGroups(int i = 1; i < Len; i++)
+            {
+                if(Arr[i] != Arr[i - 1])
+                {
+                    if(Arr[i] != Arr[0])
+                    {
+                        cout<<"From "<<i<<" to ";
+                    }
+                    else
+                        cout<<(i - 1)<<endl;
+                }
+                if(Arr[Len - 1] != Arr[0])
+                {
+                    cout<<(Len - 1)<<end;
+                }
+            }
+
+
+
+    
+
+    ## Sliding window technique
+
+        ** Given an array of integers and a number k,
+        ** find the maximum sum of k consecutive elements.
+
+        I/P : Arr[] = {1, 8, 30, -5, 20, 7}, k = 3;
+        O/P : 45
+
+        I/P : Arr[] = {5, -10, 6, 90, 3}, k = 2;
+        O/P : 96
+
+
+        ## Approach 1 : 
+
+            int MaxKSum(int Arr[], int Len, int K)
+            {
+                int Max_Sum = INT_MIN;
+                for(int i = 0; i + K - 1 < Len; i++)
+                {
+                    int Sum = 0;
+                    for(int j = 0; j < K; j++)
+                        Sum += Arr[i + j];
+
+                    Max_Sum = max(Sum, Max_Sum);
+                }
+                return Max_Sum;
+            }
+
+            Time Complexity : O((N - K) x K)
+
+        
+
+        ## Approach 2 :
+
+            int MaxKSum(int Arr[], int Len, int K)
+            {
+                int Curr_Sum = 0;
+                for(int i = 0; i < K; i++)
+                {
+                    Curr_Sum += Arr[i];
+                }
+                int  Max_Sum = Curr_Sum;
+                for(int i = K; i < Len; i++)
+                {
+                    Curr_Sum += (Arr[i] - Arr[i - K]);
+                    Max_Sum = max(Max_Sum, Curr_Sum);
+                }
+                return Max_Sum;
+            }
+
+            Time Complexity : O(n)
+
+
+    
+
+    
+    ## Let given an array and an integer k, you need to find,
+    ## if there is subarray of size k with given Sum.
+
+        ## Approach : 
+
+
+
+
+    
+    ## Given and unsorted array of non negative integer. 
+    ## Find if there is a subarray with given Sum.
+
+        I/P : Arr[] = {1, 4, 20, 3, 10, 5}, Sum = 33;
+        O/P : Yes 
+
+        I/P : Arr[] = {1, 4, 0, 0, 3, 10, 5}, Sum = 7;
+        O/P : Yes
+
+        I/P : Arr[] = {2, 4}, Sum = 3;
+        O/P : No
+
+        ## Approach : 
+            
+            bool isSubSum(int Arr[] ,int Len, int Sum)
+            {
+                int Curr_Sum = Arr[0]; 
+                int Start = 0;
+                for(int End = 1; End < Len; End++)
+                {
+                    //Clean the previous window
+                    while(Curr_Sum > Sum && Start < End - 1)
+                    {
+                        Curr_Sum -= Arr[Start];
+                        Start++;
+                    }
+                    if(Curr_Sum == Sum)
+                        return True;
+                    if(End < Len)
+                        Curr_Sum += Arr[End];
+                }
+                return Curr_Sum - Sum;
+            }
+
+            Time Complexity : O(n)
+            Auxillary space : O(1)
+
+
+
+
+
+
+    ## N Bonacci Number. Print First N-Bonacci Number
+
+        ** N bonacci means every element is sum of previous N bonacci
+
+
+        I/P : N = 3, M = 8;
+        O/P : 0 0 1 1 2 4 7 13
+
+        I/P : N = 4, M = 10;
+        O/P : 0 0 0 1 1 2 4 8 15 29
+
+        ## Approach : 
+
+
+
+
+    ## Count distinct elements in every window of size k
+
+        I/P : Arr[] = {1, 2, 1, 3, 4, 3, 3}
+        O/P : 3 4 3 2
+
+        
+
+
+
+
+
+
