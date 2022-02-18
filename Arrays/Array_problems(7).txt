@@ -93,6 +93,27 @@
                 return Max_Sum;
             }
 
+
+            ** Same Approach with different technique
+
+            int Sliding(int Arr[], int Len, int K)
+            {
+                int Sum = 0;
+                for(int i = 0; i < K; i++)
+                {
+                    Sum += Arr[i];
+                }
+                int Maxx = Sum;
+
+                for(int i = 1; i < Len - K; i++)
+                {
+                    Sum = (Sum - Arr[i - 1]) + Arr[i + K - 1];
+                    Maxx = max(Sum, Maxx);
+                }
+                return Maxx;
+
+            }
+
             Time Complexity : O(n)
 
 
