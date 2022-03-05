@@ -1,1 +1,81 @@
 ## Binary Search
+
+    ## Given a sorted array and an element is to be searched in,
+        this array, return index if present else return -1
+
+        I/P : Arr[] = {10, 20, 30, 40, 50, 60}, x = 20
+        O/P : 1
+
+        I/P : Arr[] = {5, 15, 25}, x = 25;
+        O/P : 2
+
+        I/P : Arr[] = {5, 10, 15, 25, 35}, x = 20
+        O/P : -1
+
+
+        ** Naive approach could be use linear search
+
+        ## Approach 1 : 
+
+            Time Complexity : Theta(n)
+
+
+        ** Binary search uses sorted array quality
+           Iterative Binary search is implemented below
+
+        ## Approach 2 :
+
+
+            int Binary(int Arr[], int Len, int X)
+            {
+                int Low = 0, High = Len - 1;
+                int Mid = (Low + High) / 2;
+
+                while(Low <= High)
+                {
+                    int Mid = (Low + High) / 2;
+
+                    if(Arr[Mid] == X)
+                        return Mid;
+
+                    else if(Arr[Mid] > X)
+                        High = Mid - 1;
+
+                    else
+                        Low = Mid + 1;
+                
+                }
+                return -1;
+            }
+
+            Time Complexity : O(Log N)
+            Auxillary space : O(1)
+
+        
+        ** Recursive implelentation of Binary search
+
+        ## Approach 3 :
+
+            int Binary(int Arr[], int Low, int High, int X)
+            {
+                if(Low > High)
+                    return -1;
+                
+                int Mid = (Low + High) / 2;
+                if(Arr[Mid] == X)
+                    return Mid;
+
+                else if(Arr[Mid] > X)
+                    return Binary(Arr, Low, Mid - 1, X);
+                
+                else
+                    return Binary(Arr, Mid + 1, High, X);
+            }
+
+            Time Complexity : O(Log N)
+            Auxillary space : O(Log N) 
+
+
+
+
+
