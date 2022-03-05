@@ -1,0 +1,42 @@
+## Count Occurences in a sorted array
+
+    ** Given a sorted array which might contain duplicates
+       also given a number X, tak is to find number of 
+       occurences of X
+
+
+    I/P : Arr[] = {10, 20, 20, 20, 30, 30}, X = 20;
+    O/P : 3
+
+    I/P : Arr[] = {10, 10, 10, 10, 10}, X = 10;
+    O/P : 5
+
+    I/P : Arr[] = {5, 8, 10}, X = 7;
+    O/P : 0
+
+    
+
+    ** Naive appproach could be traversing array linearly
+       and counting all the occurence of X.
+
+    Approach 1 :
+
+
+    ** Better solution
+    ** We will be using two functions discussed in "Searching_problems.txt" file
+
+
+    Approach 2 :
+
+        int Count_Occurence(int Arr[], int int Len, int X)
+        {
+            int First = First_Ind(Arr, Len, X)
+
+            if(First == -1)
+                return 0;
+            
+            else
+                return(Last_Ind(Arr, Len, X) - First + 1);
+        }
+
+
