@@ -1,0 +1,175 @@
+## Index of First occurence
+
+    ## Given a sorted array and a number X, our target,
+    is to find index of first occurence of this number X.
+
+    I/P : Arr[] = {1, 10, 10, 10, 20, 20, 40}, X = 20;
+    O/P : 4
+
+    I/P : Arr[] = {10, 20, 30}, X = 15;
+    O/P : -1
+
+    I/P : Arr[] = {15, 15, 15}, X = 15;
+    O/P : 0
+
+
+    ** Naive appproach will be linearly traverse array,
+       as soon you get element return index.
+
+    Approach 1:
+
+        int First_Ind(int Arr[], int Len, int X)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                if(Arr[i] == X)
+                    return i;
+            }
+            return -1;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+
+    ** Recursive Approach
+
+    Approach 2:
+
+        int First_Ind(int Arr[], int Low, int High, int X)
+        {
+            if(Low < High)
+                return -1;
+
+            int Mid = (Low + High) / 2;
+
+            if(X > Arr[Mid])
+                return First_Ind(Arr, Mid + 1, High, X);
+            else if(X < Arr[Mid])
+                return First_Ind(Arr, Low, Mid - 1; X);
+            else
+            {
+                if(Mid == 0 || Arr[Mid - 1] != Arr[Mid])
+                    return Mid;
+                else
+                    return First_Ind(Arr, Low, Mid - 1, X);
+            }
+        }
+
+    ** Iterative Approach
+
+    Approach 3 :
+
+        int First_Ind(int Arr[], int Len, int X)
+        {
+            int Low = 0, High = Len - 1;
+            while(Low <= High)
+            {
+                int Mid = (Low + High) / 2;
+
+                if(X < Arr[Mid])
+                    High = Mid - 1;
+                else if(X > Arr[Mid])
+                    Low = Mid + 1;
+
+                else
+                {
+                    if(Mid == 0 || Arr[Mid - 1] != Arr[Mid])
+                        return Mid;
+                    else
+                        High = Mid - 1;
+                }
+            }
+            return -1;
+        }
+
+
+
+
+
+
+
+## Index of Last occurence
+
+    ** Given a sorted array we need to find the,
+    index of last occurence of number X.
+
+    I/P : Arr[] = {10, 15, 20, 20, 40, 40}, X = 20;
+    O/P : 3
+
+    I/P : Arr[] = {5, 8, 8, 10, 10}, X = 10;
+    O/P : 4
+
+    I/P : Arr[] = {8, 10, 10, 12}, X = 7;
+    O/P : -1
+
+    ** Naive solution is to travel array linearly from
+       Right as you get element return index else return -1
+
+    Approach 1 : 
+
+
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+
+
+    ** Recursive Binary search approach
+
+    Approach 2 :
+
+        int Last_Ind(int Arr[], int Low, int High, int X, int Len)
+        {
+            if(Low > High)
+                return -1;
+
+            int Mid = (Low + High) / 2;
+
+            if(Arr[Mid] > X)
+                return Last_Ind(Arr, Low, Mid - 1, X, Len);
+
+            else if(Arr[Mid] < X)
+                return Last_Ind(Arr, Mid + 1, High, X, Len);
+
+            else
+            {
+                if(Mid == Len - 1 || Arr[Mid] != Arr[Mid + 1])
+                    return Mid;
+                
+                else
+                    return Last_Ind(Arr, Mid + 1, High, X, Len)
+            }
+        }
+
+
+    
+    ** Iterative Binary search appproach
+
+    Approach 3 :
+
+        int Last_Ind(int Arr[], int Len, int X)
+        {
+            int Low = 0, High = Len - 1;
+            while(Low <= High)
+            {
+                int Mid = (Low + High) / 2;
+
+                if(Arr[Mid] < X)
+                    Low = Mid + 1;
+                else if(Arr[Mid] > X)
+                    High = Mid - 1;
+
+                else
+                {
+                    if(Mid != Len - 1 || Arr[Mid] != Arr[Mid + 1])
+                        return Mid;
+                    else
+                        Low = Mid + 1;
+                }
+            }
+            return -1;
+        }
+
+        Time Complexity : O(Log N)
+        Auxillary space : O(1)
+        
+
