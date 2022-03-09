@@ -1,0 +1,164 @@
+## Median of Two Sorted Arrays
+
+    ** Given two sorted array we need to find median,
+    of the two arrays.
+
+    I/P : Arr1[] = {10, 20, 30, 40, 50}, Arr2[] = {5, 15, 25, 35, 45}
+    O/P : 27.5 // {5, 10, 15, 20, 25, 30, 35, 40, 45, 50}
+
+    I/P : Arr1[] = {1, 2, 3, 4, 5, 6}, Arr2[] = {10, 20, 30, 40, 50}
+    O/P : 6.0 // {1, 2, 3, 4, 5, 6, 10, 20, 30, 40, 50}
+
+    I/P : Arr1[] = {10, 20, 30, 40, 50, 60}, Arr2[] = {1, 2, 3, 4, 5}
+    O/P : 10.0 // {1, 2, 3, 4, 5, 10, 20, 30, 40, 50, 60}
+
+
+
+    ** Naive Approach could be create an array of size,
+    size = size1 + size2 , then sort and find median.
+
+
+    ** We will use binary search for efficient Approach
+
+    ## Approach 1: 
+
+        double getMed(int a1[], int a2[], int n1, int n2)
+        {
+            int begin1 = 0, end1 = n1;
+
+            while(begin1 < end1)
+            {
+                int i1 = (begin1 + end1) / 2;
+                int i2 = (n1 + n2 + 1) / 2 - i1;
+
+                int min1 = (i1 == n1)?INT_MAX:a1[i1];
+                int max1 = (i1 == 0)?INT_MIN:a1[i1 - 1];
+                
+                int min2 = (i2 == n2)?INT_MAX:a2[i2];
+                int max2 = (i2 == 0)?INT_MIN:a2[i2 - 1];
+
+                if(max1 <= min2 && max2 <= min1)
+                {
+                    if((n1 + n2) % 2 == 0)
+                        return ((double)max(max1, max2) + min(min1, min2)) / 2;
+                    else
+                        return (double)max(max1, max2);
+                }
+                else if(max1 > min2)
+                    end1 = i1 - 1;
+                else 
+                    begin1 = i1 + 1;
+            }
+        }
+
+        Time Complexity : O(Log N)
+
+
+
+
+
+## Repeating Element
+
+    ** Given an array all element present exactly once,
+    except one element, we need to find that element.
+
+    ** Element belongs from [0, max(Arr)]
+
+
+    I/P : Arr[] = {0, 2, 1, 3, 2, 2}
+    O/P : 2
+
+    I/P : Arr[] = {1, 2, 3, 0, 3, 4, 5}
+    O/P : 3
+
+    I/P : Arr[] = {0, 0}
+    O/P : 0
+
+
+
+    ## Approach 1:
+
+        int Get_Rep(int Arr[], int Len)
+        {
+            for(int i = 0; i < Len - 1; i++)
+            {
+                for(int j =i + 1; j < Len; j++)
+                {
+                    if(Arr[i] == Arr[j])
+                        return Arr[j];
+                }
+            }
+        }
+        Time Complexity : O(N^2)
+        Auxillary space : O(1)
+
+
+    ## Approach 2:
+
+        ** Sort the array
+        int Get_Rep(int Ar[], int Len)
+        {
+            sort(Arr);
+            for(int i = 0; i < Len - 1; i++)
+            {
+                if(Arr[i] == Arr[i + 1])
+                    return Arr[i];
+            }
+        }
+        Time Complexity : O(NLog N)
+
+
+    ## Approach 3:
+
+        ** Create a boolean array of size N
+
+        int repeat(int arr[], int n)
+        {
+            bool visit[n];
+            
+            memset(visit, false, sizeof(visit));
+            
+            for(int i = 0; i < n; i++)
+            {
+                if(visit[arr[i]])
+                    return arr[i];
+                visit[arr[i]] = true;
+            }
+
+            return -1;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(N)
+
+
+    ## Approach 4:
+
+        int repeat(int arr[], int n)
+        {
+            int slow = arr[0], fast = arr[0];
+
+            do{
+                slow = arr[slow];
+                fast = arr[arr[fast]];
+            
+            }while(slow != fast);
+            
+            slow = arr[0];
+
+            while(slow != fast)
+            {
+                slow = arr[slow];
+                fast = arr[fast];
+            }
+            return slow;
+        }
+
+        Time Complexity : 
+
+
+
+
+
+
+
