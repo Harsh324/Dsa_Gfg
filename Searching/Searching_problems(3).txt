@@ -1,0 +1,155 @@
+## Two Pointer approach
+
+    ** Given an unsorted array and a number X, we need to,
+    find if there is a pair in the array with sum equals to X.
+
+    I/P : Arr[] = {3, 5, 9, 2, 8, 10, 11}, X = 17
+    O/P : Yes, There is a pair(9, 8)
+
+    I/P : Arr[] = {8, 4, 6}, X = 11
+    O/P : No
+
+    ** Naive appproach could be Double loop
+
+    ## Approach 1:
+
+        boolean Check(int Arr[], int Len, int X)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                for(int j = i + 1; j < Len; j++)
+                {
+                    if(Arr[i] + Arr[j] == X)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        Time Complexity : 
+        Auxillary space : 
+
+
+    ## Approach 2:
+
+    ** Use Hashing
+
+        void printPairs(int arr[], int arr_size, int sum) 
+        { 
+            unordered_set<int> s; 
+            for (int i = 0; i < arr_size; i++) { 
+                int temp = sum - arr[i]; 
+
+                if (s.find(temp) != s.end()) 
+                    cout << "Pair with given sum " << sum << " is (" << arr[i] << ", " << temp << ")" << endl; 
+
+                s.insert(arr[i]); 
+            } 
+        } 
+
+
+
+
+
+
+
+    ## Given a sorted array and a number X, we need to,
+    find if there is a pair in the array with sum equals to X.
+
+    I/P : Arr[] = {2, 5, 8, 12, 30}, X = 17
+    O/P : Yes, Pair is 5, 12
+
+    I/P : Arr[] = {3, 8, 13,18}, X = 14
+    O/P : No
+
+
+    ## Approach 1:
+
+        bool isPresent(int arr[], int n, int sum)
+        {
+            int l = 0, h = n-1;
+            int mid;
+            while(l <= h)
+            {
+                if(arr[l] + arr[h] == sum)
+                return true;
+                else if(arr[l] + arr[h] > sum)
+                    h--;
+                else l++;
+            }
+            return false;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+
+
+
+
+    ## Given a sorted array and a sum, find if there is a ,
+    triplet with given sum
+
+    I/P : Arr[] = {2, 3, 4, 8 ,9, 20, 40}, X = 32
+    O/P : Yes
+
+    ** Naive approach could be run three loops
+
+        bool Check(int Arr[], int Len, int X)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                for(int j = i + 1; j < Len; j++)
+                {
+                    for(int k = j + 1; k < Len; k++)
+                    {
+                        if(Arr[i] + Arr[j] + Arr[k] == X)
+                            return true;
+                    }
+                }
+            }
+            return false;
+        }
+        Time Complexity : O(N^3)
+
+
+
+    ## Approach 2:
+
+        bool find3Numbers(int A[], int arr_size, int sum) 
+        { 
+            int l, r; 
+
+            /* Sort the elements */
+            sort(A, A + arr_size); 
+
+            /* Now fix the first element one by one and find the 
+            other two elements */
+            for (int i = 0; i < arr_size - 2; i++) { 
+
+                // To find the other two elements, start two index 
+                // variables from two corners of the array and move 
+                // them toward each other 
+                l = i + 1; // index of the first element in the 
+                // remaining elements 
+
+                r = arr_size - 1; // index of the last element 
+                while (l < r) { 
+                    if (A[i] + A[l] + A[r] == sum) { 
+                        printf("Triplet is %d, %d, %d", A[i], 
+                            A[l], A[r]); 
+                        return true; 
+                    } 
+                    else if (A[i] + A[l] + A[r] < sum) 
+                        l++; 
+                    else // A[i] + A[l] + A[r] > sum 
+                        r--; 
+                } 
+        }
+
+        Time Complexity : O(N^2)
+        Auxillary space : O(1)
+            
+
+
+    ** Same problem can be sorting array and using same,or using hashing.
+
