@@ -1,0 +1,458 @@
+## Sort method in STL C++
+
+    ** Contiguous accessible containers can use sort method.
+
+    ## Sort method in Array
+
+        #include <iostream>
+        #include <algorithm>
+        using namespace std;
+
+        int main() {
+            
+            int arr[]={10,20,5,7};
+            int n = sizeof(arr) / sizeof(arr[0]);
+            
+            sort(arr,arr+n);
+            
+            for(int x: arr)
+                cout<<x<<" ";
+            
+            sort(arr,arr+n,greater<int>());
+            
+            cout<<endl;
+            for(int x: arr)
+                cout<<x<<" ";
+        }
+
+
+
+    ## Sort method in Vector
+
+        #include <iostream>
+        #include <vector>
+        #include <algorithm>
+        using namespace std;
+
+        int main() {
+            
+            vector<int> v={10,20,5,7};
+            
+            sort(v.begin(),v.end());
+            
+            for(int x: v)
+                cout<<x<<" ";
+            
+            sort(v.begin(),v.end(),greater<int>());
+            
+            cout<<endl;
+            for(int x: v)
+                cout<<x<<" ";
+        }
+
+
+
+    ## Sort method by specifying our own order of comparison
+
+        #include <iostream>
+        #include <algorithm>
+        using namespace std;
+
+        struct Point{
+            int x,y;
+        };
+
+        bool MyComp(Point p1,Point p2){
+            return p1.x < p2.x;
+        }
+
+        int main() {
+            
+            Point arr[]={{3,10},{2,8},{5,4}};
+            
+            int n = sizeof(arr)/sizeof(arr[0]);
+
+            sort(arr,arr+n,MyComp);
+            
+            for(auto i: arr)
+                cout<<i.x<<" "<<i.y<<endl;
+        }
+
+
+
+    ** Sort Function internally uses Quick sort, more details,
+    ** Hybrid of Qucik, Heap and Insertion sort uses as per condition.
+
+    ** Worst case and Average case Time Complexity : O(N Log N)
+
+
+
+
+## Sorting in Java
+
+    ** Sorting is implemented in two classes, Array and Collections,
+    ** Collections which are less interface implelemted only allow sorting.
+
+    ** For primitive data types sorting does not uses stable algorithm
+    ** For objects stable sorting used.
+
+
+
+    ** Some exmaples of sorting in Java
+
+    ** Using Arrays.sort()
+
+    ## Example 1:
+
+        import java.util.Arrays; 
+
+        public class Test
+        { 
+            public static void main(String[] args) 
+            { 
+                // Our arr contains 8 elements 
+                int[] arr1 = {5, 20, 12, 30};
+                char[] arr2 = {'B', 'B', 'A', 'C', 'A'};
+                
+                // Sorting the first array
+                Arrays.sort(arr1); 
+                
+                // Displaying the first array
+                System.out.println(Arrays.toString(arr1));
+
+                // Sorting the second array
+                Arrays.sort(arr2); 
+                
+                // Displaying the second array
+                System.out.println(Arrays.toString(arr2)); 
+            } 
+        } 
+
+
+    ## Example 2:
+
+        import java.util.Arrays; 
+
+        public class SortExample 
+        { 
+            public static void main(String[] args) 
+            { 
+                int[] arr = {5, 30, 20, 10, 8}; 
+
+                // Sort subarray from index 1 to 3, i.e., 
+                // only sort subarray {30, 20, 10} and 
+                // keep other elements as it is. 
+                Arrays.sort(arr, 1, 4); 
+
+                System.out.println(Arrays.toString(arr)); 
+            } 
+        } 
+
+
+    ## Example 3:
+
+        import java.util.*; 
+        import java.lang.*; 
+        import java.io.*; 
+
+        // A user-defined Point class implementing 
+        // Comparable interface
+        class Point implements Comparable<Point>
+        {
+            int x, y;
+            
+            // Costructor intialising x & y
+            Point(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+            
+            // compareTo() function defining the
+            // nature of sorting i.e., according to
+            // x-coordinate
+            public int compareTo(Point P)
+            {
+                // Comparing two objects by
+                // Subtracting the passed object 
+                // from current object
+                return this.x - P.x;
+            }
+        }
+
+        // Main class
+        class Test 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Array of 3 objects
+                Point arr[] = {
+                    new Point(10, 20), 
+                    new Point(3, 12), 
+                    new Point(5, 7) };
+                    
+                // Sorting the object containing array 
+                Arrays.sort(arr);
+                for(int i = 0; i < arr.length; i++)
+                    System.out.println(
+                        arr[i].x + " " + arr[i].y);
+            } 
+        } 
+
+
+    
+    ## Example 4:
+
+        import java.util.*; 
+        import java.lang.*; 
+        import java.io.*; 
+
+        // Point class which does not implement
+        // Comparable interface. Thus the objects
+        // of this class are not comparable.
+        class Point
+        {
+            int x, y;
+            Point(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        // This class implements 
+        // Comparator interface to compare 
+        class MyCmp implements Comparator<Point>
+        {
+            // Sorts the Point objects according
+            // to x-coordinates in natural order
+            public int compare(Point p1, Point p2)
+            {
+                return p1.x - p2.x;
+            }
+        }
+
+        // Main class
+        class Test 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Array of 3 objects
+                Point arr[] = {
+                    new Point(10, 20), 
+                    new Point(3, 12), 
+                    new Point(5, 7) };
+                    
+                // Sorting the object containing the array 
+                // by passing the array and object MyCmp
+                Arrays.sort(arr, new MyCmp());
+                
+                // Displaying the sorted array
+                for(int i = 0; i < arr.length; i++)
+                    System.out.println(
+                        arr[i].x + " " + arr[i].y);
+            } 
+        } 
+
+
+    ## Example 5:
+
+        import java.util.Arrays; 
+        import java.util.Collections; 
+
+        public class SortExample 
+        { 
+            public static void main(String[] args) 
+            { 
+                Integer[] arr = {5, 20, 10, 12}; 
+
+                // Note that we have Integer here instead of 
+                // int[] as Collections.reverseOrder doesn't 
+                // work for primitive types. 
+                Arrays.sort(arr, Collections.reverseOrder()); 
+
+                System.out.println(Arrays.toString(arr)); 
+            } 
+        }
+
+
+
+    ## Example 6:
+
+        import java.util.*; 
+        import java.lang.*; 
+        import java.io.*; 
+
+        // This class implements 
+        // Comparator interface to compare 
+        class MyCmp implements Comparator<Integer>
+        {
+            // Sorts the Integers
+            public int compare(Integer a, Integer b)
+            {
+                return a%2 - b%2;
+            }
+        }
+
+        // Main class
+        class Test 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Integer array
+                Integer[] arr = {5, 20, 10, 3, 12};
+                    
+                // Sorting arrays by passing
+                // arr and MyCmp object
+                Arrays.sort(arr, new MyCmp());
+                
+                // Displaying the sorted array
+                System.out.println(Arrays.toString(arr));
+            } 
+        } 
+
+
+
+    
+    ** Using Collections.sort() method in java
+
+    ** Some examples
+
+    ## Example 1:
+
+        // Java program to demonstrate 
+        // working of Collections.sort() 
+        import java.util.*; 
+
+        public class Collectionsorting 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Create a list of strings 
+                List<Integer> list = new ArrayList<Integer>(); 
+                list.add(10); 
+                list.add(5); 
+                list.add(20); 
+                
+                // List is sorted in the natural order
+                Collections.sort(list);
+                
+                // Displaying the sorted list
+                System.out.println(list);
+                
+                // Sorting the list in reverse order
+                Collections.sort(list, Collections.reverseOrder()); 
+
+                // Let us print the sorted list 
+                System.out.println(list); 
+            } 
+        }
+
+
+
+    ## Example 2:
+
+        // Java program to demonstrate 
+        // working of Collections.sort() 
+        import java.util.*; 
+        import java.lang.*; 
+        import java.io.*; 
+
+        // A user-defined Point class implementing 
+        // Comparable interface
+        class Point implements Comparable<Point>
+        {
+            int x, y;
+            Point(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+            
+            // compareTo() function defining the
+            // nature of sorting i.e., according to
+            // x-coordinate
+            public int compareTo(Point P)
+            {
+                return this.x - P.x;
+            }
+        }
+
+        class GfG 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Create a list of Integers 
+                List<Point> list = new ArrayList<Point>(); 
+                list.add(new Point(5, 10)); 
+                list.add(new Point(2, 20));  
+                list.add(new Point(10, 30)); 
+                
+                // List is sorted in the natural order
+                Collections.sort(list);
+                
+                // Displaying the points
+                for (Point p: list)
+                    System.out.println(p.x + " " + p.y);
+            } 
+        }  
+
+
+
+    ## Example 3:
+
+        // Java program to demonstrate 
+        // working of Collections.sort() 
+        import java.util.*; 
+        import java.lang.*; 
+        import java.io.*; 
+
+        // Point class which does not implement
+        // Comparable interface. Thus the objects
+        // of this class are not comparable.
+        class Point
+        {
+            int x, y;
+            Point(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+            }
+        }
+
+        // This class implements 
+        // Comparator interface
+        class MyCmp implements Comparator<Point>
+        {
+            // Sorts the Point objects according
+            // to x-coordinates in natural order
+            public int compare(Point p1, Point p2)
+            {
+                return p1.x - p2.x;
+            }
+        }
+
+        // Main Class
+        class GfG 
+        { 
+            public static void main(String[] args) 
+            { 
+                // Create a list of Integers 
+                List<Point> list = new ArrayList<Point>(); 
+                list.add(new Point(5, 10)); 
+                list.add(new Point(2, 20));  
+                list.add(new Point(10, 30)); 
+                
+                // List is sorted in natural order
+                // Passing the list and MyCmp object
+                Collections.sort(list, new MyCmp());
+                
+                // Displaying the points
+                for (Point p: list)
+                    System.out.println(p.x + " " + p.y);
+            } 
+        } 
+
+
+
+
