@@ -1,0 +1,90 @@
+## Bubble sort
+
+    ** Simple comparison based algorithm and takes,
+    O(N^2) time , it consist of multiple passes.
+
+    ** In First pass we move largest element to last position,
+    In Second pass we move second largest to Second last,
+    we continue this until we move all element to correct position.
+
+
+    Let take Arr[] = {2, 10, 8, 7}
+
+    ** First pass 
+
+    {2, 10, 8, 7}
+
+    {2, 10, 8, 7}
+
+    {2, 8, 10, 7}
+
+    {2, 8, 7, 10}
+
+
+    ** Second pass
+
+    {2, 8, 7, 10}
+
+    {2, 8, 7, 10}
+
+    {2, 8, 7, 10}
+
+    {2, 7, 8, 10}
+
+
+    ** Third pass
+
+    {2, 7, 8, 10}
+
+    {2, 7, 8, 10}
+
+
+
+    ## implelentation of Bubble sort
+
+        ## Approach 1:
+
+            void bubbleSort(int arr[], int n)
+            {
+                for(int i = 0;i < n; i++)
+                {
+                    for(int j = 0 ; j < n - i -1; j++)
+                    {
+                        if( arr[j] > arr[j+1])
+                        {
+                            swap(arr[j], arr[j+1]);
+                        }
+                    }
+                }
+            }
+
+        
+        ## Approach 2:
+
+            ** Good Approach if array is sorted 
+
+
+            void bubbleSort(int arr[], int n)
+            {
+    
+                bool swapped;
+                for(int i = 0;i < n; i++){
+                    
+                    swapped = false;
+                    for(int j = 0 ; j < n - i -1; j++){
+                        if( arr[j] > arr[j+1]){
+                            swap(arr[j], arr[j+1]);
+                            swapped = true;
+                        }
+                    }
+                    
+                    if( swapped == false)
+                    break;
+                }
+            }
+
+
+    ** Bubble sort is Stable Algortihm and inplace algorithm
+
+
+
