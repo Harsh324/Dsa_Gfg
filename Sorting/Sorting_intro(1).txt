@@ -1,0 +1,26 @@
+## Stability in Sorting algorithm
+
+    ** Given ann array already lexicographicly sorted,
+    by name. we want to sort as per scores, if equal,
+    then alphbetical
+
+
+    Arr[] = [("Anil, 50), ("Ayan", 80), ("Piyush", 50), ("Ramesh", 80)]
+
+    After sorting(Stable)
+
+    Arr[] = [("Anil, 50), ("Piyush", 50), ("Ayan", 80), ("Ramesh", 80)]
+
+    ** Array of object need stable sorting 
+
+
+
+    ## Stable Sort methods
+
+        Bubble sort, Insertion Sort, Merge Sort etc
+
+    ## Unstable Sort methods
+
+        Selection sort, Quick sort, Heap sort etc
+
+        
