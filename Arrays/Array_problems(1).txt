@@ -136,6 +136,14 @@
                 }
             }
 
+            void Reverse(int Arr[], int Low, int High)
+            {
+                while(Low < High)
+                {
+                    swap(&Arr[Low], &Arr[High]);
+                }
+            }
+
             Time Complexity : Theta(n)
             Auxillary Space : Theta(1)
         
