@@ -1,0 +1,31 @@
+## Selection sort 
+
+    ** Basic comparison based algorithm, take Theta(N^2) time,
+    int all cases.
+
+    ** Take less memory writes compared to Quick , Merge , Insertion sort,
+    etc. However Cycle sort is better in memeory write.
+
+    ** It is basic idea for Heap sort
+
+    ** It is not stable algorithm, Inplace algorithm
+
+
+    ** Basic idea is Find minimu eellemnt, put at first postion,
+    Find second minmum put at 
+
+
+// Call by value
+int Increment(int Num)
+{
+    return Num++;
+}
+
+// Call bye reference
+void Swap(int* A, int* B)
+{
+    int Temp;
+    Temp = *A;
+    *A = *B;
+    *B = Temp;
+}
