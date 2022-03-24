@@ -1,0 +1,129 @@
+## Rotate a matrix by 90 degree
+
+    ** Given a N x N Matrix we need to rotate the,
+        Matrix by 90 degree also Anticlockwise.
+
+
+    I/P : 1  2  3
+          4  5  6
+          7  8  9
+
+    O/P : 3  6  9
+          4  5  6
+          7  8  9
+
+
+    ** Naive Approach 
+
+    ## Approach 1:
+
+        const int n = 4;
+        void transpose(int mat[n][n])
+        {
+            int temp[n][n];
+
+            for(int i = 0; i < n; i++)
+                for(int j = 0; j < n; j++)
+                    temp[n - j - 1][i] = mat[i][j];
+
+            for(int i = 0; i < n; i++)
+                for(int j = 0; j < n; j++)
+                    mat[i][j] = temp[i][j];
+
+        }
+
+        Time Complexity : Theta(N^2)
+        Auxillary space : Theta(N^2)
+
+
+    ## Approach 2:
+
+        const int n = 4;
+
+        void transpose(int mat[n][n])
+        {
+            for(int i = 0; i < n; i++)
+                for(int j = i + 1; j < n; j++)
+                    swap(mat[i][j], mat[j][i]);
+                    
+            for(int i = 0; i < n; i++)
+            {
+                int low = 0, high = n - 1;
+                
+                while(low < high)
+                {
+                    swap(mat[low][i], mat[high][i]);
+                    
+                    low++;
+                    high--;
+                }
+            }
+        }
+
+
+        Time Complexity : Theta(N^2)
+        Auxillary space : O(1)
+
+
+
+
+
+## Spiral Traversal of matrix
+
+    ** We are given a matrix we need to traverse matrix,
+       spirally.
+
+        I/P : 1  2  3  4
+              5  6  7  8
+              9  10  11 12
+              13  14  15  16
+
+
+        O/P : 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+
+        ## Approach 1:
+
+            const int R = 4, C = 4;
+
+            void printSpiral(int mat[4][4], int R, int C)
+            {
+                int top = 0, left = 0, bottom = R - 1, right = C - 1;
+
+                while(top <= bottom && left <= right)
+                {
+                    for(int i = left; i <= right; i++)
+                        cout << mat[top][i] << " ";
+
+                    top++;
+
+                    for(int i = top; i <= bottom; i++)
+                        cout << mat[i][right] << " " ;
+                    
+                    right--;
+
+                    if(top <= bottom){
+                    for(int i = right; i >= left; i--)
+                        cout << mat[bottom][i] << " ";
+
+                    bottom--;
+                    }
+
+                    if(left <= right){
+                    for(int i = bottom; i >= top; i--)
+                        cout << mat[i][left] << " ";
+
+                    left++;
+                    }			
+                }
+            }
+
+
+            Time Complexity : Theta(R * C)
+
+
+
+
+
+
+
