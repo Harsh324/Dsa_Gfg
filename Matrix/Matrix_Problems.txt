@@ -1,0 +1,182 @@
+## Print Matrix patterns
+
+    ## Given a matrix our task is to print the matrix,
+       in snake pattern.
+
+    I/P :  1  2  3  4
+           5  6  7  8
+           9 10 11 12
+           13 14 15 16
+
+    O/P : 1 2 3 4 8 7 6 5 9 10 11 12 16 15 14 13
+    
+
+    ## Approach 1:
+
+        #include <iostream>
+        using namespace std;
+
+        const int R = 4, C = 4;
+        void printSnake(int mat[R][C])
+        {
+            for(int i = 0; i < R; i++)
+            {
+                if(i % 2 == 0)
+                {
+                    for(int j = 0; j < C; j++)
+                        cout << mat[i][j] << " ";
+                }
+                else
+                {
+                    for(int j = C - 1; j >= 0; j--)
+                        cout << mat[i][j] << " ";
+                }
+
+            }
+        }
+
+        int main()
+        {	
+            int arr[R][C] = {{1, 2, 3, 4},
+                        {5, 6, 7, 8},
+                        {9, 10, 11, 12},
+                        {13, 14, 15, 16}};
+
+            printSnake(arr);
+
+            return 0;
+        }
+
+
+        Time Complexity : Theta(R * C)
+
+
+
+
+    ## Given a matrix we need to print bounded,
+       traversal of matrix.
+
+
+        I/P : 1  2  3  4
+              5  6  7  8
+              9 10 11 12
+              13 14 15 16
+
+        O/P : 1 2 3 4 8 12 16 15 14 12 9 5 
+
+        ## Approach 1:
+
+        #include <iostream>
+        using namespace std;
+
+        const int R = 4, C = 4;
+        void bTraversal(int mat[R][C])
+        {
+            if(R == 1)
+            {
+                for(int i = 0; i < C; i++)
+                    cout << mat[0][i] << " ";
+            }
+            else if(C == 1)
+            {
+                for(int i = 0; i < R; i++)
+                    cout << mat[i][0] << " ";
+            }
+            else
+            {
+                for(int i = 0; i < C; i++)
+                    cout << mat[0][i] << " ";
+                for(int i = 1; i < R; i++)
+                    cout << mat[i][C - 1] << " ";
+                for(int i = C - 2; i >= 0; i--)
+                    cout << mat[R - 1][i] << " ";
+                for(int i = R - 2; i >= 1; i--)
+                    cout << mat[i][0] << " ";
+            }
+
+        }
+
+        int main()
+        {	
+            int arr[R][C] = {{1, 2, 3, 4},
+                        {5, 6, 7, 8},
+                        {9, 10, 11, 12},
+                        {13, 14, 15, 16}};
+
+            bTraversal(arr);
+
+            return 0;
+        }
+
+
+        Time Complexity : Theta(R + C)
+
+
+
+
+    ## Given a N x N Matrix and we need to find the,
+       transpose of the given matrix.
+
+       I/P : 1  2  3  4
+             5  6  7  8
+             9 10 11 12
+             13 14 15 16
+
+        O/P : 1  5  9  13
+              2  6  10 14
+              3  7  11 15
+              4  8  12 16
+
+            
+        ** Naive Approach 
+
+        ## Approach 1:
+
+            const int n = 4;
+            void transpose(int mat[n][n])
+            {
+                int temp[n][n];
+
+                for(int i = 0; i < n; i++)
+                    for(int j = 0; j < n; j++)
+                        temp[i][j] = mat[j][i];
+
+                for(int i = 0; i < n; i++)
+                    for(int j = 0; j < n; j++)
+                        mat[i][j] = temp[i][j];
+
+            }
+
+            Time Complexity : Theta(N)
+            Auxillary space : Theta(N * N)
+
+
+
+        ## Approach 2 :
+
+            ** Traverse Diagonally
+
+            const int n = 4;
+
+            void transpose(int mat[n][n])
+            {
+                for(int i = 0; i < n; i++)
+                    for(int j = i + 1; j < n; j++)
+                        swap(mat[i][j], mat[j][i]);
+            }
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
