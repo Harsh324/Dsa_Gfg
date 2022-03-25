@@ -1,0 +1,138 @@
+## Search in a Row wise and columns wise sorted matrix
+    ** We are given a matrix which is row wise and
+       columns wise sorted, given a value x we need to find
+       if value present in the matrix.
+
+
+    I/P :  10  20  30  40
+           15  25  35  45
+           27  29  37  43
+           32  33  39  50
+        x = 29
+
+    O/P : Found at (2, 1)
+
+
+
+    ## Approach 1:
+
+        ** Naive Approach
+
+        const int R = 4, C = 4;
+
+        void search(int mat[R][C], int x)
+        {
+            for(int i = 0; i < R; i++)
+            {
+                for(int j = 0; j < C; j++)
+                {
+                    if(mat[i][j] == x)
+                    {
+                        cout << "Found at (" << i << ", " << j << ")";
+                        
+                        return;
+                    }
+                }
+            }
+
+            cout << "Not Found";
+        }
+
+        Time Complexity : O(R * C)
+
+
+
+    ## Approach 2:
+
+
+        const int R = 4, C = 4;
+
+        void search(int mat[R][C], int x)
+        {
+            int i  = 0, j = C - 1;
+
+            while(i < R && j >= 0)
+            {
+                if(mat[i][j] == x)
+                {
+                    cout << "Found at (" << i << ", " << j << ")";
+                    
+                    return;
+                }
+                else if(mat[i][j] > x)
+                {
+                    j--;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+                
+            cout << "Not Found";
+        }
+
+        Time Complexity : O(R + C)
+
+
+
+
+## Median of a Row-wise Sorted matrix
+
+    ** Given an odd sized matrix and all Distinct element,
+       we need to find median of the matrix.
+
+    I/P :  1  10  20
+           15  25  35
+           5  30  40
+
+    O/P : 20
+
+    ** Naive approach could be put all elements in an array,
+       sort the array and then return median.
+
+
+    ## Approach 1 :
+
+        const int MAX = 100;
+
+        int matMed(int mat[][MAX], int r ,int c)
+        {
+            int min = mat[0][0], max = mat[0][c-1];
+            for (int i=1; i<r; i++)
+            {
+                if (mat[i][0] < min)
+                    min = mat[i][0];
+
+                if (mat[i][c-1] > max)
+                    max = mat[i][c-1];
+            }
+
+            int medPos = (r * c + 1) / 2;
+            while (min < max)
+            {
+                int mid = (min + max) / 2;
+                int midPos = 0;
+
+                for (int i = 0; i < r; ++i)
+                    midPos += upper_bound(mat[i], mat[i]+c, mid) - mat[i];
+                if (midPos < medPos)
+                    min = mid + 1;
+                else
+                    max = mid;
+            }
+            return min;
+        }
+
+        Time Complexity : O(log(Max - Min) * R * log(C))
+        
+
+
+
+
+
+
+
+
+
+
