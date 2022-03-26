@@ -1,0 +1,99 @@
+## Collision Handling
+
+    ** If we Know Keys in advance, then we can Perfect Hashing
+
+    ** If we do not know Keys, then we use one of the following :
+
+        1. Chaining
+        2. Open Addressing
+            1. Linear Probing
+            2. Quadratic Probing
+            3. Double Hashing
+
+
+
+    ## Chaining
+
+        ** The Idea is to  maintain array of Linked Lists (Headers)
+
+        ** Performance of Chaining
+
+            M = No. of slots in Hash Table
+            N = No. of Keys to be inserted
+
+            Load Factor Alpha = N / M 
+            Expected Chain Length = Alpha
+
+            Expected Time to Search = O(1 + Alpha)
+
+            Expected Time to Insert/Delete = O(1 + Alpha)
+
+
+        ** Data Structures Storing the Chains
+
+            1. Linked List 
+                Search - O(Length)
+                Delete - O(Length)
+                Insert - O(Length)
+
+                ** Not Cache Friendly, Extra space for pointers.
+
+            2. Dynamic Sized Arrays(Vector in c++, ArraysLst in Java, List in Python)
+
+                Search - O(Length)
+                Delete - O(Length)
+                Insert - O(Length)
+
+                ** Cache Friendliness.
+
+            3. Self Balancing BST (AVL Tree, RB Tree)
+
+                Search - O(log(Length))
+                Delete - O(log(Length))
+                Insert - O(log(Length))
+
+                ** Not Cache Friendliness
+
+
+
+        ## Implementation of Chaining
+
+            struct MyHash
+            {
+                int BUCKET;
+                list<int> *table;
+                MyHash(int b)
+                {
+                    BUCKET = b;
+                    table = new list<int>[BUCKET];
+                }
+                void insert(int k)
+                {
+                    int i = k % BUCKET;
+                    table[i].push_back(k);
+                }
+                bool search(int k)
+                {
+                    int i = k % BUCKET;
+                    for (auto x : table[i])
+                    if (x == k)
+                        return true;
+                    return false;      
+                }
+                void remove(int k)
+                {
+                    int i = k % BUCKET;
+                    table[i].remove(k);
+                }
+            };
+
+
+
+
+
+## Open Addressing
+
+    ** Idea is to use single array
+
+
+
