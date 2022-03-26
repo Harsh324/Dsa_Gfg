@@ -1,0 +1,102 @@
+## Hashing is used to maintain key value pairs and
+   also maintain sets.
+
+   ** Search, Insert and Delete all in O(1) time.
+      This is the best thing about Hashing.
+
+
+   ** Main Areas where hashing is not useful
+        Finding Closest value (AVL Trees or RB Tress used)
+        Sorted Data (AVL Trees or RB Tress used)
+        Prefix Searching (Trie Data structure is used)
+
+
+
+    ## Applications of Hashing
+
+        ** Hash table is most used data structure in, 
+           Computer science.
+
+        ** Associative arrays is hashing.
+
+
+        Dictionaries
+        Database Indexing
+        Cryptography
+        Caches
+        Symbol Table in Compliers / Interpreters
+        Routers
+        Getting Data from Database
+
+
+    ## Direct Address Table
+
+
+        ** Imagine a situation where you have 1000 keys,
+        with values from (0 to 999), how would you implement,
+        follwing in O(1) time.
+
+            1. Search
+            2. Insert
+            3. Delete
+
+            Example :
+
+                Insert(10)
+                Insert(20)
+                Insert(119)
+                Search(10)
+                Search(20)
+                Delete(119)
+                Search(119)
+
+
+        ** Problem is that it can not handle large numbers and,
+           floating numbers also if key is String.
+           Thus here Hashing comes to rescue.
+
+
+
+
+    ## Concept of Hashing
+
+        ** Takes keys, use hash function to convert Keys into small,
+          values and can be used as index in arrays.
+
+
+
+
+        ## Working of Hash functions
+
+           ** Should always map a large key to same small key
+
+           ** Should generate values from 0 to m - 1
+
+           ** Should be fasst, O(1) for integer and O(len) for ,
+              String of length 'len'.
+
+           ** Should uniformally distribute large keys into,
+              Hash Table slots.
+
+
+        ## Examples of Hash functions
+
+            1. Hash(Large_Key) = Large_Key % m;
+
+            2. For Strings, Weighted sum, Str = "abcd"
+
+                Str[0] * X0 + Str[1] * X1 + Str[2] * X3 + Str[3] * X4
+
+            3. Universal Hashing
+
+         
+
+
+
+
+
+
+
+
+
+
