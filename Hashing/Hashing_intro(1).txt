@@ -93,7 +93,72 @@
 
 ## Open Addressing
 
-    ** Idea is to use single array
+    ** Idea is to use single array only
+
+    ** No. of slots >= No. of Keys to be inserted.
+
+    ** Cache Friendliness.
+
+    ** Linear Probing is considered here
+
+
+    ** in Searching if we find key we will return ,
+       else we will start search linearly,
+       if we get then return or if we get empty slot,
+       then return nothing.
+
+    ** if Table is Full then no empty slot find,
+       then we wil traverse whole array and back,
+       to same slot then we will say not found.
+
+
+    
+    ** Deletion in Open Addressing
+
+        ** Problem with simply making the slot empty,
+           when we delete.
+
+           when you search for any key then it may,
+           get unwanted empty slot, so our linear,
+           probing will stop.
+
+
+           ** We mark the slot as deleted, then searching,
+           will skip that slot, but Insert will use it.
+
+
+    
+
+    ## Clustering in Linear Probing
+
+        ** A Problem with linear probing. 
+
+        ** Due to Clustering all the operations,
+           become costly.
+
+           hash(Key, i) = (h(Key) + i^2 ) % m;
+
+
+        ## Handling Clustering problem with linear,
+           probing.
+
+           1. Quadratic Probing (Secondary clusters formed)
+
+                ** It may not find empty slot if present.
+                
+                hash(Key, i) = (h(Key) + i^2) % m
+
+                ** if Alpha(N / M) < 0.5 and M is,
+                   Prime, then quadratic Probing Gauranteed.
+
+           2. Double Hashing
+
+                Hash(Key, i) = (H1(Key) + i * H2(Key)) % m
+
+
+        
+
+
 
 
 
