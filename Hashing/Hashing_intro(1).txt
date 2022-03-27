@@ -154,7 +154,43 @@
            2. Double Hashing
 
                 Hash(Key, i) = (H1(Key) + i * H2(Key)) % m
+                
+                ** if h2(Key) is Relatively Prime to m, 
+                   the it always find a free slot if there is one.
 
+                ** Distributes keys more uniformaly than linear,
+                   probing and Quadratic Hashing.
+
+                ** No Clustering.
+
+                  
+                ** Pseudo code for insert in double Hashing
+
+                    void DoubleHashingInsert(Key)
+                    {
+                        if(Table is Full)
+                            return Error
+                        
+                        Probe = H1(Key) , Offset = H2(Key)
+
+                        while(Table[Probe] is occupied)
+                            Probe = ( Probe + Offset ) % m;
+
+                        Table[Probe] = Key
+                    }
+
+                    ** In linear Probing offset is one.
+                    ** Double Hashing is generalised version of linear Probing.
+
+
+                ** Performace analysis of Search(unsuccessfull)
+
+                    Alpha = N / M (Should be <= 1)
+                    Assumption : Every probe sequence looks at a random location.
+
+                    (1 - Alpha) Fraction of the Table is empty.
+
+                    Expected number of Probes = 1 / (1 - Alpha)
 
         
 
