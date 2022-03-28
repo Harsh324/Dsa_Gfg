@@ -1,0 +1,127 @@
+## Subarray with Zero Sum
+
+    ** Given an array our task is to find,
+       if there is sub array with zero sum or not.
+
+    ** Subarray means contigous elements.
+
+    I/P : Arr[] = {1, 4, 13, -3, -10, 5}
+    O/P : Yes
+
+    I/P : Arr[] = {-1, 4, -3, 5, 1}
+    O/P : Yes
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        bool isZeroSubarray(int Arr[], int Len)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                int Curr_Sum = 0;
+                for(int j = i; j < Len; j++)
+                {
+                    Curr_Sum += Arr[j];
+                    if(Curr_Sum == 0)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+
+        Time Complexity : O(N^2)
+
+
+
+    ## Approach 2 :
+
+        ** Using prefix sum and hashing both techniques.
+
+        int ZeroSumSubarray(int arr[], int n)
+        {
+            unordered_set<int> us;
+            int prefix_sum = 0;
+            us.insert(0);
+            for(int i = 0; i < n; i++)
+            {
+                prefix_sum += arr[i];
+                if(us.find(prefix_sum) != us.end())
+                return 1;
+                us.insert(prefix_sum);
+            }
+            return 0;
+        }
+
+        Time Complexity : O(N)
+
+
+
+
+## Subarray with given Sum
+
+    ** Given an array that may contain Integers negative,
+       positive or Zero and Sum.
+       our task is to find out if there is,
+       subarray with given sum.
+
+
+    I/P : Arr[] = {5, 8, 6, 13, 3, -1}, Sum = 22
+    O/P : True
+
+    I/P : Arr[] = {15, 2, 8, 10, -5, -8, 6}, Sum = 3
+    O/P : True
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        bool isSubArrSum(int Arr[], int Len, int Sum)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                int Curr_Sum = 0;
+                for(int j = i; j < Len; j++)
+                {
+                    Curr_Sum += Arr[j];
+                    if(Curr_Sum == Sum)
+                        return true;
+                }
+                return false;
+            }
+        }
+
+        Time Complexity : O(N^2)
+        Auxillary space : O(1)
+
+
+    ## Approach 2 :
+
+        bool isSum(int arr[], int n, int sum)
+        {
+            unordered_set<int> s;
+            int pre_sum = 0;
+            for(int i = 0; i < n; i++)
+            {   
+                if(pre_sum==sum)
+                    return true;
+                pre_sum += arr[i];
+                if(s.find(pre_sum-sum) != s.end())
+                return true;
+                s.insert(pre_sum);
+            }
+            return false;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(N)
+
+
+
+
+
+
+
+
