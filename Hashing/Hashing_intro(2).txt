@@ -112,6 +112,23 @@
 
     ** Does not make order of any element.
 
+    ** Find function in unordered_set 
+
+        ** Finds if element is present or not, if present returns,
+           the iterator , else returns Set.end().
+
+
+    ** Count function in unordered_set
+
+        ** Returns 1 if element is present else returns 0,
+           if element is not present. 
+
+
+    ** Search, Insert and Delete has Complexites as O(1) on Average.
+    
+    ** Size and Empty are also O(1).
+
+
     ** Code for Unordered set.
 
         int main()
@@ -164,21 +181,7 @@
         }
 
 
-    ** Find function in unordered_set 
-
-        ** Finds if element is present or not, if present returns,
-           the iterator , else returns Set.end().
-
-
-    ** Count function in unordered_set
-
-        ** Returns 1 if element is present else returns 0,
-           if element is not present. 
-
-
-    ** Search, Insert and Delete has Complexites as O(1) on Average.
-    ** Size and Empty are also O(1).
-
+    
 
 
     ## Applications of unordered_set

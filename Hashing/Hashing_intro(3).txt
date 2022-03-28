@@ -1,0 +1,101 @@
+## Unordered Map in C++ STL
+
+
+    ** Used to store Key, Value pairs
+
+        ++ Map has also same purpose but Map is based on RB Tree,
+           While Unordered Map is based on Hashing.
+
+        ++ Also Map has keys stored in order,
+           unlike in Unordered map.
+
+    ** Uses Hashing
+
+        ++ Thus no order of keys
+
+    ** No order of Keys
+
+
+    ** Begin, end, Size, Empty are O(1)
+
+    ** 
+
+
+
+    ** Code for Unordered Map
+
+        int main()
+        {
+            unordered_map <string,int> m;
+            m["gfg"]=20;
+            m["ide"]=30;
+            m.insert({"courses",15});
+            
+            if(m.find("ide")!=m.end())
+                cout<<"Found";
+            else
+                cout<<"Not Found ";
+            
+            cout<<endl;
+            
+            for(auto it=m.begin();it!=m.end();it++)
+                cout<<(it->first)<<" "<<(it->second)<<endl;
+            
+            if(m.count("ide")>0)
+                cout<<"Found";
+            else
+                cout<<"Not Found";
+            cout<<endl;
+            
+            cout<<m.size()<<endl;
+            m.erase("ide");
+            m.erase(m.begin());
+            cout<<m.size()<<endl;
+            m.erase(m.begin(),m.end());
+                
+            return 0;
+        }
+
+
+
+
+## Hashset in java
+
+    ** Uses Concept of hashing to store data
+
+    ** As usual Add, Remove, Contains overall O(1) on average.
+
+    ** Size and isempty also take O(1).
+
+    ** Code for the Hashset in java
+
+        class Test 
+        { 
+            public static void main(String[]args) 
+            { 
+                HashSet<String> h = new HashSet<String>(); 
+
+                
+                h.add("gfg"); 
+                h.add("courses"); 
+                h.add("ide"); 
+
+            
+                System.out.println(h);
+                
+                
+                System.out.println(h.contains("ide"));
+                
+            
+                Iterator<String> i = h.iterator();
+                
+                while(i.hasNext())
+                {
+                    System.out.print(i.next()+" ");
+                }   
+            } 
+        } 
+
+
+
+
