@@ -1,0 +1,243 @@
+## Count Distinct Elements
+
+    I/P : Arr[] = {15, 12, 13, 12, 13, 13, 18}
+    O/P : 4
+
+    I/P : Arr[] = {10, 10, 10}
+    O/P  :1
+
+    ## Approach 1:
+    
+        int countDistinct(int arr[], int n)
+        {
+            unordered_set<int> us;
+            for(int i = 0; i < n; i++)
+                us.insert(arr[i]);
+            
+            return us.size();
+        }
+
+        Time Complexity : Theta(n)
+        Auxillary space : O(1)
+
+
+
+
+## Frequencies of Array elements 
+
+    I/P : Arr[] = {10, 12, 10, 15, 10, 20, 12, 12}
+    O/P : 10 3, 12 3, 15 1, 20 1
+
+    ## Approach 1:
+
+        void countFreq(int arr[], int n)
+        {
+            // Mark all array elements as not visited
+            vector<bool> visited(n, false);
+        
+            // Traverse through array elements and
+            // count frequencies
+            for (int i = 0; i < n; i++) {
+        
+                // Skip this element if already processed
+                if (visited[i] == true)
+                    continue;
+        
+                // Count frequency
+                int count = 1;
+                for (int j = i + 1; j < n; j++) {
+                    if (arr[i] == arr[j]) {
+                        visited[j] = true;
+                        count++;
+                    }
+                }
+                cout << arr[i] << " " << count << endl;
+            }
+        }
+        Time Complexity : O(N)
+        Auxillary space : Theta(N)
+
+
+
+
+## Intersection of two unsorted arrays
+
+    I/P : Arr[] = {10, 15, 20, 5, 30}
+          Arr2[] = {30, 5, 30, 80}
+
+    O/P : 2
+
+    I/P : Arr[] = {10, 20}
+          Arr1[] = {20, 30}
+
+    O/P : 1
+
+    
+    ## Approach 1:
+
+        ** Naive Approach
+    
+
+        Time Complexity : O(m * (m + N))
+        Auxillary space :
+
+
+    ## Approach 2:
+
+        int intersection(int arr1[], int m, int arr2[], int n)
+        {
+            unordered_set<int> us;
+            for(int i = 0; i < m; i++)
+            us.insert(arr1[i]);
+            
+            int res = 0;  
+            for(int i = 0; i < n; i++)
+            {
+                if(us.find(arr2[i]) != us.end())
+                {
+                    res++;
+                    us.erase(arr2[i]);
+                }
+            }
+            return res;
+        }
+
+
+
+## Union of two unsorted arrays
+
+    ** Given Two arrays which might be unsorted,
+       our task is to count the distinct elements,
+       in the noth arrays combined.
+
+    I/P : Arr[] = {15, 20, 5, 15}
+          Arr1[] = {15, 15, 15, 20, 10}
+
+    O/P : 4
+
+    I/P : Arr[] = {10, 12, 15}
+          Arr1[] = {18, 12}
+
+    O/P : 4
+
+
+    ## Approach 1:
+
+        ** Naive Approach
+
+        ** Initialize Res : 0
+
+        ** Create an Auxillary array Dist[]
+
+        ** Traverse through Arr[]. for every element in 
+           Arr[], check if it is present in Dist[],
+           if No, then
+               1. Increment Res
+               2. Append the element to Dist[]
+
+        ** Repeat step 3 for every element of Arr[]
+
+
+        Time Complexity : O(m x m + n x (m + n))
+
+
+
+    ## Approach 2:
+
+        ** Create an emoty hash table, hash
+        
+        ** Insert all elements of Arr[] in H.
+        
+        ** Insert all elements of B[] in H.
+        
+        ** Return H.size()
+
+        int unionSize(int arr1[], int m, int arr2[], int n)
+        {
+            unordered_set<int> us;
+            for(int i = 0; i < m; i++)
+            us.insert(arr1[i]);
+            for(int i = 0; i < n; i++)
+            us.insert(arr2[i]);
+            
+            return us.size(); 
+        }
+
+
+        Time Complexity : Theta(m + n)
+        Auxillary space : O(m + n)
+
+
+
+## Pair with Given Sum
+
+    ** Given an array, it may be sorted , contain duplicate
+       Task is to find that if there is pair with given sum.
+
+    I/P : Arr[] = {3, 2, 8, 15, -8}, Sum = 17
+    O/P : True
+
+    ## Approach 1
+
+        ** Naive Approach 
+
+        ** Consider all possible pairs one by one and check for sum.
+
+            Arr[] = {8, 3, 9 ,4}, Sum = 13
+
+            pairs : (8, 3), (8, 9), (8, 4), (3, 9), 
+                    (3, 4), (9, 4)
+
+
+        ** If we find a pair, return true, else return false.
+
+        bool isPair(int Arr[], int Len, int Sum)
+        {
+            for(int i = 0; i < Len; i++)
+            {
+                for(int j = i + 1; j < Len; j++)
+                {
+                    if(Arr[i] + Arr[j] == Sum)
+                        return true;
+                }
+            }
+            return false;
+        }
+
+
+
+    ## Approach 2 :
+
+        ** First Inserting everything into a hash table,
+           then traversing through the array does not work.
+
+
+            Ex Arr[] = {8, 3, 2, 5}, Sum = 6
+               H = {8, 3, 2, 5}
+
+        ** Now if we traverse and look (Sum - Arr[i]) in H,
+           we would return incorrect result.
+
+
+
+        int pairWithSumX(int arr[],int n, int X)
+        {
+            unordered_set<int> us;
+            for(int i = 0; i < n; i++)
+            {
+                if(us.find(X - arr[i]) != us.end())
+                return 1;
+                
+                us.insert(arr[i]);
+            }
+            return 0;
+            
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(N)
+
+        
+
+
+        
