@@ -1,0 +1,259 @@
+## Longest Common Subarray with Given Sum
+
+    ** Given two binary arrays of same size, with sum given
+       we need to find length of longest Common subarray
+
+    ** Common subarray means starting and ending index,
+       of both arrays must be same.
+
+
+    I/P : Arr1[] = {0, 1, 0, 0, 0, 0}
+          Arr2[] = {1, 0, 1, 0, 0, 1}
+
+    O/P : 4
+
+
+    I/P : Arr1[] = {0, 1, 0, 1, 1, 1, 1}
+          Arr2[] = {1, 1, 1, 1, 1, 0, 1}
+
+    O/P : 6
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+            int maxCommom(int Arr1[], int Arr2[], int Len)
+            {
+                inr Res = 0;
+                for(int i = 0; i < Len; i++)
+                {
+                    int Sum1 = 0; Sum2 = 0; 
+                    for(int j = i; j < Len; j++)
+                    {
+                        Sum1 += Arr1[j];
+                        Sum2 += Arr2[j];
+                        if(Sum 1 == Sum2)
+                            Res = max(Res, j - i + 1);
+                    }
+                }
+                return Res;
+            }
+
+            Time Complexity : Theta(N^2)
+            Auxillary space : O(1)
+
+
+
+    ## Approach 2 :
+
+        ** Hint : The problem is going to reduce into the,
+           problem of longest subarray with 0 sum in an array.
+
+
+            int longestCommonSum(bool arr1[], bool arr2[], int n) 
+            { 
+                // Find difference between the two 
+                int arr[n]; 
+                for (int i=0; i<n; i++) 
+                arr[i] = arr1[i] - arr2[i]; 
+                
+                // Creates an empty hashMap hM 
+                unordered_map<int, int> hM; 
+
+                int sum = 0;	 // Initialize sum of elements 
+                int max_len = 0; // Initialize result 
+
+                // Traverse through the given array 
+                for (int i = 0; i < n; i++) 
+                { 
+                    // Add current element to sum 
+                    sum += arr[i]; 
+
+                    // To handle sum=0 at last index 
+                    if (sum == 0) 
+                        max_len = i + 1; 
+
+                    // If this sum is seen before, 
+                    // then update max_len if required 
+                    if (hM.find(sum) != hM.end()) 
+                    max_len = max(max_len, i - hM[sum]); 
+                        
+                    else // Else put this sum in hash table 
+                        hM[sum] = i; 
+                } 
+
+                return max_len; 
+            } 
+
+
+            Time Complexity : Theta(N)
+            Auxillary space : Theta(N)
+
+
+
+## Longest Consecutive Subsequence
+
+    ** Given an array need to find length of longest,
+       Subsequence such that this Subsequence,
+       has Consecutive elements.
+
+
+    I/P : Arr[] = {1, 9, 3, 4, 2, 20}
+    O/P : 4
+
+    I/P : Arr[] = {8, 20, 7, 30}
+    O/P : 2
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        ** Using Sorting.
+
+        int LongestSub(int Arr[], int Len)
+        {
+            sort(Arr, Arr + Len);
+            int Res = 1, Curr = 1;
+            for(int i = 1; i < Len; i++)
+            {
+                if(Arr[i] == Arr[i - 1] + 1)
+                    Curr++;
+                else if(Arr[i] != Arr[i - 1])
+                {
+                    Res = max(Res, Curr);
+                    Curr = 1;
+                }
+            }
+            return max(Res, Curr);
+        }
+
+        Time Complexity : O(NLogN)
+        Auxillary space : O(N)
+
+    
+    ## Approach 2 :
+
+        ** Hint : We first insert all elements in a hash table.
+                  Then with 2n lookups, we find the result.
+
+        int findLongest(int arr[], int n)
+        {
+            unordered_set<int> s;
+            int res = 0;
+        
+            for (int i = 0; i < n; i++)
+                s.insert(arr[i]);
+        
+            for (int i = 0; i < n; i++) {
+                if (s.find(arr[i] - 1) == s.end()) {
+                    int curr = 1;
+                    while (s.find(curr+arr[i]) != s.end())
+                        curr++;
+                        
+                    res = max(res, curr);
+                }
+            }
+            return res;
+        }
+
+
+        Time Complexity : Theta(N)
+        Auxillary space : O(N)
+
+        ** There are always 2N Lookups.
+
+
+## Count Distinct elements in Every Window
+
+    ** Given an array of size N and given K <= N,
+       we need to find out Distinct element count,
+       in every window of size k.
+
+
+    I/P : Arr[] = {10, 20, 20, 10, 30, 40, 10}, K = 4
+    O/P : 2 3 4 3
+
+    I/P : Arr[] = {10, 10, 10, 10}, K = 3
+    O/P : 1
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        void printDistinct(int arr[], int n, int k)
+        {
+            for(int i=0;i<=n-k;i++){
+                int count=0;
+                for(int j=0;j<k;j++){
+                    bool flag=false;
+                    for(int p=0;p<j;p++){
+                        if(arr[i+j]==arr[i+p])
+                        {
+                            flag=true;break;
+                        }
+                    }
+                    if(flag==false)count++;
+                    
+                }
+                cout<<count<<" ";
+            }
+        }
+
+
+        Time Complexity : O((N - K) * K * K)
+          
+
+
+    ## Approach 2 :
+
+        void printDistinct(int arr[], int n, int k)
+        {
+            map<int, int> m; 
+        
+            for (int i = 0; i < k; i++) { 
+                m[arr[i]] += 1; 
+            } 
+        
+            cout << m.size() << " "; 
+        
+            for (int i = k; i < n; i++) { 
+                
+                m[arr[i - k]] -= 1;
+                
+                if (m[arr[i - k]] == 0) { 
+                    m.erase(arr[i-k]); 
+                }   
+                m[arr[i]] += 1; 
+        
+                cout << m.size() << " "; 
+            } 
+            
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(K)
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
