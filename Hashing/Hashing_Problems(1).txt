@@ -120,6 +120,129 @@
 
 
 
+## Longest Subarray with given sum
+
+    ** Given an array and aa sum we need to find out,
+       longest subarray with the given sum.
+
+    I/P : Arr[] = {5, 8, -4, -4, 9, -2, 2}, Sum = 0
+    O/P : 3
+
+    I/P : Arr[] = {3, 1, 0, 1, 8, 2, 3, 6}, Sum = 5
+    O/P : 4
+
+    I/P : Arr[] = {8, 3, 7}
+    O/P : 0 
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        int Maxlen(int Arr[], int Len, int Sum)
+        {
+            int Res = 0;
+            for(int i = 0; i < Len; i++)
+            {
+                int Curr_Sum = 0;
+                for(int j = i; j < Len; j++)
+                {
+                    Curr_Sum += Arr[j];
+                    if(Curr_Sum == Sum)
+                        Res = max(Res, j);
+                }
+            }
+            return Res;
+        }
+
+        Time Complexity : Theta(N^2)
+        Auxillary space : O(1)
+
+
+
+    ## Approach 2 :
+
+        int largestSubarrayWithSumX(int arr[], int n, int sum)
+        {
+            int prefix_sum = 0;
+            unordered_set<int> us;
+            us.insert(0);
+            for(int i = 0; i < n; i++)
+            {
+                prefix_sum += arr[i];
+                if(us.find(prefix_sum - sum) != us.end())
+                return 1;
+                us.insert(prefix_sum);
+            }
+            return 0;
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : O(N) 
+
+
+
+
+## Longest Subarray with equal 0s and 1s
+
+    ** We are given a binary array , out task is to find,
+       length of longest subarray woth equal number of 0s and 1s.
+
+       I/P : Arr[] = {1, 0, 1, 1, 1, 0, 0}
+       O/P : 6
+
+       I/P : Arr[] = {1, 1, 1, 1}
+       O/P : 0
+
+       I/P : Arr[] = {0, 0, 1, 1, 1, 1, 1, 0}
+       O/P : 4
+
+
+       ## Approach 1 :
+
+            ** Naive Approach
+        
+
+            int LongestSub(int Arr[], int Len)
+            {
+                int Res = 0;
+                for(int i = 0; i < Len; i++)
+                {
+                    int C0 = 0; C1 = 0;
+                    for(int j = i;j < Len; j++)
+                    {
+                        if(Arr[j] == 0)
+                            C0++;
+                        else
+                            C1++;
+                        if(C0 == C1)
+                            Res = max(Res, C0 + C1);
+                    }
+                }
+                return Res;
+            }
+            
+            Time Complexity : Theta(N^2)
+            Auxillary space : O(N)
+
+
+
+        ## Approach 2 :
+
+            ** Repalce every 0 with -1
+
+            ** Now call the function to find the length,
+               of the longest subarray with 0 sum.
+
+
+
+            Time Complexity : Theta(N)
+            Auxillary spcae : O(N)
+
+            
+
+
+
 
 
 
