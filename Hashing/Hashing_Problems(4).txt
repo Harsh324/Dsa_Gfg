@@ -1,0 +1,114 @@
+## More than N/K Occurences
+
+    ** Given an array of size N and give a number k,
+       we need to print all those Numbers whose occurences,
+       are more than N/K.
+
+    I/P : Arr[] = {30, 10, 20, 20, 10, 30, 30, 30}, k = 4
+    O/P : 20 30
+
+
+    I/P : Arr[] = {30, 10, 20, 30, 30, 40, 30, 40, 30}, K = 2
+    O/P : 30
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        ** Idea is to sort the array.
+
+        void printNByK(int arr[], int n, int k)
+        {
+            sort(arr,arr+n);
+            int i=1,count=1;
+            while(i<n){
+                while(i<n&& arr[i]==arr[i-1]){
+                    count++;
+                    i++;
+                }
+                if(count>n/k)
+                    cout<<arr[i-1]<<" ";
+                count=1;
+                i++;
+            }
+            
+        }
+
+        Time Complexity : O(NLogN)
+    
+
+
+    ## Approach 2 :
+
+        ** Idea is to use array elements as keys and,
+           frequencies as values.
+
+         
+        void printNByK(int arr[], int n, int k)
+        {
+            unordered_map<int,int> m;
+            
+            for(int i=0;i<n;i++)
+                m[arr[i]]++;
+            for(auto e: m)
+                if(e.second>n/k)
+                    cout<<e.first<<" ";
+            
+        }
+
+        Time Complexity : Theta(N)
+    
+
+
+
+    ## Approach 3 :
+
+        ** Create an empty map m.
+
+        ** for(i = 0;i < N; i++)
+
+           ** if(m contains Arr[i])
+                m[Arr[i]]++;
+
+              else if m.size() is leas than (K - 1)
+                m.put(Arr[i], 1)
+
+              else
+                Decrease all values in m by 1.
+                if value becomes 0, Remove.
+
+
+        ** For all elelments in m, print the elements,
+           that actually appear more than N/K times.
+
+
+        void printNByK(int arr[], int n, int k)
+        {
+            unordered_map<int,int> m;
+            
+            for(int i=0;i<n;i++){
+                if(m.find(arr[i])!=m.end())
+                    m[arr[i]]++;
+                else if(m.size()<k-1)
+                    m[arr[i]]=1;
+                else
+                    for(auto x:m){
+                        x.second--;
+                        if(x.second==0)
+                            m.erase(x.first);}
+            }
+            for(auto x:m){
+                int count=0;
+                for(int i=0;i<n;i++){
+                    if(x.first==arr[i])
+                        count++;
+                
+            }
+                if(count>n/k)
+                    cout<<x.first<<" ";
+            }
+        }
+
+
+        Time Complexity : O(N * K)
