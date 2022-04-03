@@ -109,7 +109,7 @@
                     return true;
                 pre_sum += arr[i];
                 if(s.find(pre_sum-sum) != s.end())
-                return true;
+                    return true;
                 s.insert(pre_sum);
             }
             return false;
