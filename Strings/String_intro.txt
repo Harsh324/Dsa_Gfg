@@ -5,4 +5,256 @@
 
     ** C/C++ uses Ascii(8 bits)
     ** Java uses UTF-16 (16 bits)
-    
+
+
+    ** Print Frequencies of charatcers(int sorted order),
+       in a string of lower case alphabets.
+
+
+            string Str = "geeksforgeeks";
+            int Count[26] = {0};
+
+            for(int i = 0; i < 26; i++)
+            {
+                Count[Str[i] - 'a]++;
+            }
+
+            for(int i = 0; i < 26; i++)
+            {
+                if(Count[i] > 0)
+                    cout<<(char)(i + 'a') <<" "<<Count[i]<<endl;
+            }
+            
+
+
+    ** String in c++ can be represented in two ways,
+       one way is an array of characters(C Style strins),
+       other way is using strings class of c++.
+
+
+       ** C Style
+
+            int main()
+            {
+                char Str[] = "gfg";
+                cout<<Str;
+            }
+
+
+            int main()
+            {
+                char Str[] = "gfg";
+                cout<<sizeof(Str);
+            }
+
+            ** Output is 4
+
+            int main()
+            {
+                char Str[] = {'g', 'f', 'g'};
+                cout<<Str;
+            }
+
+            ** Result is segmentation fault
+
+            int main()
+            {
+                char Str[] = {'g', 'f', 'g', '\0'};
+                cout<<Str;
+            }
+
+            ** Some String Functions 
+
+                1. strlen(Str)
+                    count s the string array till it gets '\0'
+
+                2. strcmp(s1, s2)
+
+                    compares the input string lexicographicaly,
+                    if first string is greater than second it,
+                    returns positive else returns negative value.
+
+                        int main()
+                        {
+                            char S1[]  = "abc";
+                            char S2[] = "bcd";
+                            int res = strcmp(S1, S2);
+                            if(Res > 0)
+                                cout<<"Greater";
+                            else if(Res == 0)
+                                cout<<"Same";
+                            else
+                                cout<<"Smaller";
+                        }
+
+                3. strcpy(s1, s2)
+
+                    int main()
+                    {
+                        char Str[5];
+                        Str = "gfg";
+                        cout<<Str;
+                    }
+
+                    ** this will result in compiler error.
+                    ** strcpy comes to rescue here.
+
+                    int main()
+                    {
+                        char Str[5];
+                        strcpy(Str,"gfg");
+                        cout<<Str;
+                    }
+
+        ** C++ Strings
+
+            ** Richer library
+
+            ** Supports operations like, +, <, >, ==, <=, >=
+
+            ** Can be assigned later.
+
+            ** No need to worry about size
+
+            ** Can be converted to C-style if needed.
+
+
+                int main()
+                {
+                    string Str = "geeksforgeeks";
+                    cout<<Str.length()<<" ";
+                    Str = Str + "xyz";
+                    cout<<Str<<" ";
+                    cout<<Str.substr(1, 3)<<" ";
+                    cout<<Str.find("eek")<<" ";
+                }
+
+
+                int main()
+                {
+                    string S1 = "abc";
+                    string S2 = "bcd";
+
+                    if(S1 == S2)
+                        cout<<"Same";
+                    else if(S1 < S2)
+                        cout<<"Smaller";
+                    else
+                        cout<<"Greater";
+                }
+
+                int main()
+                {
+                    string Str;
+                    cout<<"Enter your name";
+                    cin>>Str;
+
+                    cout<<"Your name is "<<Str;
+                }
+
+                ** But input must be without space.
+                ** Getline function coems to rescue
+
+                int main()
+                {
+                    string Str;
+                    cout<<"Enter your name";
+                    getline(cin, Str);
+                    //getline(cin, Str, "\0");
+
+                    cout<<"Your name is "<<Str;
+        
+                }
+
+
+        ## Strings in java
+
+            ** There are 4 ways to create strings in java
+
+            1. Charatcer Array/ArrayList
+
+                char []arr = ['g', 'e', 'e', 'k', 's']
+
+            2. String class
+
+                String Str = "geeks"
+                    or 
+                String Str = new String("geeks");
+
+                ** Creates Immutable string object
+                ** Automatically threadsafe.
+
+            3. StringBuffer class
+
+                StringBuffer str = new StringBuffer("geeks")
+
+                ** Thread safe class, we can use its when we,
+                have multithreaded environment, and we have shared,
+                object of the string class
+
+                ** Mutable string 
+
+            4. StringBuilder class
+
+                StringBuilder Str = new StringBuilder("geeks")
+
+                ** Mutable string wtih single thread.
+
+
+            ## Some important example codes
+            
+                public static void main(String args[]) 
+                { 
+                    // Creates a string literal
+                    String str = "geeks";
+
+                    // Returns the number of 
+                    // characters in the String. 
+                    System.out.println(str.length());
+                    
+                    // Returns the character at ith index. 
+                    System.out.println(str.charAt(3)); 
+                                    
+                    // Return the substring from the 
+                    // ith  index character 
+                    // to end of string 
+                    System.out.println(str.substring(2)); 
+            
+                    // Returns the substring from i to j-1 index. 
+                    System.out.println(str.substring(2,5)); 
+                }
+
+
+                public static void main(String args[]) 
+                {
+                    // Creating two string literals
+                    String s1 = "geeksforgeeks";
+                    String s2 = "geeks";
+                    
+                    // Returns the first occurrence of
+                    // s2 in s1 after index 1
+                    System.out.println(s1.indexOf(s2));
+                } 
+
+
+
+
+
+
+
+
+
+
+                
+
+            
+
+
+
+
+
+
+
+
+
+
