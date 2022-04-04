@@ -1,0 +1,8 @@
+## Strings
+
+    ** Strings is sequence of characters
+    ** Limited set of characters make strings interesting.
+
+    ** C/C++ uses Ascii(8 bits)
+    ** Java uses UTF-16 (16 bits)
+    
