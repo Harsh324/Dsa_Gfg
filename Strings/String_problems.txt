@@ -1,0 +1,202 @@
+## Palindrome check
+
+    ** We are given a string we need to check if given,
+       string is palindrome or not.
+
+
+    I/P : Str = "ABCDCBA";
+    O/P : Yes
+
+    I/P : Str = "ABBA"
+    O/P : Yes
+
+    I/P : Str = "geeks"
+    O/P : No
+
+
+    ## Approach 1 :
+
+        ** Naive Approach could be reverse the string,
+           and check simaltaneously if same or not.
+
+        
+        bool isPal(string &Str)
+        {
+            string Rev = Str;
+            Reverse(Rev.begin(), Reve.end());
+            return (Rev == Str);
+        }
+
+        Time Complexity : O(n)
+        Auxillary space : O(n)
+
+
+    ## Approach 2 :
+
+        ** We will apply two pointer Approach
+
+            bool isPal(string &Str)
+            {
+                int Begin = 0;
+                int End = Str.length() - 1;
+
+                while(Begin < End)
+                {
+                    if(Str[Begin] != Str[End])
+                        return false;
+                    
+                    Begin++;
+                    End--;
+                }
+                return true;
+            }
+
+            Time Complexity : O(n)
+            Auxillary space : O(1)
+
+
+
+
+## Check if a String is subsequence of other
+
+    ** Given two string S1 and S2. our task is to find,
+       whether S2 is subsequence of S1 or not.
+
+    ** subsequence of a string is obtained by removing,
+       zero or more characters.But remaining characters,
+       must maintain same order.
+
+    ** Toatal number of subsequences in a string of,
+       length n is equal to 2^n.
+
+
+
+
+    I/P : S1 = "ABCD", S2 = "AD"
+    O/P : True
+
+    I/P : S1 = "ABCDE", S2 = "AED"
+    O/P : False
+
+    ## Approach 1 : 
+
+        ** Naive Approach could be generating all,
+           subsequences of S1 and the n matching,
+           one by one with S1.
+
+        
+        Time Complexity : O(2^N * N)
+        Auxillary space : 
+
+
+
+    ## Approach 2 :
+
+        ** Iterative Solution
+
+            bool isSubSeq(string s1, string s2, int n, int m)
+            {
+                int j = 0;
+                
+                for(int i = 0; i < n && j < m; i++){
+                    if(s1[i] == s2[j])
+                    j++;
+                }
+                
+                return j == m;
+            }
+
+            Time Complexity : O(m + n)
+            Auxillary space : O(1)
+
+
+        ** Recursive Solution
+
+            bool isSubSeq(string s1, string s2, int n, int m)
+            {
+                if ( m == 0 )
+                    return true;
+                    
+                if ( n == 0 )
+                    return false;
+                
+                if ( s1[n-1] == s2[m-1] )
+                    return isSubSeq(s1, s2, n-1, m-1);
+                
+                else
+                    return isSubSeq(s1, s2, n-1, m);
+            }
+
+            Time Complexity : 
+            Auxillary space :
+
+
+
+## Check for Anagram
+
+    ** We are given two strings, we need to check if they,
+       are anagram of each other or not.
+
+    ** Anagram checks whether two strings ar permutation of,
+       each other or not.
+
+    I/P : S1 = "listen", S2 = "silent"
+    O/P : Yes
+
+    I/P : S1 = "aaacb", S2 = "cabaa"
+    O/P : Yes
+
+    I/P : S1 = "aab, S2 = "bab"
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+            bool areAnagram(string &s1, string &s2) 
+            { 
+                int n1 = s1.length(); 
+                int n2 = s2.length(); 
+                if (n1 != n2) 
+                    return false; 
+            
+                sort(s1.begin(), s1.end()); 
+                sort(s2.begin(), s2.end()); 
+            
+                return (s1==s2); 
+            }
+
+
+        Time Complexity : O(NlogN)
+        Auxillary space : O(1)
+
+
+    
+    ## Approach 2 :
+
+        bool areAnagram(string &s1, string &s2) 
+        { 
+            int CHAR = 256;
+            int n1 = s1.length(); 
+            int n2 = s2.length(); 
+            if (n1 != n2) 
+                return false; 
+            
+            int count[CHAR]={0};
+            for(int i=0;i<s1.length();i++){
+                count[s1[i]]++;
+                count[s2[i]]--;
+            }
+            
+            for(int i=0;i<CHAR;i++){
+                if(count[i]!=0)return false;
+            }
+            return true;
+        } 
+
+
+        Time Complexity : O(N + CHAR)
+        Auxillary space : O(CHAR)
+
+
+
+         
