@@ -1,0 +1,23 @@
+## Leftmost Repeating characters
+
+    ** Given a string, we need to find the leftmost charatcer,
+       which repeates.
+
+    I/P : Str = "geeksforgeeks"
+    O/P : 0
+
+    I/P : Str = "abbcc"
+    O/P : 1
+
+    I/P : Str = "abcd"
+    O/P : -1
+
+
+    ## Approach 1 :
+
+
+        Time Complexity : 
+        Auxillary space : 
+
+        
+
