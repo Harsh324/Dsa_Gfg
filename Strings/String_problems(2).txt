@@ -25,11 +25,15 @@
             3. Pop words from the Stack and append to output.
 
         Time Complexity : 
-        Auxillary spacee : 
+        Auxillary spacee : O(N)
 
 
 
-    #3 Approach 2 :
+    ## Approach 2 :
+
+
+        ** Idea is to reverse first individual words and then,
+           reverse the whole string.
 
 
         void reverse(char str[],int low, int high)
@@ -55,5 +59,47 @@
 
         Time Complexity : 
         Auxillary space : 
+
+
+
+## Overview of pattern searching
+
+    ** We are given a big string and a pattern(small),
+       string, our task is to find all occurences of this pattern,
+       if not present return -1.
+
+
+    I/P : Txt = "GEEKSFORGEEKS", Patt = "EKS"
+    O/P : 2 10
+
+    I/P : Txt = "AAAAA", Patt = "AAA"
+    O/P : 0 1 2
+
+    I/P : Txt = "ABCABCD", Patt = "ABD"
+    O/P : Not present
+
+
+    ** Popular algorithms on pattern searching
+
+        1. Naive : O((N - M + 1) * M)
+
+            O(N) when all characters of the pattern are distinct.
+            No preprocessing.
+
+        2. Rabin Karp : O((N - M + 1) * M)
+
+            preprocessing pattern
+            KMP : O(N)
+
+
+        3. Suffix tree : O(m)
+
+            preprocessing required
+
+
+
+
+
+
 
     
