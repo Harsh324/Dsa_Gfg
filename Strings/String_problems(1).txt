@@ -15,9 +15,211 @@
 
     ## Approach 1 :
 
+        ** Naive Approach could be traverse through with,
+           every character and check if it repeates or not.
 
-        Time Complexity : 
-        Auxillary space : 
+
+        int leftMost(string &str) 
+        {
+            for(int i=0;i<str.length();i++){
+                for(int j=i+1;j<str.length();j++){
+                    if(str[i]==str[j])return i;
+                }
+            }
+            return -1;
+        }
+
+
+        Time Complexity : O(N^2)
+        Auxillary space : O(1)
+
+
+
+    ## Approach 2 :
+
+        ** We will use charaters as indexes and,
+           store there frequencies.
+
+
+        const int CHAR=256;
+        int leftMost(string &str) 
+        {
+            int count[CHAR]={0};
+            for(int i=0;i<str.length();i++){
+                count[str[i]]++;
+            }
+            for(int i=0;i<str.length();i++){
+                if(count[str[i]]>1)return i;
+            }
+            return -1;
+        }
+        
+        
+
+        Time Complexity : O(N)
+        Auxillary space : O(CHAR)
+
+
+
+    ## Approach 3 :
+
+        const int CHAR=256;
+        int leftMost(string &str) 
+        {
+            int fIndex[CHAR]={0};
+            fill(fIndex,fIndex+CHAR,-1);
+            int res=INT_MAX;
+            for(int i=0;i<str.length();i++){
+                int fi=fIndex[str[i]];
+                if(fi==-1)
+                fIndex[str[i]]=i;
+                else
+                res=min(res,fi);
+            }
+            
+            return (res==INT_MAX)?-1:res;
+        }
+
+        Time Complexity : O(N + CHAR)
+        Auxillary space : O(CHAR)
+
+
+
+    ## Approach 4 :
+
+        ** Traverse array from Right
+
+
+        const int CHAR=256;
+        int leftMost(string &str) 
+        {
+            bool visited[CHAR];
+            fill(visited,visited+CHAR,false);
+            int res=-1;
+            for(int i=str.length()-1;i>=0;i--){
+                if(visited[str[i]])
+                res=i;
+                else
+                visited[str[i]]=true;
+            }
+            
+            return res;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(CHAR)
+
+
+
+
+
+
+## Given a string which might contain repeating,
+    or non repeating characters our task is to find,
+    out index of leftmost non repeating character.
+
+
+    I/P : Str = "geeksforgeeks"
+    O/P :  5  // index of 'f'
+
+    I/P : Str = "abcabc"
+    O/P : -1
+
+    I/P : Str = "apple"
+    O/P : 0  // index of 'a'
+
+
+
+    ## Approach 1 :
+
+        ** Naive Approach could be begin from the first character,
+           compare with all other charaters, if matches set flag,
+           equal to true or else flag will be false.
+
+
+        int nonRep(string &str) 
+        {
+            for(int i=0;i<str.length();i++){
+                bool flag=false;
+                for(int j=0;j<str.length();j++){
+                    if(i!=j&&str[i]==str[j]){
+                        flag=true;
+                        break;
+                    }
+                }
+                if(flag==false)return i;
+            }
+            return -1;
+        }
+ 
+
+        Time Complexity : O(N^2)
+        Auxillary space : O(1)
+
+
+    ## Approach 2 :
+
+        ** we will use a characters as an index for the count array.
+
+
+        const int CHAR=256;
+        int nonRep(string &str) 
+        {
+            int count[CHAR]={0};
+            for(int i=0;i<str.length();i++){
+                count[str[i]]++;
+            }
+            for(int i=0;i<str.length();i++){
+                if(count[str[i]]==1)return i;
+            }
+            return -1;
+        }
+
+
+        Time Complexity : O(N)
+        Auxillary space : O(CHAR)
+
+
+    ## Approach 3 :
+
+        ** We create an array which stores indexes,
+           of only non repeating characters.
+
+
+
+        const int CHAR=256;
+        int nonRep(string &str) 
+        {
+            int fI[CHAR];
+            fill(fI,fI+CHAR,-1);
+            
+            for(int i=0;i<str.length();i++){
+                if(fI[str[i]]==-1)
+                fI[str[i]]=i;
+                else
+                fI[str[i]]=-2;
+            }
+            int res=INT_MAX;
+            for(int i=0;i<CHAR;i++){
+                if(fI[i]>=0)res=min(res,fI[i]);
+            }
+            return (res==INT_MAX)?-1:res;
+        }
+
+
+        Time Complexity : Theta(N + CHAR)
+        Auxillary space : O(CHAR)
+
+
+
+
+
+
+        
+
+         
+
+
 
         
 
