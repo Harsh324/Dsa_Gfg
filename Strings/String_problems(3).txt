@@ -1,0 +1,49 @@
+## Naive pattern Searching
+
+    ** We need to find all the index where given pattern exists.
+
+    I/P : Txt = "ABABABCD", Patt = "ABAB"
+    O/P : 0 2 
+
+    I/P : Txt = "ABCABCD", Patt = "ABCD"
+    O/P : 3
+
+    I/P : Txt = "AAAAA", Patt = "AAA"
+    O/P : 0 1 2
+
+
+    ## Approach 1: 
+
+        void patSearchinng(string &txt,string &pat)
+        {
+            int m=pat.length();
+            int n=txt.length();
+            for(int i=0;i<=(n-m);i++){
+                int j;
+                for(j=0;j<m;j++)
+                if(pat[j]!=txt[i+j])
+                break;
+                
+                if(j==m)
+                cout<<i<<" ";
+            }
+        }
+
+        Time Complexity : O((N - M + 1) * M) 
+        Auxillary space : O(1)
+
+
+
+
+## Improved Naive Algorithm fo Distinct
+
+    I/P : Txt = "ABCABCDABCD", Patt = "ABCD"
+    O/P : 3 7
+
+    I/P : Txt = "GEEKSFORGEEKS", Patt = "EKS"
+    O/P : 1 10
+
+    I/P : Txt = "ABCAAAD", Patt = "ABD"
+    O/P : 0 1 2
+
+
