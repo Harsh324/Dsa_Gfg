@@ -89,7 +89,8 @@
 
 ## Rabin karp String searching Algorithm
 
-    ** Given 
+    ** Given the text and the pattern we need to find,
+       the all occurences of the pattern in the given text.
 
     I/P : Txt = "abdabcbabc", Patt = "abc"
     O/P : 3 7
@@ -103,10 +104,69 @@
 
     ## Approach :
 
+        ** Like the Naive Algorithm, slide the pattern one by one
+        ** Compare hash values of pattern and current text window.
+           if hash values match, then only compare individual characters.
+        ** Match value is called spurious hit.
+        ** Rolling hash 
+            we can compute next hash using previous hash in constant time.
+            Ti+1 = Ti + Txt[i + m] - Txt[i]
+            M is length of pattern 
+
+        ** Pattern with "god" will have same hash as pattern with "dog".
+            Hence we will use improved hash to negate this issue.
+            Hash("abc") = 1 x (d)^2 + 2 x (d)^1 + 2 x (d)^0
 
 
-        Time Complexity : 
+
+
+
+        #define d 256
+        const int q=101;
+        void RBSearch(string pat,string txt,int M, int N)
+        {
+            
+            //Compute (d^(M-1))%q
+            int h=1;
+            for(int i=1;i<=M-1;i++)
+                h=(h*d)%q;
+            
+            //Compute p and to
+            int p=0,t=0;
+            for(int i=0;i<M;i++){
+                p=(p*d+pat[i])%q;
+                t=(t*d+txt[i])%q;
+            }
+            
+            for(int i=0;i<=(N-M);i++)
+            {
+                //Check for hit
+                if(p==t)
+                {
+                    bool flag=true;
+                    for(int j=0;j<M;j++)
+                            if(txt[i+j]!=pat[j]){flag=false;break;}
+                        if(flag==true)cout<<i<<" ";
+                    }
+                    //Compute ti+1 using ti
+                    if(i<N-M)
+                    {
+                        t=((d*(t-txt[i]*h))+txt[i+M])%q;
+                        if(t<0)t=t+q;
+                    }
+                }
+            
+        }
+
+
+        ** In Worst case time Complexity is like Naive Approach
+            for Ex : Txt = "AAAAA", Patt = "AAA"
+
+        Time Complexity : O((N - M + 1) * M)
         Auxillary space:
+
+        ** When we want to search multiple patterns in the text,
+           then Rabin karp algorithm has better utility.
 
 
 
