@@ -1,0 +1,38 @@
+##
+
+    ** Given 
+
+    I/P : 
+    O/P :
+
+    I/P : 
+    O/P :
+
+    I/P :
+    O/P :
+
+
+    ## Approach :
+
+        Time Complexity : 
+        Auxillary space : 
+
+
+
+## 
+
+    ** Given 
+
+    I/P : 
+    O/P :
+
+    I/P :
+    O/P :
+
+    I/P :
+    O/P :
+
+    ## Approach :
+
+        Time Complexity :
+        Auxillary space :
