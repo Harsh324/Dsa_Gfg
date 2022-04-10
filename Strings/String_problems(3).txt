@@ -37,6 +37,12 @@
 
 ## Improved Naive Algorithm fo Distinct
 
+    ** We are given a text and a pattern we need to,
+       print all the occurences of the pattern present,
+       in the text. also given that the pattern has all,
+       distinct characters.
+
+
     I/P : Txt = "ABCABCDABCD", Patt = "ABCD"
     O/P : 3 7
 
@@ -46,4 +52,100 @@
     I/P : Txt = "ABCAAAD", Patt = "ABD"
     O/P : 0 1 2
 
+
+    ## Approach 1 :
+
+        void patSearchinng(string &txt,string &pat)
+        {
+            int m=pat.length();
+            int n=txt.length();
+            for(int i=0;i<=(n-m);  )
+            {
+                int j;
+                for(j=0;j<m;j++)
+                {
+                    if(pat[j]!=txt[i+j])
+                        break;
+                }
+                
+                if(j==m)
+                    cout<<i<<" ";
+                if(j==0)
+                {
+                    i++;
+                }
+                else
+                {
+                    i=(i+j);
+                }
+            }
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : 
+
+
+
+
+## Rabin karp String searching Algorithm
+
+    ** Given 
+
+    I/P : Txt = "abdabcbabc", Patt = "abc"
+    O/P : 3 7
+
+    I/P : Txt = "a a a a a", Patt = "aaa"
+    O/P : 0 1 2
+
+    I/P : Txt = "abcd", Patt = "xyz"
+    O/P : Not found
+
+
+    ## Approach :
+
+
+
+        Time Complexity : 
+        Auxillary space:
+
+
+
+##
+
+    ** Given 
+
+    I/P : 
+    O/P :
+
+    I/P : 
+    O/P :
+
+    I/P :
+    O/P :
+
+
+    ## Approach :
+
+        Time Complexity : 
+        Auxillary space : 
+
+
+
+## 
+
+    ** Given 
+
+    I/P : 
+    O/P :
+
+    I/P :
+    O/P :
+
+    I/P :
+    O/P :
+
+    ## Approach :
+
+        Time Complexity :
+        Auxillary space :
 
