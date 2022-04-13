@@ -1,0 +1,180 @@
+## Anagram search
+    ** We are given a text and a pattern we need,
+       to check if pattern is present or any of its,
+       permutations is present.
+
+
+
+    I/P : Txt = "geeksforgeeks", Patt = "frog"
+    O/P : Yes
+
+    I/P : Txt = "geeksforgeeks", Patt = "rseek"
+    O/P : No 
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        const int CHAR=256; 
+        bool areAnagram(string &pat, string &txt,int i) 
+        { 
+            int count[CHAR]={0};
+            for(int j=0;j<pat.length();j++){
+                count[pat[j]]++;
+                count[txt[i+j]]--;
+            }
+            for(int j=0;j<CHAR;j++){
+                if(count[j]!=0)return false;
+            }
+            return true;
+        }
+
+        bool isPresent(string &txt,string &pat)
+        {
+            int n=txt.length();
+            int m=pat.length();
+            for(int i=0;i<=n-m;i++){
+                if(areAnagram(pat,txt,i))return true;
+            }
+            return false;
+        }
+
+        Time Complexity : O((N - M + 1)* M)
+        Auxillary space : O(1)
+
+
+
+    ## Approach 2 :
+
+        const int CHAR=256; 
+
+        bool areSame(int CT[],int CP[])
+        {
+            for(int i=0;i<CHAR;i++){
+                if(CT[i]!=CP[i])return false;
+            }
+            return true;
+        }
+
+        bool isPresent(string &txt,string &pat)
+        {
+            int CT[CHAR]={0},CP[CHAR]={0};
+            for(int i=0;i<pat.length();i++){
+                CT[txt[i]]++;
+                CP[pat[i]]++;
+            }
+            for(int i=pat.length();i<txt.length();i++){
+                if(areSame(CT,CP))return true;
+                CT[txt[i]]++;
+                CT[txt[i-pat.length()]]--;
+            }
+            return false;
+        }
+
+        Time Complexity : Theta(M + (N - M) x CHAR)
+        Auxillary space : Theta(CHAR)
+
+
+
+
+## Lexicographic Rank
+
+    ** We are given a string we need to find,
+       Lexicographic Rank of the given string.
+
+    
+    I/P : Str = "BAC"
+    O/P : 3
+
+    I/P : Str = "CBA"
+    O/P : 6
+
+    I/P :
+    O/P : 24
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+
+
+        Time Complexity : O(N * factorial(  N))
+        Auxillary space :
+
+
+    ## Approach 2 :
+
+        const int CHAR=256; 
+        int fact(int n) 
+        { 
+            return (n <= 1) ? 1 : n * fact(n - 1); 
+        } 
+        
+        int lexRank(string &str) 
+        { 
+            int res = 1; 
+            int n=str.length();
+            int mul= fact(n);
+            int count[CHAR]={0};
+            for(int i=0;i<n;i++)
+                count[str[i]]++;
+            for(int i=1;i<CHAR;i++)
+                count[i]+=count[i-1];
+            for(int i=0;i<n-1;i++){
+                mul=mul/(n-i);
+                res=res+count[str[i]-1]*mul;
+                for(int j=str[i];j<CHAR;j++)
+                    count[j]--;
+            }
+            return res; 
+        } 
+
+        Time Complexity : O(N + CHAR + N x CHAR)
+        Auxillary space : O(CHAR)
+
+
+
+
+## Longest Substring with Distincr characters
+
+    ** we are given a string we need to find the,
+       longest substring of the string which has,
+       all distinct characters.
+
+
+
+    I/P : Str = "abcdabc"
+    O/P : 4
+
+    I/P : Str = "aaa"
+    O/P : 1
+
+    I/P : Str = ""
+    O/P : 0
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        Time Complexity : 
+        Auxillary space :
+        
+
+
+    ## Approach 2 :
+
+        Time Complexity : 
+        Auxillary space :
+
+
+    ## Approach 3 :
+
+        Time Complexity : 
+        Auxillary space :
+
+
+         
+
