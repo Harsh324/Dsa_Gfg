@@ -1,0 +1,34 @@
+## Insert at Given Position in Singly Linked List
+
+    I/P : [10] -> [30] -> [50] -> [70] -> NULL ,  Pos = 2, Data = 20
+    O/P : [10] -> [20] -> [30] -> [50] -> [70] -> NULL
+
+    I/P : [5] -> [15] -> [25] -> [35] -> NULL, Pos = 5, Dta = 10
+    O/P : [5] -> [15] -> [25] -> [35] -> [10] -> NULL
+
+
+    ## Approach : 
+
+        Node InsertPair(Node Head, int Pos, int Data)
+        {
+            Node Temp = new Node(Data);
+            if(Pos == 1)
+            {
+                Temp.Next = Head;
+                return Temp;
+            }
+            Node Curr = Head;
+            for(int i = 1; i <= Pos - 2; && Curr != NULL; i++)
+                Curr = Curr.Next;
+
+            if(Curr == NULL)
+                return Head;
+
+            Temp.Next = Curr.Next;
+            Curr.Next = Temp;
+            return Head;
+        }
+
+
+        Time Complexity : 
+        Auxillary space : 
