@@ -1,0 +1,73 @@
+## Linked List
+
+    ** Linked list is sequential and linear data structure,
+       Memory location need not to be on contigous locations.
+
+
+    ## Problems with an array
+
+        1. Either the Size is fixed and pre-allocated,
+           (in Both Fixed and Varibale Sized ), or the worst,
+           case insertion at the End is Theta(N).
+
+        2. Insertion  in the middle(or beginning) is costly.
+
+        3. Deletion in the middle(or Beginning) is costly.
+
+        4. Implementation of Data Structures like queue and,
+           deque are complex with arrays.
+
+
+
+        ** How to Implement Round Robin Scheduling ?
+            
+
+        ** Given a sequence of items, whenever we see an item x,
+           in the sequence, we need to replace it with 5 instances,
+           of another item Y.
+
+
+
+        ** We have multiple sorted sequences and we need to merge,
+           them frequently.
+
+
+
+
+   ## The Idea is to drop the contigous memory requirements,
+      so that insertions, deletions can efficiently at the middle also.
+      and no need to preallocate the extra space.
+
+
+
+   ## Simple Linked List Implementation in c++
+
+      struct Node
+      {
+         int data;
+         Node* next;
+         Node(int x){
+            data=x;
+            next=NULL;
+         }
+      };
+
+      int main() 
+      { 
+         Node *head=new Node(10);
+         Node *temp1=new Node(20);
+         Node *temp2=new Node(30);
+         head->next=temp1;
+         temp1->next=temp2;
+         cout<<head->data<<"-->"<<temp1->data<<"-->"<<temp2->data;
+         return 0;
+      }
+
+
+
+
+
+
+
+
+
