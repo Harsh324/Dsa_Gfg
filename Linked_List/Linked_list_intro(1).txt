@@ -144,4 +144,32 @@
 
 
 
+## Singly vs Doubly Linked List
+
+    ** Advantages and disadvantages of Doubly,
+       linked List over Singly Linked List.
+
+
+    ** Advantages
+
+        * Can be Traversed in both Directions.
+        * a Given Node can be deleted in O(1),
+          time with given reference/pointer to it.
+
+        * Insert/Delete from the Both Ends in,
+          O(1) by maintaining Tail.
+
+
+    ** Disadvantages
+
+        * Extra space for prev
+
+        * code becomes more complex
+
+
+
+
+
+
+
 
