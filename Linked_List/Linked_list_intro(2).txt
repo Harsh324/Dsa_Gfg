@@ -1,0 +1,147 @@
+## Reverse a Doubly Linked List
+
+    I/P : [10] -> [20] -> [30] -> [40]
+    O/P : [40] -> [30] -> [20] -> [10]
+
+    I/P : [10]
+    O/P : [10]
+
+    I/P : NULL
+    O/P : NULL
+
+
+    ## Approach : 
+
+        Node* Reverse(Node* Head)
+        {
+            if(Head == NULL || Head -> Next == NULL)
+                return Head;
+
+            Node* Prev = NULL;
+            Node* Curr = Head;
+            
+            while(Curr != NULL)
+            {
+                Prev = Curr->Prev;
+                Curr->Prev = Curr->Next;
+                Curr->Next = Prev;
+                Curr = Curr->Prev;
+            }
+            return Prev->Prev;
+        }
+
+        Time Complexity : O(N), N is Length of Linked List
+        Auxillary space : O(1)
+
+
+
+## Delete Head of a Doubly Linked List
+
+    I/P : [10] -> [20] -> [30]
+    O/P : [20] -> [30]
+
+    I/P : [10]
+    O/P : Head = NULL 
+
+
+    ## Approach : 
+
+        Node *delHead(Node *head)
+        {
+            if(head==NULL)return NULL;
+            if(head->next==NULL){
+                delete head;
+                return NULL;
+            }    
+            else{
+                Node *temp=head;
+                head=head->next;
+                head->prev=NULL;
+                delete temp;
+                return head;
+            }
+        }
+
+        Time Complexity : Theta(1)
+
+
+
+
+## Delete Last Node of the Doubly Linked List
+    
+    I/P : [10] -> [20] -> [30]
+    O/P : [10] -> [20]
+
+    I/P : [10]
+    O/P : Head = NULL
+
+
+    ## Approach : 
+
+        Node *delLast(Node *head)
+        {
+            if(head == NULL)
+                return NULL;
+            if(head->next == NULL)
+            {
+                delete head;
+                return NULL;
+            }    
+            Node *curr = head;
+
+            while(curr->next != NULL)
+                curr = curr->next;
+            
+            curr->prev->next = NULL;
+            
+            delete curr;
+            return head; 
+        }
+
+        Time Complexity : Theta(N), N is Length of the Linked List
+
+
+
+## Circular Linked List in c++
+
+    ** Circular Linked List has last node connected back to Head.
+
+    ## Approach : 
+
+        struct Node
+        {
+            int data;
+            Node* next;
+            Node(int d){
+                data=d;
+                next=NULL;
+            }
+        };
+
+        int main() 
+        { 
+            Node *head=new Node(10);
+            head->next=new Node(5);
+            head->next->next=new Node(20);
+            head->next->next->next=new Node(15);
+            head->next->next->next->next=head;
+            return 0;
+        } 
+
+
+    ## Advantages and Disadvantages of Circular Linked List
+
+        ** Advantages
+
+            * We can traverse the whole List from any node.
+
+            * Implementation of algorithm like round robin
+
+            * We can insert at the beginining and end by,
+              just maintaining one tail recursive pointer.
+
+        
+        ** Disadvantages 
+
+            * Implementation of operationss become complex.
+
