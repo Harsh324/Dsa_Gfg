@@ -1,0 +1,46 @@
+## Circular Doubly Linked List
+
+    ** In a circular Doubly linked List every Node has,
+       two pointers of references Previous and Next as,
+       like Normal Doubly Linked List.
+    
+       But in Normal Doubly Linked List Previous of First,
+       Node is NULL and Next of Last Node is also NULL.
+       But in Circular Doubly Linked List Previous of First,
+       Node is Last Node and Next of Last Node is First Node.
+
+
+
+    ** Head == NULL is Empty Circular Doubly Linked List
+
+    ## Advantages
+
+        ** We get all advantages of Circular and Doubly Linked List.
+        ** We can access last Node in Constant time without maintaining,
+           extra tail pointer/reference
+
+
+
+
+    ## Insert Node at Head in Circular Doubly Linked List
+
+
+
+        Node *insertAtHead(Node *head,int x)
+        {
+            Node *temp = new Node(x);
+            if(head == NULL)
+            {
+                temp->next = temp;
+                temp->prev = temp;
+                return temp;
+            }
+
+            temp->prev = head->prev;
+            temp->next = head;
+            head->prev->next = temp;
+            head->prev = temp;
+            return temp;
+        }
+
+
