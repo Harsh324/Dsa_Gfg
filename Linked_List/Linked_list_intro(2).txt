@@ -183,3 +183,70 @@
 
 
         
+## Insert at begin of circular linked list
+
+
+    ** We are given a circular linked list an an item to,
+      be inserted in the list, we need to insert it at head of th List.
+
+    I/P : [10] -> [30] -> [20] ,  X = 15
+    O/P : [15] -> [10] -> [30] -> [20]
+
+
+    I/P : NULL,   X = 10
+    O/P : [10]
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        Node *insertBegin(Node * head,int x)
+        {
+            Node *temp = new Node(x);
+            if(head == NULL)
+                temp->next=temp;
+            else
+            {
+                Node *curr = head;
+                while(curr->next!=head)
+                    curr=curr->next;
+
+                curr->next=temp;
+                temp->next=head;
+            }
+            return temp;
+        }
+
+
+        Time Complexity : O(N)
+        Auxillary space : 
+
+
+
+    ## Approach 2 :
+
+        Node *insertBegin(Node * head,int x)
+        {
+            Node *temp=new Node(x);
+            if(head == NULL)
+            {
+                temp->next=temp;
+                return temp;    
+            }
+            else
+            {
+                temp->next = head->next;
+                head->next = temp;
+                int t = head->data;
+                head->data = temp->data;
+                temp->data = t;
+                return head;
+            }
+        }
+
+
+
+        Time Complexity : 
+        Auxillary space : 
+
