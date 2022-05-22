@@ -63,3 +63,119 @@
         }
 
         Time Complexity : O(1)
+
+
+
+
+## Delete Head of Circular Linked List
+
+    ** We are given a circular linked List we need to,
+       delete head of the list.
+
+    I/P : [10] -> [20] -> [30]
+    O/P : [20] -> [30]
+
+    I/P : [10]
+    O/P : Head = NULL
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        Node *delHead(Node *head)
+        {
+            if(head == NULL)
+                return NULL;
+            if(head->next == head)
+            {
+                delete head;
+                return NULL;
+            }
+            Node *curr = head;
+            while(curr->next != head)
+                curr = curr->next;
+            curr->next = head->next;
+            delete head;
+            return (curr->next);
+        }
+
+        Time Complexity : Theta(N)
+
+
+    ## Approach 2 :
+
+        Node *delHead(Node *head)
+        {
+            if(head == NULL)
+                return NULL;
+            if(head->next == head)
+            {
+                delete head;
+                return NULL;
+            }
+            head->data = head->next->data;
+            Node *temp = head->next;
+            head->next = head->next->next;
+            delete temp;
+            return head;
+        }
+
+        Time Complexity : Theta(1)
+
+
+
+## Delete Kth Node from a circular linked list 
+
+    ** we are given a circular linked list and value k,
+       we need to delete the kth node in the list.
+       assume No of Node >= K
+
+
+    I/P : [10] -> [20] -> [30] ,  K = 2 
+    O/P : [10] -> [30]
+
+
+    I/P : [10] -> [20] -> [30] -> [40] ,  K = 1
+    O/P : [20] -> [30] -> [30]
+
+
+    ## Approach 1:
+
+
+        Node *deleteHead(Node *head)
+        {
+            if(head == NULL)
+                return NULL;
+            if(head->next == head)
+            {
+                delete head;
+                return NULL;
+            }
+            head->data = head->next->data;
+            Node *temp = head->next;
+            head->next = head->next->next;
+            delete temp;
+            return head;
+        }
+
+
+        Node *deleteKth(Node *head,int k)
+        {
+            if(head == NULL)
+                return head;
+            if(k == 1)
+                return deleteHead(head);
+                Node *curr = head;
+            for(int i=0;i<k-2;i++)
+                curr = curr->next;
+            Node *temp = curr->next;
+            curr->next = curr->next->next;
+            delete temp;
+            return head;
+        }
+
+
+        
+        Time Complexity : 
+
