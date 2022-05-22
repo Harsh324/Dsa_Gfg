@@ -247,6 +247,6 @@
 
 
 
-        Time Complexity : 
+        Time Complexity : O(1)
         Auxillary space : 
 

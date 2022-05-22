@@ -1,0 +1,65 @@
+## Insert at he End of Circular Linked List
+
+    ** We are Given a circular linked list we need to,
+      insert an item at the end of the circular linked list.
+
+    I/P : [10] -> [20] -> [30]  ,  X = 15
+    O/P : [10] -> [20] -> [30] -> [15]
+
+
+    I/P : Head = NULL ,  X = 10
+    O/P : [10]
+
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        Node *insertEnd(Node *head,int x)
+        {
+            Node *temp=new Node(x);
+            if(head == NULL)
+            {
+                temp->next = temp;
+                return temp;    
+            }
+            else
+            {
+                Node *curr = head;
+                while(curr->next != head)
+                    curr=curr->next;
+                curr->next = temp;
+                temp->next = head;
+                return head;
+            }
+        }
+
+
+
+        Time Complexity : Theta(N)
+
+    ## Approach 2 :
+
+
+
+        Node *insertEnd(Node *head,int x)
+        {
+            Node *temp=new Node(x);
+            if(head == NULL)
+            {
+                temp->next = temp;
+                return temp;    
+            }
+            else
+            {
+                temp->next = head->next;
+                head->next = temp;
+                int t = head->data;
+                head->data = temp->data;
+                temp->data = t;
+                return temp;
+            }
+        }
+
+        Time Complexity : O(1)
