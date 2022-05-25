@@ -1,0 +1,34 @@
+## Reverse a Linked List (Recursive method)
+
+    I/P : [10] -> [20] -> [30] -> [40]
+    O/P : [40] -> [30] -> [20] -> [10]
+
+
+    I/P : [10] -> [20] -> [30]
+    O/P : [30] -> [20] -> [10]
+
+    I/P : [10]
+    O/p : [10]
+
+
+    ## Approach 1 :
+
+
+        Node *recRevL(Node *head)
+        {
+            if(head == NULL || head->next == NULL)
+                return head;
+
+            Node *rest_head = recRevL(head->next);
+            Node *rest_tail = head->next;
+            rest_tail->next = head;
+            head->next = NULL;
+
+            return rest_head;
+        }
+
+
+    ## Approach 2 :
+
+
+        
