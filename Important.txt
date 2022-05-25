@@ -1,0 +1,43 @@
+## About GCD
+
+
+
+        The above is a concept on properties of Co-prime Numbers
+
+        Co-prime numbers are any two numbers which have an HCF of 1 i.e. when two numbers have no common prime factor apart from the number 1.
+
+        Numbers that can be Co-Prime are :
+
+        (a) Two consecutive natural numbers.
+        (b) Two consecutive odd numbers.
+        (c) Two prime numbers.
+        (d) One prime number and the other a composite number such that the composite number is not a multiple of the prime number.
+
+
+        Now analyzing above options:
+
+        Statement 1 : They are prime
+        2 and 3 are prime numbers but 3 and 4 are not prime though they are co-prime (Refer Statement (d) above).
+        Therefore Statement 1 not always True.
+
+
+        Statement 2 : They are consecutive.
+        2 and 3 are consecutive but 3 and 5 are not consecutive though they are Co-prime ( Refer Statement (B) above).
+        Therefore Statement 2 is not always true.
+
+
+        Statement 3 : They do not have a common prime factor
+        This is always True. It is the basic definition of all co-prime numbers.
+
+
+        Statement 4: They do not have a common factor other than 1
+        This is always True. Again it is the basic definition of all Co-prime Numbers.
+
+        Only Statements 3 and 4 are always true.
+
+
+
+
+
+
+** Note that if X is a multiple of 3, then both X as well as the sum of digits of X are a multiple of 3! Can you put this property to use here?
