@@ -27,8 +27,16 @@
             return rest_head;
         }
 
+        Time Complexity : 
+        Auxillary space : 
+
 
     ## Approach 2 :
+
+
+        Time Complexity : 
+        Auxillary space : 
+        
 
 
         
