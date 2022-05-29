@@ -34,13 +34,17 @@
     ## Approach 2 :
 
 
+        Node *recRevL(Node *curr,Node *prev)
+        {
+            if(curr == NULL)
+                return prev;
+            Node *next = curr->next;
+            curr->next = prev;
+            return recRevL(next,curr);
+        }
+
+
+
         Time Complexity : 
         Auxillary space : 
-        
-
-
- 
-        
-
-
         
