@@ -1,0 +1,251 @@
+## Detect Loop in the Linked List
+
+    ** Given a Linked List it may contain a loop we,
+       need to check if Linked List contains Loop or not.
+
+    ** Loop means the Last Node points to any node of,
+       the Linked List instead of pointing to NULL.
+
+
+  
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+
+    ## Approach 2 :
+
+
+
+    ## Approach 3 :
+
+
+        bool isLoop(Node* head) 
+        {   
+            Node* temp = new Node(0);
+            Node *curr = head;
+            while (curr != NULL) 
+            {   
+                if(curr->next == NULL)
+                    return false;
+                if(curr->next == temp)
+                    return true;
+                Node *curr_next = curr->next;
+                curr->next = temp;
+                curr = curr_next;
+            }
+            return false; 
+        }
+
+
+    ## Approach 4 :
+
+
+        bool isLoop(Node* head) 
+        { 
+            unordered_set<Node*> s; 
+            for(Node *curr = head; curr != NULL; curr = curr->next)
+            {  
+                if (s.find(curr) != s.end()) 
+                    return true; 
+                s.insert(curr); 
+            } 
+            return false; 
+        }
+
+
+
+
+
+
+## Detect Loop using Floyd's Cycle Detection
+
+    ** This Method Does not modifiy the structure does,
+       not modifiy the List does not take O(N) Auxillary,
+       space and works in O(1) Time.
+
+    ** Idea is to use two pointers slow and fast pointer
+
+    ** Initialize Slow_p = head , Fast_p = head
+
+    ** Move Slow_P by One and Fast_P by Two and if,
+       the two pointers meet then there is a Loop.
+
+
+
+    ** Working of Algorithm
+
+        ** Fast_p will enter into the loop before(or at same time as Slow_p)
+
+        ** Let Fast_p be K Distance ahead of Slow_p.
+
+        ** Their Distance Keeps on Increasing by one in every movement of Both pointer.
+
+        ** When Distance becomes length of Cycle, they meet.
+
+
+
+    ## Approach 1 :
+
+
+        bool isLoop(Node* head) 
+        { 
+            Node *slow_p = head, *fast_p = head; 
+        
+            while (fast_p != NULL && fast_p->next != NULL)
+            { 
+                slow_p = slow_p->next; 
+                fast_p = fast_p->next->next; 
+                if(slow_p == fast_p)
+                { 
+                    return true; 
+                } 
+            } 
+            return false; 
+        }
+
+
+        Time Complexity : O(N) - Linear
+        Auxillary space : O(1)
+
+
+
+
+
+## Detect and Remove Loop in a Linked List
+
+    ** Along with the detection of the Loop we need,
+       to Delete the Loop also.
+
+    ** Detect Loop using Floyd's detection algorithm.
+
+    ** Move Slow_p to the beginning of Linked list and,
+       keep Fast_p at the meeting point.
+
+    ** Now one by one move slow and fast (at same speed).
+       The point where they must now is the First node,
+       of the Loop.
+
+
+
+    ## Approach 1 :
+
+        void detectRemoveLoop(Node* head) 
+        { 
+            Node *slow = head, *fast = head; 
+        
+            while (fast != NULL && fast->next != NULL)
+            { 
+                slow = slow->next; 
+                fast = fast->next->next; 
+                if (slow == fast) 
+                { 
+                    break; 
+                } 
+            } 
+            if(slow != fast)
+                return;
+            slow = head;
+            while(slow->next != fast->next){
+                slow = slow->next;
+                fast = fast->next;
+            }
+            fast->next=NULL;
+        }
+
+
+
+
+## Delete a Node with only pointer given to it
+
+    ** Given Address or Reference of Random Node in Linked List,
+       we need to delet this node. 
+
+    I/P : [10] -> [20] -> [30] -> [40] -> [25] -> NULL,    Reference to value 30
+    O/P : [10] -> [20] -> [40] -> [25] -> NULL
+
+   
+    ## Approach : 
+
+        void deleteNode(Node *ptr)
+        {
+            Node *temp = ptr->next;
+            ptr->data = temp->data;
+            ptr->next = temp->next;
+            delete(temp);
+        }
+
+
+
+
+## Segregate Even and Odd Nodes of a Linked List
+
+    ** We are Given a Singly Linked List we need to,
+       segregate the all even or Odd values and Relative,
+       order among the values must be maintained.
+
+    ** All Even must appear Before Odd values.
+
+
+
+
+    I/P : [17] -> [15] -> [8] -> [12] -> [10] -> [5] -> [4]
+    O/P : [8] -> [12] -> [10] -> [4] -> [17] -> [15] -> [5]
+
+    I/P : [8] -> [12] -> [10]
+    O/P : [8] -> [12] -> [10]
+
+
+    ## Approach : 
+
+        Node *segregate(Node *head)
+        {
+            Node *eS = NULL, *eE = NULL, *oS = NULL, *oE = NULL;
+            for(Node *curr = head; curr != NULL; curr = curr->next)
+            {
+                int x = curr->data;
+                if(x%2 == 0)
+                {
+                    if(eS == NULL)
+                    {
+                        eS = curr;
+                        eE = eS;
+                    }
+                    else
+                    {
+                        eE->next = curr;
+                        eE = eE->next;
+                    }
+
+                }
+                else
+                {
+                    if(oS == NULL)
+                    {
+                        oS = curr;
+                        oE = oS;
+                    }
+                    else
+                    {
+                        oE->next = curr;
+                        oE = oE->next;
+                    }
+                }
+            }
+            if(oS == NULL || eS == NULL)
+                return head;
+            eE->next = oS;
+            oE->next = NULL;
+            return eS;
+        }
+
+
+
+
+
+     
+
+
+
+
