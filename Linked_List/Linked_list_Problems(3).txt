@@ -1,0 +1,165 @@
+## Intersection Point of two Linked List
+
+    ** We are given two Linked Lists and the both have,
+       some common Nodes we Need to find the Intersection,
+       points of the Nodes.
+
+
+
+    ## Approach 1 : 
+
+        ** Create an Empty Hashset
+
+        ** Traverse the First List and Put all of its,
+           Nodes in to the Hashset.
+
+        ** Traverse the Second List and Look for Every,
+           Node in the Hashset. As Soon as we Find a Node,
+           Present in Hashset, we return value of it.
+
+
+        int getIntersection(Node* head1, Node* head2) 
+        { 
+            unordered_set<Node*> s;
+            Node* curr = head1;
+            while(curr != NULL)
+            {
+                s.insert(curr);
+                curr = curr->next;
+            }
+            curr = head2;
+            while(curr != NULL)
+            {
+                if(s.find(curr) != s.end())
+                    return curr->data;
+                curr = curr->next;
+            }
+            return -1;
+        } 
+
+
+        Time Complexity : O(N + M), M is Length of Linked List 1 , and N is of Linked List 2
+        Auxillary space : O(M)
+
+
+    
+    ## Approach 2 : 
+
+        ** Count Nodes in Both the Links , Let Counter be C1 and C2.
+
+        ** Traverse the Bigger Link abs(C1 - C2) times.
+
+        ** Traverse Both the Lists Simaltaneously until,
+           we res a common Node.
+
+
+
+
+        int _getIntersection(int d, Node* head1, Node* head2) 
+        { 
+            Node* current1 = head1; 
+            Node* current2 = head2; 
+        
+            for (int i = 0; i < d; i++)
+            { 
+                if (current1 == NULL)
+                { 
+                    return -1; 
+                } 
+                current1 = current1->next; 
+            } 
+        
+            while (current1 != NULL && current2 != NULL)
+            { 
+                if (current1 == current2) 
+                    return current1->data; 
+        
+                current1 = current1->next; 
+                current2 = current2->next; 
+            } 
+        
+            return -1; 
+        }
+
+        int getIntersection(Node* head1, Node* head2) 
+        { 
+            int c1 = getCount(head1); 
+            int c2 = getCount(head2); 
+            int d; 
+        
+            if (c1 > c2)
+            { 
+                d = c1 - c2; 
+                return _getIntersection(d, head1, head2); 
+            } 
+            else
+            { 
+                d = c2 - c1; 
+                return _getIntersection(d, head2, head1); 
+            }
+        } 
+
+
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+
+
+
+
+## Pairwise swap Nodes of a Linked List
+
+    ** We are Given a Linked List we need to ,
+       Pairwise swap Nodes
+
+
+    I/P : [1] -> [2] -> [3] -> [4]
+    O/P : [2] -> [1] -> [4] -> [3]
+
+
+    I/P : [1] -> [2] -> [3] -> [4] -> [5]
+    O/P : [2] -> [1] -> [4] -> [3] -> [5]
+
+
+    ## Approach 1 : 
+
+        void pairwiseSwap(Node *head)
+        {
+            Node *curr = head;
+            while(curr != NULL && curr->next != NULL)
+            {
+                swap(curr->data, curr->next->data);
+                curr = curr->next->next;
+            }
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+
+
+    ## Approach 2 : 
+
+        Node *pairwiseSwap(Node *head)
+        {
+            if(head == NULL || head->next == NULL)
+                return head;
+
+            Node *curr = head->next->next;
+            Node *prev = head;
+            head = head->next;
+            head->next = prev;
+            while(curr != NULL && curr->next != NULL)
+            {
+                prev->next = curr->next;
+                prev = curr;
+                Node *next = curr->next->next;
+                curr->next->next = curr;
+                curr = next;
+            }
+            prev->next = curr;
+            return head;
+        }
+
+
+        Time Complexity : 
+        Auxillary space : 
