@@ -137,4 +137,4 @@
 
 
             Time Complexity : Theta(N)
-        A   uxillary space : Theta(1)
+            Auxillary space : Theta(1)
