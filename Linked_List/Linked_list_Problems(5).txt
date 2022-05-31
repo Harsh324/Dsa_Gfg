@@ -1,0 +1,140 @@
+## We are Given two sorted Linked Lists we need to merge,
+   them in sorted way using the same space.
+
+
+
+    I/P : A : [10] -> [20] -> [30] , B : [5] -> [25]
+    O/P : [5] -> [10] -> [20] -> [25] -> [30]
+
+
+    I/P : A : [10] -> [20] , B : NULL
+    O/P : [10] -> [20]
+
+
+    ## Approach 1 : 
+
+        Node *sortedMerge(Node *a,Node *b)
+        {
+            if(a == NULL)
+                return b;
+            if(b == NULL)
+                return a;
+
+            Node *head = NULL, *tail = NULL;
+            if(a->data <= b->data)
+            {
+                head = tail = a; a = a->next;
+            }
+            else
+            {
+                head = tail = b; b = b->next;
+            }
+            while(a != NULL && b != NULL)
+            {
+                if(a->data <= b->data){
+                    tail->next = a; tail =a; a = a->next;
+                }
+                else
+                {
+                    tail->next=b;tail=b;b=b->next;
+                }
+            }
+            if(a == NULL)
+            {
+                tail->next = b;
+            }
+            else
+            {
+                tail->next = a;
+            }
+            return head;
+        }
+ 
+
+
+## Palindrome Linked List
+
+    ** Given a Singly Linked List our task is to check,
+       whether the given Linked List is Palindrome or not.
+
+
+
+    I/P : [R] -> [A] -> [D] -> [A] -> [R]
+    O/P : Yes
+
+
+    I/P : [G] -> [F] -> [G]
+    O/P : Yes
+     
+
+    ## Approach 1 : 
+
+        ** Idea is to use stack, we create an empty stack,
+           and we traverse through Linked List and while traversing,
+           we keep all Node Values and keep pushing in the Stack.
+           Now Start Traversing the List Again and Keep matching with,
+           stack elements one by one, if mismatch return False else Continue.
+
+
+
+        bool isPalindrome(Node *head){
+            stack<char> st;
+            for(Node *curr = head; curr != NULL; curr = curr->next)
+                st.push(curr->data);
+            for(Node *curr = head; curr != NULL; curr = curr->next){
+                if(st.top() != curr->data)
+                    return false;
+                st.pop();
+            }
+            return true;
+        }
+
+
+        Time Complexity : Theta(N)
+        Auxillary space : Theta(N)
+
+
+    ## Approach 2 : 
+
+        ** Find the Middle Reverse the List after Middle,
+           and Compare with one and continue.
+
+
+            Node *reverseList(Node *head)
+            {
+                if(head == NULL || head->next == NULL)
+                    return head;
+                Node *rest_head = reverseList(head->next);
+                Node *rest_tail = head->next;
+                rest_tail->next = head;
+                head->next = NULL;
+                return rest_head;
+            }
+
+            bool isPalindrome(Node *head)
+            {
+                if(head == NULL)
+                    return true;
+                Node *slow = head, *fast = head;
+                while(fast->next != NULL && fast->next->next != NULL)
+                {
+                    slow = slow->next;
+                    fast = fast->next->next;
+                }
+                Node *rev = reverseList(slow->next);
+                Node *curr = head;
+                while(rev != NULL)
+                {
+                    if(rev->data != curr->data)
+                        return false;
+                    rev=rev->next;
+                    curr=curr->next;
+                }
+                return true;
+            }
+
+
+
+
+            Time Complexity : Theta(N)
+        A   uxillary space : Theta(1)
