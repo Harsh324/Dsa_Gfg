@@ -66,3 +66,141 @@
 
         Time Complexity : 
         Auxillary space :  
+
+
+
+
+## LRU Cache Design
+
+    ** Popular Interview Question
+
+    ** Cache is a memory which is very close to CPU.
+    ** It Has very less access time(Means Fast) compared to RAM.
+    ** Efficinet Utilisation of this small sized memory is needed.
+    ** LRU(Least Recently Used) is one such Technique Uses Temporal,
+       Locality which means the item which is X is Now,
+       is very Likly to be Accessed in Nearby Future.
+
+    ** Cache size : 4
+    ** Reference Sequence : 10, 20, 10, 40, 50, 30, 40, 60, 30
+
+
+
+    ## Implementation 1 : 
+
+        ** Simply Using an Array
+
+        Time Complexity : Hit - O(N) , Miss - O(N) ,
+                          Where N is Capcity of the Cached.
+
+
+    ## Implementation 2 :
+
+        ** Using Hash Table
+        ** Doubly Linked List with Hashing
+        ** Hashing for Quick Access and Insert, While Doubly Linked List to maintain Recency order.
+
+        ## Pseudocode
+
+            Refer(x)
+            {
+                Look for x in the Hash Table
+                    (a) If Found(Hit), Find the Reference of the Node in Doubly Linked List.
+                        More the Node to the Front of Doubly Linked List.
+
+                    (b) If Not Found(Miss), 
+
+                        (i) Insert a new Node at the front of Doubly Lonked List.
+                        (ii) Insert an Entry into the Hash Table.
+            }
+
+
+        ## Code 
+
+
+            class LRUCache
+            {
+                public:
+                unordered_map<int, Node*> map; 
+                int capacity, count; 
+                Node *head, *tail; 
+
+                
+                LRUCache(int c) 
+                { 
+                    capacity = c; 
+                    head = new Node(0, 0); 
+                    tail = new Node(0, 0); 
+                    head->next = tail; 
+                    tail->pre = head; 
+                    head->pre = NULL; 
+                    tail->next = NULL; 
+                    count = 0; 
+                } 
+
+                void deleteNode(Node *node) 
+                { 
+                    node->pre->next = node->next; 
+                    node->next->pre = node->pre; 
+                } 
+
+                void addToHead(Node *node) 
+                { 
+                    node->next = head->next; 
+                    node->next->pre = node; 
+                    node->pre = head; 
+                    head->next = node; 
+                } 
+            
+                int get(int key) 
+                { 
+                    if (map[key] != NULL)
+                    { 
+                        Node *node = map[key]; 
+                        int result = node->value; 
+                        deleteNode(node); 
+                        addToHead(node); 
+                        cout<<"Got the value : " << 
+                            result << " for the key: " << key<<endl; 
+                        return result; 
+                    }
+                    cout<<"Did not get any value" <<
+                                        " for the key: " << key<<endl; 
+                    return -1; 
+                } 
+
+                void set(int key, int value) 
+                { 
+                    cout<<"Going to set the (key, "<< 
+                        "value) : (" << key << ", " << value << ")"<<endl; 
+                    if (map[key] != NULL)
+                    { 
+                        Node *node = map[key]; 
+                        node->value = value; 
+                        deleteNode(node); 
+                        addToHead(node); 
+                    } 
+                    else
+                    { 
+                        Node *node = new Node(key, value); 
+                        map[key]= node; 
+                        if (count < capacity)
+                        { 
+                            count++; 
+                            addToHead(node); 
+                        } 
+                        else
+                        { 
+                            map.erase(tail->pre->key); 
+                            deleteNode(tail->pre); 
+                            addToHead(node); 
+                        } 
+                    } 
+                } 
+            };
+
+        Time Complexity : Hit - O(1) , Miss - O(1)
+
+
+
+
