@@ -25,9 +25,13 @@
 
     ** Overflow Error : When Push called on a Full Stack.
 
+    ** Time Complexity of Push and Pop is O(1).
+
 
 
     ## Implementation of Stack 
+
+
 
         ** Using Array
 
@@ -123,6 +127,76 @@
                     return v.empty();
                 }
             };
+
+
+
+
+
+        ** Using Linked List
+
+            ** Using Doubly Linked List we can achieve the Insertion,
+               and Eletion in O(1). Also possible in Singly Linked List.
+        
+
+            ** Every Operation in Linked List implementation is O(1).
+
+            struct MyStack
+            {
+                Node *head;
+                int sz;
+                MyStack()
+                {
+                    head = NULL;
+                    sz = 0;
+                }
+                
+                void push(int x)
+                {
+                    Node *temp = new Node(x);
+                    temp->next = head;
+                    head = temp;
+                    sz++;
+                }
+                
+                int pop()
+                {
+                    if(head == NULL)
+                    {
+                        cout<<"Stack is Empty"<<endl;
+                        return INT_MAX;
+                    }
+                    int res = head->data;
+                    Node *temp = head;
+                    head = head->next;
+                    delete(temp);
+                    sz--;
+                    return res;
+                }
+                
+                int peek() 
+                {
+                    if(head == NULL)
+                    {
+                        cout<<"Stack is Empty"<<endl;
+                        return INT_MAX;
+                    }
+                    return head->data;
+                }
+                
+                int size()
+                {
+                    return sz;
+                }
+                
+                bool isEmpty()
+                {
+                    return head == NULL;
+                }
+            };
+
+
+
+
 
 
 
