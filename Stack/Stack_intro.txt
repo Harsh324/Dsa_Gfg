@@ -1,0 +1,129 @@
+## Stack Data Structure
+
+    ** Stack is a linear Data structure and it works like,
+       a box which is closed at one end and Insertion along,
+       with Deletion occurs from one end only.
+
+    ** Insertion to a stack is Known as Push while,
+       Deletion is Known as Pop.
+
+    ## Stack Operations
+
+        IsEmpty() : Returns True if Stack is Empty,
+                    Else Returns False.
+
+        Push(X)   : Inserts an Item to the Top of the Stack.
+
+        Pop()     : Removes an Item From the Top.
+
+        Peek()    : Returns the Top of Stack.
+
+        Size()    : Returns the Size of Stack.
+
+
+    ** Underflow Error : When Pop() or Peek() called on Empty Stack.
+
+    ** Overflow Error : When Push called on a Full Stack.
+
+
+
+    ## Implementation of Stack 
+
+        ** Using Array
+
+            struct MyStack
+            {
+                int *arr;
+                int cap;
+                int top;
+                MyStack(int c)
+                {
+                    cap = c;
+                    arr = new int [cap];
+                    top = -1;
+                }
+                
+                void push(int x)
+                {
+                    if(top==cap-1)
+                    {
+                        cout<<"Stack is full"<<endl;return;}
+                        top++;
+                        arr[top]=x;
+                    }
+                
+                int pop()
+                {
+                    if(top==-1)
+                    {
+                        cout<<"Stack is Empty"<<endl;
+                        return INT_MIN;
+                    }
+                    int res=arr[top];
+                    top--;
+                    return res;
+                }
+                
+                int peek()
+                {
+                    if(top==-1)
+                    {
+                        cout<<"Stack is Empty"<<endl;
+                        return INT_MIN;
+                    }
+                    return arr[top];
+                }
+                
+                int size()
+                {
+                    return (top+1);
+                }
+                
+                bool isEmpty()
+                {
+                    return top==-1;
+                }
+            };
+
+
+
+
+        ** Using Vector
+
+
+
+            struct MyStack
+            {
+                vector<int> v;
+                
+                void push(int x)
+                {
+                    v.push_back(x);
+                }
+                
+                int pop()
+                {
+                    int res = v.back();
+                    v.pop_back();
+                    return res;
+                }
+    
+                int peek()
+                {
+                    return v.back();
+                }
+                
+                int size()
+                {
+                    return v.size();
+                }
+                
+                bool isEmpty()
+                {
+                    return v.empty();
+                }
+            };
+
+
+
+
