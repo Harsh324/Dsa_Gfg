@@ -141,6 +141,8 @@
                 while(Low < High)
                 {
                     swap(&Arr[Low], &Arr[High]);
+                    Low++;
+                    High--;
                 }
             }
 
