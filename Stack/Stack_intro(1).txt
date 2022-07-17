@@ -42,4 +42,22 @@
             }
             return 0; 
         }
+
+    ## Operations like Push, Pop, Top, Size, Empty all are O(1)
+
+    ## Internal working of stack
+
+        ** It can be implemented on any underlying contianer that,
+           provides following operations
+
+           1. Back()
+           2. Size()
+           3. Empty()
+           4. Push_back()
+           5. Pop_back() 
             
+        ** List, Vector and deque provides all these operations.
+
+    ## Also known as container adapter as they are built on other,
+      container and work as interface.
+
