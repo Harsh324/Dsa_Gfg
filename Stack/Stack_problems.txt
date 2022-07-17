@@ -1,0 +1,209 @@
+## Check for Balanced Parenthesis
+
+    ** Given a String and it contains 6 possible characters,
+       '(', ')', '{', '}', '[' , ']' , We need to find whether,
+       the string is having balanced parenthesis or not.
+
+
+    I/P : Str = "([])"
+    O/P : Yes
+
+    I/P : Str = "((())"
+    O/P : No
+
+    I/P : Str = "([)]"
+    O/P : No
+
+    I/P : Str = "{}([()])"
+    O/P : Yes
+
+    I/P : Str = "(()))"
+    O/P : No
+
+
+    ## Approach 1 
+
+        bool matching(char a,char b)
+        {
+            return (( a=='(' && b==')' )||( a=='[' && b==']' )||( a=='{' && b=='}' ));
+        }
+
+        bool isBalanced(string str)
+        {
+            
+            stack<char> s; 
+            
+            for (int i = 0; i < str.length(); i++)  
+            { 
+                if (str[i] == '(' || str[i] == '[' || str[i] == '{')  
+                {  
+                    s.push(str[i]); 
+                } 
+                else
+                {
+                    if (s.empty()==true) 
+                        return false;
+                    else if(matching(s.top(),str[i])==false)
+                        return false;
+                    else
+                        s.pop();
+                }
+            }    
+            return (s.empty()==true); 
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(N)
+
+
+
+
+## Implement two stack in an array
+
+    ** Given an array we need to implemet two stacks in it.
+
+
+    ## Approach 1 :
+
+        ** Naive Approach
+
+        struct TwoStacks 
+        { 
+            int* arr; 
+            int cap; 
+            int top1, top2; 
+            
+            TwoStacks(int n) 
+            { 
+                cap = n; 
+                arr = new int[n]; 
+                top1 = n / 2 + 1; 
+                top2 = n / 2; 
+            } 
+        
+            void push1(int x) 
+            { 
+                
+                if (top1 > 0) 
+                { 
+                    top1--; 
+                    arr[top1] = x; 
+                } 
+                else { 
+                    cout << "Stack Overflow"
+                        << " By element :" << x << endl; 
+                    return; 
+                } 
+            } 
+        
+            void push2(int x) 
+            { 
+                if (top2 < cap - 1) { 
+                    top2++; 
+                    arr[top2] = x; 
+                } 
+                else { 
+                    cout << "Stack Overflow"
+                        << " By element :" << x << endl; 
+                    return; 
+                } 
+            } 
+        
+            int pop1() 
+            { 
+                if (top1 <= cap / 2) { 
+                    int x = arr[top1]; 
+                    top1++; 
+                    return x; 
+                } 
+                else { 
+                    cout << "Stack UnderFlow"; 
+                    exit(1); 
+                } 
+            } 
+        
+            int pop2() 
+            { 
+                if (top2 >= cap / 2 + 1) { 
+                    int x = arr[top2]; 
+                    top2--; 
+                    return x; 
+                } 
+                else { 
+                    cout << "Stack UnderFlow"; 
+                    exit(1); 
+                } 
+            } 
+        }; 
+  
+
+    
+    ## Approach 2 :
+
+
+        struct TwoStacks 
+        { 
+            int* arr; 
+            int cap; 
+            int top1, top2; 
+            
+            TwoStacks(int n)  
+            { 
+                cap = n; 
+                arr = new int[n]; 
+                top1 = -1; 
+                top2 = cap; 
+            } 
+        
+            void push1(int x) 
+            { 
+                if (top1 < top2 - 1) 
+                { 
+                    top1++; 
+                    arr[top1] = x; 
+                } 
+                else { 
+                    cout << "Stack Overflow"; 
+                    exit(1); 
+                } 
+            } 
+        
+            void push2(int x) 
+            { 
+                if (top1 < top2 - 1) 
+                { 
+                    top2--; 
+                    arr[top2] = x; 
+                } 
+                else { 
+                    cout << "Stack Overflow"; 
+                    exit(1); 
+                } 
+            } 
+        
+            int pop1() 
+            { 
+                if (top1 >= 0) { 
+                    int x = arr[top1]; 
+                    top1--; 
+                    return x; 
+                } 
+                else { 
+                    cout << "Stack UnderFlow"; 
+                    exit(1); 
+                } 
+            } 
+        
+            int pop2() 
+            { 
+                if (top2 < cap) { 
+                    int x = arr[top2]; 
+                    top2++; 
+                    return x; 
+                } 
+                else { 
+                    cout << "Stack UnderFlow"; 
+                    exit(1); 
+                } 
+            } 
+        };
