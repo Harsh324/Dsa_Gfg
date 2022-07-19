@@ -72,6 +72,7 @@
        current day and days just before it which have values,
        equal or smaller.
 
+
     I/P : Arr[] = {13, 15, 12, 14, 16, 8, 6, 4, 10, }
     O/P : 1 2 1 2 5 1 1 1
 
@@ -121,6 +122,9 @@
                 s.push(i);
             }
         }
+
+        Time Complexity : Theta(N)
+        Auxillary space : O(N)
 
 
 
