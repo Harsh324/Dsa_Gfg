@@ -1,0 +1,224 @@
+## Largest Rectange with all 1s
+
+    ** We are given a binary mattrix our task is to find out,
+       largest rectangualr submatrix with all ones in it.
+
+    I/P : Mod[][] = {{0, 1, 1, 0},
+                     {1, 1, 1, 1},
+                     {1, 1, 1, 1},
+                     {1, 1, 0 ,0}}
+
+    O/P : 8
+
+
+    I/P : Mod[][] = {{0, 1, 1},
+                     {1, 1, 1},
+                     {0, 1, 1}}
+
+    O/P : 6
+
+    I/P : Mod[][] = {{0, 0},
+                     {0, 0}}
+
+    O/P : 0
+
+
+    ## Approach 1 :
+
+        #define R 4 
+        #define C 4
+
+        int largestHist(int arr[],int n) 
+        { 
+            stack<int> result; 
+            int top_val; 
+            int max_area = 0;  
+            int area = 0; 
+            int i = 0; 
+            while (i < n) { 
+                if (result.empty() || arr[result.top()] <= arr[i]) 
+                    result.push(i++); 
+        
+                else {  
+                    top_val = arr[result.top()]; 
+                    result.pop(); 
+                    area = top_val * i; 
+        
+                    if (!result.empty()) 
+                        area = top_val * (i - result.top() - 1); 
+                    max_area = max(area, max_area); 
+                } 
+            } 
+            while (!result.empty()) { 
+                top_val = arr[result.top()]; 
+                result.pop(); 
+                area = top_val * i; 
+                if (!result.empty()) 
+                    area = top_val * (i - result.top() - 1); 
+        
+                max_area = max(area, max_area); 
+            } 
+            return max_area; 
+        }
+
+        int maxRectangle(int mat[][C]) 
+        { 
+            int res = largestHist(mat[0],C); 
+        
+            for (int i = 1; i < R; i++) { 
+        
+                for (int j = 0; j < C; j++) 
+                    if (mat[i][j]) 
+                        mat[i][j] += mat[i - 1][j]; 
+
+                res = max(res, largestHist(mat[i],C)); 
+            } 
+                return res;
+        }
+
+        Time Complexity : Theta(R * C)
+        Auxillary space : Theta(C)
+
+
+
+
+## Design a Stack to Support getmin()
+
+    ** Adding getmin() operation to stack
+
+
+    I/P : push(20), push(10), getmin(), push(5), getmin(), pop(), getmin(), pip(), getmin()
+    O/P : 10 5 10 20
+
+
+    ## Approach 1 :
+
+        struct MyStack {
+ 
+            stack<int> ms;
+            stack<int> as;
+    
+            void push(int x) {
+            
+                if(ms.empty() ) {
+                    ms.push(x);as.push(x);return;
+                }
+                
+                ms.push(x);
+                
+                if(as.top()>=ms.top())
+                    as.push(x);
+            }
+            
+            void pop() {
+            
+                if(as.top()==ms.top())
+                    as.pop();
+                ms.pop();
+                
+            }
+
+            int top() {
+                return ms.top();
+            }
+            
+            int getMin() {
+                return as.top();
+            }
+        };
+
+        Time Complexity : O(1)
+        Auxillary space : O(N)
+
+
+    ## Approach 2 :
+
+        struct MyStack 
+        {
+ 
+            stack<int> s;
+            int min;
+            
+            void push(int x) {
+            
+                if(s.empty() ) {
+                    min=x;
+                    s.push(x);
+                }
+                else if(x<=min){
+                    s.push(x-min);
+                    min=x;
+                }else{
+                s.push(x);
+                }
+            }
+            
+            int pop() {
+
+                int t=s.top();s.pop();
+                if(t<=0){
+                    int res=min;
+                    min=min-t;
+                    return res;
+                }else{
+                    return t;
+                }
+            }
+
+            int top() {
+                int t=s.top();
+                return ((t<=0)? min : t);
+            }
+            
+            int getMin() {
+                return min;
+            }
+        };
+
+
+
+
+    ## Approach 3 :
+
+        struct MyStack 
+        {
+ 
+            stack<int> s;
+            int min;
+        
+            void push(int x) {
+            
+                if(s.empty() ) {
+                    min=x;
+                    s.push(x);
+                }
+                else if(x<=min){
+                    s.push(2*x-min);
+                    min=x;
+                }else{
+                s.push(x);
+                }
+            }
+            
+            int pop() {
+
+                int t=s.top();s.pop();
+                if(t<=min){
+                    int res=min;
+                    min=2*min-t;
+                    return res;
+                }else{
+                    return t;
+                }
+            }
+
+            int top() {
+                int t=s.top();
+                return ((t<=min)? min : t);
+            }
+            
+            int getMin() {
+                return min;
+            }
+        };
+
