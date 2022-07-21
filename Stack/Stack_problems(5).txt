@@ -1,0 +1,129 @@
+## Infix, Postfix and Prefix Introduction
+
+    ** Infix are the Notations we generaly use in mathmatical,
+       notations, in programs we write etc.
+
+
+    Infix : X + Y
+    Postfix : XY+
+    Prefix : +XY
+
+    ## Advantages
+
+        ** Do Not Require Parenthesis, Precedence rules and,
+           associativity rules.
+        
+        ** Can be Evaluated by writing program that traverses,
+           the given expression exactly once.
+
+
+    ## Precedence and Associativity rules
+        
+        ** we use these rules when we have two or more operators,
+           in an expression.
+
+                Operator            Associativity
+
+                  ^                     R to L
+                  *, /                  L to R
+                  +, -                  L to R
+
+
+        
+        ## Prefix and Postfix
+
+                Infix               Prefix               Postfix
+
+                x+y*z            +x*yz                 xyz*+   
+                (x+y)*z          *+xyz                 xy+z*
+
+
+        ## Steps for Postfix conversion
+
+            x+y*z  =>  (x + (y*z))
+                   => (x + (yz*))
+                   => xyz*+
+
+            (x+y)*z => ((x+y)*z)
+                    => ((xy+)*z)
+                    => xy+z*
+
+
+        
+    ** Given an Infix expression as a string our task is to,
+       convert this to equivalent postfix expression
+
+
+       I/P : Infix = "a+b*c"
+       O/P : Postfix = "bc*a"
+
+       I/P : Infix = "(a+b)*c"
+       O/P : Postfix = "ab+c*"
+
+       I/P : Infix = "a^b^c"
+       O/P : Postfix = "abc^^"
+
+       I/P : Infix = "(a+b)*(c+d)"
+       O/P : Postfix = "ab+cd+*"
+
+
+    
+        ## Approach 1 : 
+
+            ** Naive Approach (Fully Pranenthesise the Infix expression)
+
+
+        ## Approach 2 : 
+
+            1. Create an empty stack
+            2. Do following for every character x from left to right.
+            3. if x is :
+                a. Operand : output 
+                b. Left Parenthesis : Push to Stack.
+                c. Right Parenthesis : Pop from Stack untill Left
+                                       Parenthesis is found. 
+                                       output the popped ,
+                                       charatcers.
+
+                d. Operator :  if Stack is Empty, Push z to Stack
+                               else Compare with top of stack.
+
+                                i. Higher Precedence than Stack.Top, 
+                                   Push to Stack.
+                                ii. Lower Precedence, Pop Stack Top,
+                                    and output untill a higher precedence,
+                                    operator is found.
+                                    Then push x to stack.
+                                ii. Equal Procedure, use Associativity,
+                                    output everything from Stack.
+
+
+
+
+
+    ** Given an Postfix expression as a string our task is to,
+       find out value of this postfix expression.
+
+
+       I/P : 10 2 * 3 +      => ((10 * 2) + 3)
+       O/P : 23
+
+       I/P : 10 2 + 3 *      => ((10 + 2) * 3)
+       O/P : 23
+
+       I/P : 10 2 3 ^ ^      => (10 ^ (2 ^ 3))
+       O/P : 10000000
+
+
+        ## Approach 1 : 
+
+            1. Create an empty stack.
+            2. Traverse through every symbol x of given postfix: 
+
+                1. If x is an Operand, push to Stack.
+                2. Else (x is an Operator)
+                    1. Op1 = Stack.pop()
+                    2. Op2 = Stack.pop()
+                    3. Compute Op2 x Op1 and Push the result to Stack.
+                3. return Stack.pop()
+                
