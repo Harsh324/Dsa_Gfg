@@ -1,0 +1,167 @@
+## Maximum in all subarray of size k
+
+    ** Given an array and a integer k we need to find the maximum,
+       in all subarrays of size k.
+
+    I/P : Arr[] = {10, 8, 5, 12, 15, 7, 6} , k = 3
+    O/P : 10 12 15 15 15 
+
+    I/P : Arr[] = {20, 5, 3, 8, 6, 15}, k = 4
+    O/P : 20 8 15
+
+
+    ## Approach 1 :
+
+        ** Naive Approach 
+
+        void PrintMaxk(int Arr[], int N, int k)
+        {
+            for(int i =0; i < (N - k + 1); i++)
+            {
+                int Maxx = Arr[i];
+                for(int j = i + 1; i < i + k; j++)
+                    Maxx = max(Arr[j], Maxx);
+                cout<<Maxx<<" ";
+            }
+        }
+
+        Time Complexity : O(N^2)
+
+    
+    ## Approach 2 : 
+
+        void printMax(int arr[], int n, int k)
+        {
+        
+            deque<int> dq;
+            for (int i = 0; i < k; ++i)
+            {    
+                while (!dq.empty() && arr[i] >= arr[dq.back()])
+                    dq.pop_back(); 
+                dq.push_back(i);
+            }
+
+            for (int i=k; i < n; ++i)
+            {    
+                cout << arr[dq.front()] << " ";
+                while ((!dq.empty()) && dq.front() <= i - k)
+                    dq.pop_front();
+                while ((!dq.empty()) && arr[i] >= arr[dq.back()])
+                    dq.pop_back();
+                dq.push_back(i);
+            }
+            cout << arr[dq.front()];
+        }
+
+        Time Complexity : O(N)
+
+
+
+
+## First Circular tour
+
+    ** We have N petrol pumps arranged in circualr manner, 
+       Two array represent them. First array represents the amount,
+       of petrol availabe at a particular petrol pump while Second,
+       array represents distance of next petrol pummp from the,
+       current petrol pump.
+
+    ** Imagine you have a truck with infinite filling capacity.
+       Let Truck consumes 1 Litres of petrol to travel one unit of distance. 
+       we need to find a petrol pump such that if we start from there,
+       we will be able to visit all petrol pumps and come back again,
+       on that petrol pump.
+
+    ** if Such pterol pump exists return first such petrol pump else return -1.
+
+
+    I/P : Petrol[] = {4, 8, 7, 4}, Dist[] = {6, 5, 3, 5}
+    O/P : 2
+
+
+    I/P : Petrol[] = {8, 9, 4}, Dist[] = {5, 10, 12}
+    O/P : -1
+
+    I/P : Petrol[] = {4, 8}, Dist[] = {5, 6}
+    O/P : 2
+
+
+    ## Approach 1 : 
+
+        ** Naive Approach
+
+        int printTour(int Petrol[], int Dist[], int N)
+        {
+            for(int Start = 0; Start < N; Start++)
+            {
+                int Curr_petrol = 0;
+                int End = Start;
+                while(true)
+                {
+                    Curr_petrol += (Petrol[End] - Dist[End]);
+                    if(Curr_petrol < 0)
+                        break;
+                    End = (End + 1) % N;
+                    if(End == Start)
+                        return (Start + 1)
+                }
+            }
+            return -1;
+        }
+
+        Time Complexity : O(N^2)
+
+
+    ## Approach 2 : 
+
+
+        class petrolPump
+        {
+            public:
+            int petrol;
+            int distance;
+        };
+        
+        // The function returns starting point if there is a possible solution,
+        // otherwise returns -1
+        int printTour(petrolPump arr[], int n)
+        {
+            // Consider first petrol pump as a starting point
+            int start = 0;
+            int end = 1;
+        
+            int curr_petrol = arr[start].petrol - arr[start].distance;
+        
+            /* Run a loop while all petrol pumps are not visited.
+            And we have reached first petrol pump again with 0 or more petrol */
+            while (end != start || curr_petrol < 0)
+            {
+                // If current amount of petrol in truck becomes less than 0, then
+                // remove the starting petrol pump from tour
+                while (curr_petrol < 0 && start != end)
+                {
+                    // Remove starting petrol pump. Change start
+                    curr_petrol -= arr[start].petrol - arr[start].distance;
+                    start = (start + 1) % n;
+        
+                    // If 0 is being considered as start again, then there is no
+                    // possible solution
+                    if (start == 0)
+                    return -1;
+                }
+        
+                // Add a petrol pump to current tour
+                curr_petrol += arr[end].petrol - arr[end].distance;
+        
+                end = (end + 1) % n;
+            }
+        
+            // Return starting point
+            return start;
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(1)
+ 
+
+    
