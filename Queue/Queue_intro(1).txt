@@ -1,0 +1,184 @@
+## Implement Stack using Queue
+
+    ** Consider a Situation where we have library availbale for,
+       queue only and we need stack, How to implemet stack ?
+
+    
+    ## Approach 
+
+        struct  Stack 
+        { 
+
+            queue<int> q1, q2; 
+            int curr_size; 
+
+            public: 
+                Stack() 
+                { 
+                    curr_size = 0; 
+                } 
+
+                void push(int x) 
+                { 
+                    curr_size++; 
+
+                    // Push x first in empty q2 
+                    q2.push(x); 
+
+                    // Push all the remaining 
+                    // elements in q1 to q2. 
+                    while (!q1.empty()) { 
+                        q2.push(q1.front()); 
+                        q1.pop(); 
+                    } 
+
+                    // swap the names of two queues 
+                    queue<int> q = q1; 
+                    q1 = q2; 
+                    q2 = q; 
+                } 
+
+                void pop() 
+                { 
+
+                    // if no elements are there in q1 
+                    if (q1.empty()) 
+                        return; 
+                    q1.pop(); 
+                    curr_size--; 
+                } 
+
+                int top() 
+                { 
+                    if (q1.empty()) 
+                        return -1; 
+                    return q1.front(); 
+                } 
+
+                int size() 
+                { 
+                    return curr_size; 
+                } 
+        }; 
+
+
+    ## More Variations : 
+
+        ** Implement stack using Queue by making pop operation costly.
+        ** Implement Stack using olny one queue (Using Recursion call stack).
+        ** Implement Queue using Stack
+
+            ** By Making Enqueue() costly.
+            ** By Making Dequeue() costly.
+            ** By using one stack (and one recursion call stack)
+
+
+    
+    ## Reversing a queue
+
+        ** given a Queue, we need to reverse it
+
+            I/P : Queue = {10, 5, 15, 20}
+                           F          R
+
+            O/P : Queue = {20, 15, 5, 10}
+                           F          R
+
+
+        ## Recursive Approach : 
+
+            void Print(queue<int>& Queue) 
+            { 
+                while (!Queue.empty())
+                { 
+                    cout << Queue.front() << " "; 
+                    Queue.pop(); 
+                } 
+            } 
+
+
+            void reverse(queue<int>& q) 
+            { 
+                if(q.empty())
+                return;
+                
+                int x = q.front();
+                q.pop();
+                
+                reverse(q);
+                q.push(x);
+            } 
+
+
+
+        ## Iterative Approach : 
+        
+
+            void Print(queue<int>& Queue) 
+            { 
+                while (!Queue.empty()) { 
+                    cout << Queue.front() << " "; 
+                    Queue.pop(); 
+                } 
+            } 
+
+
+            void reverseQueue(queue<int>& Queue) 
+            { 
+                stack<int> Stack; 
+                while (!Queue.empty()) { 
+                    Stack.push(Queue.front()); 
+                    Queue.pop(); 
+                } 
+                while (!Stack.empty()) { 
+                    Queue.push(Stack.top()); 
+                    Stack.pop(); 
+                } 
+            } 
+
+
+    ## Generate number with Given Digits
+
+        ** Given a number N, printt First N Number(increasing order),
+           such that all these numbers have digts in set {5, 6}
+
+        ** N can be a big Nuber and the result calue might nit fit,
+           in basic data type like long int or long long int.
+
+
+        I/P : N = 10
+        O/P : 5, 6, 55, 56, 65, 66 ,555, 556, 565, 566
+
+        I/P : N = 4
+        O/P : 5, 6, 55, 56
+
+
+
+        ## Approach : 
+
+            void printFirstN(int n) 
+            { 
+                queue<string> q;
+                
+                q.push("5");
+                q.push("6");
+                
+                for(int i = 0; i < n; i++)
+                {
+                    string curr = q.front();
+                
+                    cout << curr << " ";
+                    
+                    q.pop();
+                    
+                    q.push(curr + "5");
+                    q.push(curr + "6");
+                }
+                    
+            }
+
+            Time Complexity : O(N)
+
+        ** Not Necessarily only 5 and 6 any number can be obtained,
+           by using digits (1,9).
+
