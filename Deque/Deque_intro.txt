@@ -1,0 +1,95 @@
+## Deque Data Structure
+
+    ** It Stands for Doubly ended queue, there are two ends front,
+       and back we can do insertions and deletions at the both ends.
+
+    ** Implementation using Linked List
+
+        ** We use Doubly Linked List because in singly list we can,
+           do insertion and deletion in O(1) time but we can not,
+           delete from tail in O(1) time. 
+
+    ** Implementation using Array
+
+        ** We use circualr array hence we need to maintain two,
+           indexes Front and Rear
+
+
+    
+    ## Applications of Deque
+
+        ** A Deque can be used as both stack and queue.
+        ** Maintaining History of Actions
+        ** A Steal Process scheduling algorithm
+        ** Implementing a priority Queue with Two types of Priorities.
+        ** Maximum/Minimum of all subarrays of size k in an array.
+
+
+    ## Data Structure with Min/Max Operations
+
+        ** Design a data Structure that supports following operations,
+           in O(1) time Complexity.
+
+            1) Get Minimum
+            2) Get Maximum
+            3) Insert Minimum
+            4) Insert Maximum
+            5) Delete Minimum
+            6) Delete Maximum
+
+
+        ## Approach : 
+
+            struct MyDS
+            {
+                deque<int> dq;
+   
+                void insertMin(int x)
+                {
+                    
+                    dq.push_front(x);
+                }
+                
+                void insertMax(int x)
+                {
+                    
+                    dq.push_back(x);
+                }
+                
+                int getMin()
+                {
+                
+                    return dq.front();
+                }
+                
+                int getMax()
+                {
+                
+                    return dq.back();
+                }
+                
+                int extractMin()
+                {
+                    int x = dq.front();
+                    
+                    dq.pop_front();
+                    
+                    return x;
+                }
+                
+                int extractMax() 
+                {
+                int x = dq.back();
+                    
+                dq.pop_back();
+                    
+                return x;
+                }
+            };
+
+
+    
+
+
+
+
