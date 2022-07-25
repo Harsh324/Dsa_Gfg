@@ -1,0 +1,171 @@
+## Implementation of Inorder Traversal
+
+    ** Order is Left, Root, Right
+
+    ## Implementation  :
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void inorder(Node *root){
+            if(root!=NULL){
+                inorder(root->left);
+                cout<<root->key<<" ";
+                inorder(root->right);    
+            }
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            
+            inorder(root);
+        }
+
+        Time Complexity : O(N)
+        Auxillarry space : O(H), H : Height of Binary Tree.
+
+
+
+## Implementation of Preorde Traversal
+
+    ** Order is Root, Left, Right
+
+        ## Implementation
+
+            struct Node  
+            { 
+                int key; 
+                struct Node *left; 
+                struct Node *right; 
+                Node(int k){
+                    key=k;
+                    left=right=NULL;
+                }
+            };
+
+            void preorder(Node *root){
+                if(root!=NULL){
+                    cout<<root->key<<" ";
+                    preorder(root->left);
+                    preorder(root->right);    
+                }
+            }  
+
+            int main() {
+                
+                Node *root=new Node(10);
+                root->left=new Node(20);
+                root->right=new Node(30);
+                root->right->left=new Node(40);
+                root->right->right=new Node(50);
+                
+                preorder(root);
+            }
+
+            Time Complexity : O(N)
+            Auxillarry spce : O(H), H is Height of Binary tree
+
+
+## Implementation of Postorder Traversal
+
+    ** Order is Left, Right, Root
+
+        Implementation : 
+
+            struct Node  
+            { 
+                int key; 
+                struct Node *left; 
+                struct Node *right; 
+                Node(int k){
+                    key=k;
+                    left=right=NULL;
+                }
+            };
+
+            void postorder(Node *root){
+                if(root!=NULL){
+                    postorder(root->left);
+                    postorder(root->right);
+                    cout<<root->key<<" ";
+                }
+            }  
+
+            int main() {
+                
+                Node *root=new Node(10);
+                root->left=new Node(20);
+                root->right=new Node(30);
+                root->right->left=new Node(40);
+                root->right->right=new Node(50);
+                
+                postorder(root);
+            }
+
+
+            Time Complexity : O(N)
+            Auxillarry space : O(H), H is Heigh of Binary tree.
+
+
+
+## Height of Binary Tree
+
+    ** We are given a Binary tree we need to find the height of,
+       the Binary tree.
+
+    ** Height of a tree is Maximum nuber of Nodes from Root to a,
+       Leaf Path.
+
+    ## Approach : 
+
+        ** Recursive Approach
+
+        ** Recursivly find height of Left Subtree and Height of,
+           Right Subtree and Take Maximum of these two. Add one to,
+           it and return as overall height.
+
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int height(Node *root){
+            if(root==NULL)
+                return 0;
+            else
+                return (1+max(height(root->left),height(root->right)));
+        }  
+
+        int main() {
+
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+
+            cout<<height(root);
+        }
+
+        Time Complexity : O(N)
+        Auxillarry space : O(H)
