@@ -1,0 +1,127 @@
+## Tree Data Structure
+
+    ** When we need to represent hierarchy we use Tree.
+    ** The Top of Hierarchy is Root Node.
+    ** Node which do not have anythings below them are,
+       called Leaf Nodes.
+    ** Node Just below a Node is Child Node.
+    ** Node just above a Node is Parent Node.
+    ** Tree  Data Structure is Itself a Recursive Structure.
+    ** Descendants of a Node are all the nodes that lie in,
+       the subtree with this particular node as root.
+
+    ** Degree of a Node is the Number of children it has.
+    ** Thus all Leaf Nodes has Degree Zero.
+    ** Internal Nodes are Nodes with Degree Not equal to 0.
+
+
+    ## Application of Tree
+
+        ** To Represent Hierarchial data 
+
+            ** Organisation structure.
+            ** Folder Structure.
+            ** XML/HTML Content(JSON Object)
+            ** In OOP(Inheritance)
+
+        ** Binary Search Trees
+
+        ** Binary Heap
+
+        ** B and B+ Trees in DBMS.
+
+        ** Spanning and Shortest Path trees in Computer Networks
+
+           ** Bridges use Spanning tree to forward the packets.
+           ** Routers use Shortest path trees.
+
+        ** Parse Trees, Expression Tree in Compiler.
+
+        ** Trie
+
+            ** Used to represent dictionaries also used to,
+               do prefix search like operations.
+
+        ** Suffix Tree
+
+            ** Used to do fast searches in a String
+
+        ** Binary index Tree
+
+            ** Used for Ranged Query Searches.
+
+        ** Segment Tree
+
+            ** Used for Ranged Query Searches.
+
+
+
+    
+    ## Binary Tree
+
+        ** Every Node has at most Two Children or we can say every,
+           Node has Degree at most 2 (0, 1, 2).
+
+        ## Implementation
+
+            struct Node  
+            { 
+                int key; 
+                struct Node *left; 
+                struct Node *right; 
+                Node(int k){
+                    key=k;
+                    left=right=NULL;
+                }
+            };
+                
+            int main() {
+                
+                Node *root=new Node(10);
+                root->left=new Node(20);
+                root->right=new Node(30);
+                root->left->left=new Node(40);
+            }
+
+
+
+    ## Tree Traversals
+
+        ** Printing every key of the Tree exactly once is Tree,
+           Traversal.
+
+        ** We need traversal to search any key, to find size of,
+           tree etc.
+
+        ** tree Traversal are Broadly classified in two categories
+
+            ** Breadth First(Level order)
+
+                ** Visit root first then Got to next level Print,
+                   all at this level and move to next level and,
+                   so on.
+
+            ** Depth First
+
+                ** We Go to one side of tree we traverse it completely,
+                   and then we go on other side.
+
+                ** Traverse Root, Traverse Left Subtree Traverse Right,
+                   subtree. Thus there are Factorial(3) Permutations of,
+                   doing these three tasks out of them three are the most popular. 
+                   In all them we visit left Subtree before the Right subtree.
+
+                                        10
+                                    
+                                    20      30
+                    
+                    ** Inorder (Left, Root, Right)
+
+                        Inorder : 20 10 30
+
+                    ** Predorder (Root, Left, Right)
+
+                        Predorder : 10 20 30
+
+                    ** Postorder (Left, Right, Root)
+                        Postorder : 20 30 10
