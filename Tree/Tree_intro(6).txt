@@ -1,0 +1,218 @@
+## Diameter of Binary Tree
+
+    ** Given a Binary tree we need to find the Diameter of the,
+       Binary tree.
+
+    ** Diameter of a Binary tree is Number of Nodes on the Longest,
+       path between two Leaf Nodes.
+
+
+    ## Approach 1 :
+
+        ** Naive Approach 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int height(Node *root){
+            if(root==NULL)
+                return 0;
+            else
+                return (1+max(height(root->left),height(root->right)));
+        }
+
+        int diameter(Node *root){
+            if(root==NULL)return 0;
+            int d1=1+height(root->left)+height(root->right);
+            int d2=diameter(root->left);
+            int d3=diameter(root->right);
+            
+            return max(d1,max(d2,d3));
+        }
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(60);
+            root->right->left->left=new Node(50);
+            root->right->right->right=new Node(70);
+            
+            cout<<diameter(root);
+        }
+
+        Time Complexity : Theta(N^2) Worst case in Skewed tree case
+
+
+
+    ## Approach 2 : 
+
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int res=0;
+        int height(Node *root){
+            if(root==NULL)
+                return 0;
+            int lh=height(root->left);
+            int rh=height(root->right);
+            res=max(res,1+lh+rh);
+            
+                return 1+max(lh,rh);
+        }
+
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(60);
+            root->right->left->left=new Node(50);
+            root->right->right->right=new Node(70);
+            
+            cout<<"Height: "<<height(root)<<endl;
+            cout<<"Diameter: "<<res;
+        }
+
+        Time Complexity : O(N)
+        Auxillry space : O(H), H is Height if Binary tree
+
+
+
+## Lowest common Ancestor (LCA)
+
+    ** We are Given a Binary tree and Two value inside it we need,
+       to find out lowest common Ancestor of these two values.
+
+    ** Ancestor of a Node is Node itself, its parent , 
+       parents of parnet and so onn.
+
+
+    ## Approach 1 : 
+
+        ** Naive Approach 
+
+        struct Node  
+            { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        bool findPath(Node *root, vector<Node *> &p, int n){
+            if(root==NULL)return false;
+            p.push_back(root);
+            if(root->key==n)return true;
+            
+            if(findPath(root->left,p,n)||findPath(root->right,p,n))return true;
+            
+            p.pop_back();
+            return false;
+        }
+
+        Node *lca(Node *root, int n1, int n2){
+            vector <Node *> path1, path2;
+            if(findPath(root,path1,n1)==false||findPath(root,path2,n2)==false)
+                return NULL;
+            for(int i=0;i<path1.size()-1 && i<path2.size()-1;i++)
+                if(path1[i+1]!=path2[i+1])
+                    return path1[i];
+            return NULL;
+        }
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            int n1=20,n2=50;
+            
+            Node *ans=lca(root,n1,n2);
+            cout<<"LCA: "<<ans->key;
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : O(N) along with three Tree Traversal.
+
+
+
+    ## Approach 2 : 
+
+        ** We do Normal Recursive Traversal, we have the following cases for every Node.
+
+            ** If it is same as N1 or N2.
+            ** If one of its subtree contains N1 and Other contains N2.
+            ** If one of its subtree contains both N1 and N2.
+            ** If None of its Subtree contain any of N1 and N2.
+
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        Node *lca(Node *root, int n1, int n2){
+            if(root==NULL)return NULL;
+            if(root->key==n1||root->key==n2)
+                return root;
+            
+            Node *lca1=lca(root->left,n1,n2);
+            Node *lca2=lca(root->right,n1,n2);
+            
+            if(lca1!=NULL && lca2!=NULL)
+                return root;
+            if(lca1!=NULL)
+                return lca1;
+            else
+                return lca2;
+        }
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            int n1=20,n2=50;
+            
+            Node *ans=lca(root,n1,n2);
+            cout<<"LCA: "<<ans->key;
+        }
+
+        Time Complexity : Theta(n)
+        Auxillary space : Theta(H) , Only one Traversal of binary tree.
+
