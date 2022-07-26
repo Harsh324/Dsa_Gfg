@@ -1,0 +1,125 @@
+## Maximum width of Binary Tree 
+
+    ** We are given a Binary tree we need to find the maximum,
+       width of the Binary Tree.
+    ** Maximum Width of Binary tree is the maximum number of nodes,
+       present in a level of the Tree.
+
+
+    ## Approach : 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int maxWidth(Node *root){
+            if(root==NULL)return 0;
+            queue<Node *>q;
+            q.push(root);
+            int res=0;
+            while(q.empty()==false){
+                int count=q.size();
+                res=max(res,count);
+                for(int i=0;i<count;i++){
+                    Node *curr=q.front();
+                    q.pop();
+                    if(curr->left!=NULL)
+                        q.push(curr->left);
+                    if(curr->right!=NULL)
+                        q.push(curr->right);
+                }
+            }
+            return res;
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->left=new Node(60);
+            
+            cout<<maxWidth(root);
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : Theta(W)
+
+
+
+
+## Convert a Binary Tree to Doubly Linked List
+
+    ** we are Given a Binary tree we need to convert it into a,
+       Doubly linked list inplace.
+
+    ** Inplace means we do not need to allocate new memory for,
+       doubly linked list nodes.
+
+    ** We will use Left Pointer as Prev of Doubly Linked List and,
+       Right Pointer as Next of the Doubly Linked List.
+
+    ** We will use Inorder traversal.
+
+    
+    ## Approach : 
+
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printlist(Node *head){
+            Node *curr=head;
+            while(curr!=NULL){
+                cout<<curr->key<<" ";
+                curr=curr->right;
+            }cout<<endl;
+        }
+
+
+
+        Node *BTToDLL(Node *root){
+            if(root==NULL)return root;
+            static Node* prev = NULL;
+            Node *head=BTToDLL(root->left);
+            if(prev==NULL){head=root;}
+            else{
+                root->left=prev;
+                prev->right=root;
+            }
+            prev=root;
+            BTToDLL(root->right);
+            return head;
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(5);
+            root->right=new Node(20);
+            root->right->left=new Node(30);
+            root->right->right=new Node(35);
+            
+            Node *head=BTToDLL(root);
+            printlist(head);
+        }
+
+        Time Complexity : O(N)
+        Auxiilary space : O(H) ,H is Height of Binary tree 
