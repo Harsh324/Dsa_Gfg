@@ -1,0 +1,19 @@
+## Infix to Prefix conversion
+
+    ** Given an Infix expression as a string our task is to,
+       convert this to equivalent postfix expression
+
+
+    I/P : Infix = x + y * z
+    O/P : Prefix = + x * y z
+
+    I/P : Infix = (x + y) * z
+    O/P : Prefix = * +  x y z
+
+    I/P : Infix = x ^ y ^ z
+    O/P : Prefix = ^ x ^ y z
+
+
+    ## Approach : 
+
+        
