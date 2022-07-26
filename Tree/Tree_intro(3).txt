@@ -1,0 +1,187 @@
+## Size of a Binary tree
+
+    ** we are given a Binary tree we need total number of Nodes,
+       in it.That is the Size of Given Binary tree.
+
+
+    ## Approach : 
+
+        ** Recursive Approach
+    
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int getSize(Node *root){
+            if(root==NULL)
+                return 0;
+            else
+                return 1+getSize(root->left)+getSize(root->right);
+        } 
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->right=new Node(60);
+            
+            cout<<getSize(root);
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(H), H is Height of Tree
+
+
+
+
+## Maximum in Binary Tree
+
+    ** Given a Binary tree we need to find maximum value in it.
+
+    ## Approach : 
+
+        ** Recursive Approach
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int getMax(Node *root){
+            if(root==NULL)
+                return INT_MIN;
+            else
+                return max(root->key,max(getMax(root->left),getMax(root->right)));
+        } 
+
+        int main() {
+            
+            Node *root=new Node(20);
+            root->left=new Node(80);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            
+            cout<<getMax(root);
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(H), Hi is Height of the binary tree.
+
+
+
+## Print Left View of Binary Tree
+
+    ** We are Given a Binary tree we need to print left view,
+       of the Binary tree Left view means at every level we need,
+       to print leftmost Node.
+
+    
+    ## Approach 1 : 
+
+        ** Recursive 
+        ** If Using Preorder Traversal we traverse Left Node at each level.
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        int maxLevel=0;
+        void printLeft(Node *root,int level){
+            if(root==NULL)
+                return;
+            if(maxLevel<level){
+                cout<<root->key<<" ";
+                maxLevel=level;
+            }
+            printLeft(root->left,level+1);
+            printLeft(root->right,level+1);
+        }
+
+        void printLeftView(Node *root){
+            printLeft(root,1);
+        }
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            
+            printLeftView(root);
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : Theta(H), H is Height of Binary Tree 
+
+
+    ## Approach 2 : 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printLeft(Node *root){
+            if(root==NULL)
+                return;
+                queue<Node *> q;q.push(root);
+            while(q.empty()==false){
+                int count=q.size();
+                for(int i=0;i<count;i++){
+                    Node *curr=q.front();
+                    q.pop();
+                    if(i==0)
+                        cout<<curr->key<<" ";
+                    if(curr->left!=NULL)
+                        q.push(curr->left);
+                    if(curr->right!=NULL)
+                        q.push(curr->right);
+                }
+            }
+        }
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->right->left=new Node(40);
+            root->right->right=new Node(50);
+            
+            printLeft(root);
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : Theta(W) , W is Width of Binary Tree
