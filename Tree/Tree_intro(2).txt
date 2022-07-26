@@ -1,0 +1,205 @@
+## Print Nodes ate Distance k
+
+    ** We are Given a Binary tree and an integer K. we need to print,
+       the Nodes which are at distance k from the Root.
+
+
+    ## Approach : 
+
+        ** Recursive Approach 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printKDist(Node *root,int k){
+            if(root==NULL)return;
+            
+            if(k==0){cout<<root->key<<" ";}
+            else{
+            printKDist(root->left,k-1);
+            printKDist(root->right,k-1);
+            }
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->right=new Node(70);
+            root->right->right->right=new Node(80);
+            int k=2;
+            
+            printKDist(root,k);
+        }
+
+        Time Complexity : O(N)
+        Auxillarry space : O(H) , H is Height of Binary tree.
+
+
+
+## Level order Traversal
+
+    ** Traverse Binary tree in level order(Breadth First Search)
+
+    ## Approach : 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printLevel(Node *root){
+            if(root==NULL)return;
+            queue<Node *>q;
+            q.push(root);
+            while(q.empty()==false){
+                Node *curr=q.front();
+                q.pop();
+                cout<<curr->key<<" ";
+                if(curr->left!=NULL)
+                    q.push(curr->left);
+                if(curr->right!=NULL)
+                    q.push(curr->right);
+            }
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->left=new Node(60);
+            root->right->right=new Node(70);
+            
+            printLevel(root);
+        }
+
+        Time Complexity : theta(N)
+        Auxillarry space : O(N)
+
+
+## Level order Traversal Line by Line
+
+    ** One level in one line and next level in next line like that.
+
+    ## Approach 1 : 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printLevel(Node *root){
+            if(root==NULL)return;
+            queue<Node *>q;
+            q.push(root);
+            q.push(NULL);
+            while(q.size()>1){
+                Node *curr=q.front();
+                q.pop();
+                if(curr==NULL){
+                    cout<<"\n";
+                    q.push(NULL);
+                    continue;
+                }
+                cout<<curr->key<<" ";
+                if(curr->left!=NULL)
+                    q.push(curr->left);
+                if(curr->right!=NULL)
+                    q.push(curr->right);
+            }
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->left=new Node(60);
+            root->right->right=new Node(70);
+            
+            printLevel(root);
+        }
+
+        Time Complexity : O(N + H)
+        Auxillarry space : Theta(Width)
+
+
+
+    ## Approach 2 : 
+
+        struct Node  
+        { 
+            int key; 
+            struct Node *left; 
+            struct Node *right; 
+            Node(int k){
+                key=k;
+                left=right=NULL;
+            }
+        };
+
+        void printLevel(Node *root){
+            if(root==NULL)return;
+            queue<Node *>q;
+            q.push(root);
+            while(q.empty()==false){
+                int count=q.size();
+                for(int i=0;i<count;i++){
+                Node *curr=q.front();
+                q.pop();
+                cout<<curr->key<<" ";
+                if(curr->left!=NULL)
+                    q.push(curr->left);
+                if(curr->right!=NULL)
+                    q.push(curr->right);
+                }
+                cout<<"\n";
+            }
+        }  
+
+        int main() {
+            
+            Node *root=new Node(10);
+            root->left=new Node(20);
+            root->right=new Node(30);
+            root->left->left=new Node(40);
+            root->left->right=new Node(50);
+            root->right->left=new Node(60);
+            root->right->right=new Node(70);
+            
+            printLevel(root);
+        }
+
+        Time Complexity : O(N)
+        Auxillarry space : Theta(Width)
+
+
+
