@@ -41,3 +41,42 @@
 
 
 ** Note that if X is a multiple of 3, then both X as well as the sum of digits of X are a multiple of 3! Can you put this property to use here?
+
+
+Starter 48
+
+        1. 968
+        2. 1393
+        3. 1620
+
+Starter 47
+
+        1. 1049
+        2. 1390
+        3. 1595
+
+
+Starter 46
+
+        1. 1112
+        2. 1519
+        3. 1681
+
+
+Starter 45
+
+        1. 1013
+        2. 1193
+        3. 1363
+
+
+Starter 44
+
+        1. 1472
+        2. 1626
+        3. 1870
+
+Starter 43
+
+        1. 1304
+        2. 
