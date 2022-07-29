@@ -1,0 +1,102 @@
+## Iterative Inorder Traversal
+
+    ** We are given an Binary tree we need to print the Inoeder tree,
+       traversal using iterative approach.
+
+    
+    ## Approach 1 : 
+
+        void IterateInorder(Node* root)
+        {
+            stack<Node *> St;
+            Node *Curr = root;
+            while(Curr != NULL || St.empty == false)
+            {
+                while(Curr != NULL)
+                {
+                    St.push(Curr);
+                    Curr = Curr -> left;
+                }
+                Curr = St.top();
+                St.pop();
+                cout<<Curr->Key<<" ";
+                Curr = Curr->right;
+            }
+        }
+
+        Time Complexity : Theta(N)
+        Auxillary space : O(H), Height of the binary tree.
+
+
+## Iterative Preorder Traversal
+
+    ** We are given an Binary tree we need to print the Preorder tree,
+       traversal using iterative approach
+
+
+    ## Approach 1 : 
+
+        void IteratePreorder(Node* Root)
+        {
+            if(Root == NULL)
+                return;
+            stack<Node *> St;
+            St.push(Root);
+            while(St.empty() == false)
+            {
+                Node *Curr = St.top();
+                cout<<Curr->Key<<" ";
+                St.pop();
+                if(Curr ->right != NULL)
+                    St.push(Curr->right);
+                if(Curr -> left != NULL)
+                    St.push(Curr->left);
+            }
+        }
+
+
+        Time Complexity : O(N)
+        Auxillary space : O(N)
+
+
+    ## Approach 2 : 
+
+
+        void IteratePreorder(Node* Root)
+        {
+            if(Root == NULL)
+                return;
+            stack<Node *> St;
+            Node *Curr = Root;
+            while(Curr != NULL || St.empty() == false)
+            {
+                while(Curr != NULL)
+                {
+                    cout<<Curr->Key<<" ";
+                    if(Curr ->right != NULL)
+                        St.push(Curr->right);
+                    Curr = Curr -> left;
+                }
+                if(St.empty() == false)
+                {
+                    Curr = St.top();
+                    St.pop();
+                }
+            }
+        }
+
+        Time Complexity : O(N)
+        Auxillary space : O(H)
+
+
+## Iterative Postorder Traversal
+
+
+    ## Approach 1 : 
+
+
+        Time Complexity : 
+        Auxillary space : 
+
+
+
