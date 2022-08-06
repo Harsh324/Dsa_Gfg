@@ -20,9 +20,9 @@
             ** Get Prefix sum array in O(n), then using prefix sum array,
             ** each query can be handled in O(1)
 
-            int Prefix_sum(int Arr[], int Len)
+            vector<int> Prefix_sum(int Arr[], int Len)
             {
-                int Sum_Array[Len];
+                vector<int> Sum_Array(Len);
                 Sum_Array[0] = Arr[0];
                 for(int i = 1; i < Len; i++)
                 {
