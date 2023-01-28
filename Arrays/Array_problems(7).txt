@@ -224,3 +224,36 @@
 
 
 
+int Get(int Arr[], int N, int K)
+{
+    int Sum = 0, Maxx = 0, X = 1;
+    for(int i = 0; i <= (N - K); i++)
+    {
+        vector<int> V;
+        for(int j = i; j < (i + K); j++)
+        {
+            V.push_back(Arr[j]);
+        }
+        X = 1;
+        Sum = 0;
+        for(int l = 0; l < V.size(); l++)
+        {
+            if(count(V.begin(), V.end(), V[l]) > 1)
+            {
+                X = 0;
+                break;
+            }
+            else
+            {
+                Sum += V[l];
+            }
+        }
+        if( (X == 1) && (Maxx < Sum))
+        {
+            Maxx = Sum;
+        }
+    }
+    if(Maxx == 0)
+        return -1;
+    return Maxx;
+}

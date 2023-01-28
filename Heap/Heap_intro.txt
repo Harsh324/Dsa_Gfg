@@ -1,0 +1,19 @@
+## Binary Heap
+
+    ** Used in heap sort.
+    ** used to implement priority queue
+        ** priority queue is used in dijikstra, prims, huffman algorithm
+    ** Two ways to do so
+
+        ** Min Heap
+            Highest priority itme is assigned lowest value
+        ** Max Heap
+            Highest priority item is assigned highest value
+
+    ** Binary heap is a complete binary tree (stored as an array) this is the olny reason.
+
+    ** Binary tree is called complete if its all levels all completely filed,
+       except the last level and the last level is to be filled from left to right only.
+
+    ** Left(i) = 2i + 1, Right(i) = 2i + 2, Parent(i)
+

@@ -12,7 +12,7 @@
 
     ** Degree of a Node is the Number of children it has.
     ** Thus all Leaf Nodes has Degree Zero.
-    ** Internal Nodes are Nodes with Degree Not equal to 0.
+    ** Internal Nodes are Nodes with Degree Not equal to  0.
 
 
     ## Application of Tree

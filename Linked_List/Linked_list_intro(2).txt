@@ -149,7 +149,7 @@
 
 ## Circular Linked List Traversal
 
-    ** We ae given the Head of the Circular Linked List, 
+    ** We are given the Head of the Circular Linked List, 
        we need to traverse the Linked List and print Nodes.
     
 

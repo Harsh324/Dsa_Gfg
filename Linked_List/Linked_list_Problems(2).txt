@@ -160,7 +160,7 @@
 ## Delete a Node with only pointer given to it
 
     ** Given Address or Reference of Random Node in Linked List,
-       we need to delet this node. 
+       we need to delet this node.
 
     I/P : [10] -> [20] -> [30] -> [40] -> [25] -> NULL,    Reference to value 30
     O/P : [10] -> [20] -> [40] -> [25] -> NULL
